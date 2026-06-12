@@ -5,6 +5,8 @@ Notes on what I'm studying, written in my own words.
 I'm rebuilding my fundamentals (logic, SQL, Python) and this repo is where I document it. Notes are written by me — no copy-paste from tutorials. If something is here, it's because I typed it, ran it, or got it wrong first.
 
 ## Structure
+
+```text
 learning-notes/
 ├── sql/                 
 ├── python/
@@ -12,6 +14,7 @@ learning-notes/
 ├── software-engineering/ # book notes
 ├── data-engineering/
 └── certificates/
+```
 
 ## How it works
 
