@@ -1,6 +1,7 @@
 # SQL 01-Basics 
 
 # Tipos Primitivos (MySQL)
+```text
 Numérico
 ├── Inteiro (sem vírgula)
 │   ├── TinyInt    → bem pequeno (até ~127). Ex: idade
@@ -37,6 +38,7 @@ Literal
 
 Espacial
 └── Geometry, Point, Polygon → mapas e coordenadas (= meus Polygons do GeoPandas)
+```
 
 **Mais usados:** Int, Decimal, Boolean, Date/DateTime, VarChar, Text
 
@@ -77,7 +79,7 @@ create table `pessoas` (
 ```
 
 # Melhorias aplicadas
-
+```text
 Encoding
 ├── character set utf8 / collate utf8_general_ci  → suporte a acentos e cedilha (PT-BR) no banco
 └── default charset = utf8 (no CREATE TABLE)      → garante UTF-8 na tabela, independente do banco
@@ -100,3 +102,4 @@ Dados mais precisos
 
 Valor padrão
 └── default 'Brasil' (em nacionalidade)           → campo vazio no cadastro? banco preenche sozinho
+```
