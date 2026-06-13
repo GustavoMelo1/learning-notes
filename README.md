@@ -10,8 +10,7 @@ I'm rebuilding my fundamentals (logic, SQL, Python) and this repo is where I doc
 learning-notes/
 ├── sql/                 
 ├── python/
-│   ├── code/             
-│   └── *.md              
+│   └──code/                          
 ├── logic/
 ├── software-engineering/ 
 ├── data-engineering/
