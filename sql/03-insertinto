@@ -1,0 +1,49 @@
+# 03 - Insert Into (DML)
+
+DML = Data Manipulation Language. Comandos que mexem nos DADOS (inserir, atualizar, apagar linhas). Diferente do DDL que mexe na estrutura.
+
+## A ordem dos campos
+Os campos da tabela, na ordem do CREATE TABLE:
+`(id, nome, nascimento, sexo, peso, altura, nacionalidade)`
+
+## Inserindo especificando os campos
+```sql
+INSERT INTO pessoas
+(nome, nascimento, sexo, peso, altura, nacionalidade)
+VALUES
+('Godofredo', '1984-01-02', 'M', '78.5', '1.83', 'Brasil');
+```
+Aqui eu NÃO coloco o `id` porque ele é `auto_increment` (o banco preenche sozinho, em ordem).
+
+## Usando DEFAULT
+Como o `id` é auto_increment e a `nacionalidade` tem default 'Brasil', eu posso usar a palavra `DEFAULT` no lugar do valor que o banco preenche sozinho:
+```sql
+INSERT INTO pessoas VALUES
+(DEFAULT, 'Godofredo', '1984-01-02', 'M', '78.5', '1.83', DEFAULT);
+```
+- `DEFAULT` no id → banco dá o próximo número
+- `DEFAULT` na nacionalidade → vira 'Brasil'
+
+## Inserindo SEM nomear os campos
+Se eu colocar os valores na ORDEM EXATA da tabela, não preciso nomear os campos — só os valores. Mas a ordem TEM que bater:
+```sql
+INSERT INTO pessoas VALUES
+(DEFAULT, 'Godofredo', '1984-01-02', 'M', '78.5', '1.83', DEFAULT);
+```
+
+## Inserindo VÁRIAS pessoas de uma vez
+Separo cada registro com vírgula `,` e finalizo com `;`. Posso misturar (uns com default, outros não), desde que cada linha tenha a mesma quantidade de valores:
+```sql
+INSERT INTO pessoas
+(nome, nascimento, sexo, peso, altura, nacionalidade)
+VALUES
+('Ana',       '1975-12-02', 'F', '65.2', '1.83', 'EUA'),
+('Andre',     '1989-11-22', 'M', '85.9', '1.98', 'Portugal'),
+('Godofredo', '1984-01-02', 'M', '78.5', '1.83', 'Brasil');
+```
+
+## ⚠️ Erros que eu cometi e CORRIGI (gravar!)
+- É `INSERT INTO`, NÃO `INSERT TO`. Sempre `INTO`.
+- É `VALUES` (com S) pra inserir. `VALUE` sem S não é o certo aqui.
+- Na lista de campos NÃO vai "e" antes do último: é `(nome, nascimento, sexo, peso, altura, nacionalidade)`, não `(... altura e nacionalidade)`. Em SQL separa TUDO com vírgula, sem "e".
+- Se uso `auto_increment` no id, no INSERT com campos nomeados eu nem listo o id (ou uso DEFAULT se for inserir sem nomear).

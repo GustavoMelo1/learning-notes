@@ -1,6 +1,7 @@
-# SQL 01-Basics 
+# 01 Basics (MySQL)
 
-# Tipos Primitivos (MySQL)
+Antes de criar uma tabela preciso saber o tipo de cada coluna. Cada dado tem seu tipo certo.
+
 ```text
 Numérico
 ├── Inteiro (sem vírgula)
@@ -42,64 +43,10 @@ Espacial
 
 **Mais usados:** Int, Decimal, Boolean, Date/DateTime, VarChar, Text
 
------------------------------------------------------------------------------------------------------
+## Char vs VarChar (a pegadinha)
+- `Char(30)` → tamanho FIXO. "Zé" vira "Zé" + 28 espaços ocupados de verdade. Bom pra coisa de tamanho cravado: UF(2), CEP.
+- `VarChar(30)` → o 30 é só o TETO. "Zé" ocupa o tamanho de "Zé", os 28 nem existem. Pra nome, email (95% dos casos).
 
-# Create a Table
-
-# Criando, inserindo e deletando tabelas
-
-```sql
-CREATE TABLE pessoas (
-    nome varchar(30),
-    idade tinyint,
-    sexo char(1),
-    peso float,
-    altura float,
-    nacionalidade varchar(20)
-);
-```
-
-# Table atualizada e com regras de cadastro
-
-```sql
-create database cadastro
-default character set utf8
-default collate utf8_general_ci;
-
-create table `pessoas` (
-    `id`            int          not null auto_increment,
-    `nome`          varchar(30)  not null,
-    `nascimento`    date,
-    `sexo`          enum('M', 'F'),
-    `peso`          decimal(5,2),
-    `altura`        decimal(3,2),
-    `nacionalidade` varchar(20)  default 'Brasil',
-    primary key (id)
-) default charset = utf8;
-```
-
-# Melhorias aplicadas
-```text
-Encoding
-├── character set utf8 / collate utf8_general_ci  → suporte a acentos e cedilha (PT-BR) no banco
-└── default charset = utf8 (no CREATE TABLE)      → garante UTF-8 na tabela, independente do banco
-
-Sintaxe
-└── crases (`) nos nomes de tabela e coluna       → evita conflito com palavras reservadas do SQL
-
-Identificador
-├── id int not null auto_increment                → número único por registro, preenchido pelo banco
-└── primary key (id)                              → sinaliza a coluna principal da tabela
-
-Obrigatoriedade
-└── not null (em id e nome)                       → impede salvar o registro sem esses campos
-
-Dados mais precisos
-├── nascimento date  (substituiu idade)           → idade é volátil; a data de nascimento é fixa
-├── enum('M','F')    (substituiu char(1))         → trava o campo; char aceitaria qualquer letra
-├── decimal(5,2)     (substituiu float em peso)   → exato: 5 dígitos totais, 2 após a vírgula
-└── decimal(3,2)     (substituiu float em altura) → mesmo motivo; float é apenas aproximado
-
-Valor padrão
-└── default 'Brasil' (em nacionalidade)           → campo vazio no cadastro? banco preenche sozinho
-```
+## Float vs Decimal (pegadinha de entrevista)
+- `Float`/`Double` → APROXIMADO. 0.1 + 0.2 pode dar 0.30000004. Serve pra sensor, ciência.
+- `Decimal` → EXATO. **Dinheiro é SEMPRE Decimal, nunca Float.**
