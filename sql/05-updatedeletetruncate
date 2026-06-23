@@ -5,36 +5,36 @@ Comandos que mexem nos DADOS já inseridos. Os três mais perigosos do dia a dia
 ## UPDATE
 Altera dados de linhas que já existem. Uso o `WHERE` pra dizer QUAL linha — geralmente pelo `id`, porque é o mais fácil de identificar com certeza.
 ```sql
-UPDATE cursos
-SET nome = 'HTML5'
-WHERE idcurso = '1';
+UPDATE sensores
+SET nome = 'Pluviometro'
+WHERE idsensor = '1';
 ```
 
 Posso mudar VÁRIOS campos de uma vez, separando com vírgula:
 ```sql
-UPDATE cursos
-SET nome = 'PHP', ano = '2015'
-WHERE idcurso = '4';
+UPDATE sensores
+SET nome = 'Anemometro', ano = '2015'
+WHERE idsensor = '4';
 ```
 
 ### ⚠️ A regra de ouro do UPDATE: sempre WHERE
 Se eu esquecer o `WHERE`, o UPDATE muda TODAS as linhas da tabela. Por isso o `LIMIT 1` é uma trava de segurança — garante que mexe em uma linha só:
 ```sql
-UPDATE cursos
-SET nome = 'JAVA', ano = '2015', carga = '40'
-WHERE idcurso = '5'
+UPDATE sensores
+SET nome = 'Termometro', ano = '2015', alcance = '40'
+WHERE idsensor = '5'
 LIMIT 1;
 ```
 
 ## DELETE
 Apaga LINHAS. Cuidado — não tem CTRL+Z.
 ```sql
-DELETE FROM cursos
-WHERE idcurso = '8';
+DELETE FROM sensores
+WHERE idsensor = '8';
 ```
 Com LIMIT pra não apagar demais sem querer:
 ```sql
-DELETE FROM cursos
+DELETE FROM sensores
 WHERE ano = '2050'
 LIMIT 2;
 ```
@@ -45,7 +45,7 @@ Mesma regra do UPDATE: DELETE sem WHERE = apaga a tabela inteira (linha por linh
 ## TRUNCATE
 Apaga TODOS os registros de uma vez (esvazia a tabela), mas mantém a estrutura. Mais rápido que DELETE pra limpar tudo.
 ```sql
-TRUNCATE cursos;
+TRUNCATE sensores;
 ```
 
 ## Resumo das diferenças (importante)
