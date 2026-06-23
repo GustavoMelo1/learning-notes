@@ -4,33 +4,33 @@ DDL = Data Definition Language. Comandos que DEFINEM a estrutura (criar, alterar
 
 ## Tabela simples
 ```sql
-CREATE TABLE pessoas (
+CREATE TABLE estacoes (
     nome varchar(30),
-    idade tinyint,
-    sexo char(1),
-    peso float,
-    altura float,
-    nacionalidade varchar(20)
+    anos_operacao tinyint,
+    tipo char(1),
+    temp_media float,
+    precipitacao float,
+    regiao varchar(20)
 );
 ```
 
 ## Criando o banco antes da tabela
 ```sql
-CREATE DATABASE cadastro
+CREATE DATABASE clima
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 ```
 
 ## Tabela com regras de cadastro (versão melhorada)
 ```sql
-CREATE TABLE `pessoas` (
+CREATE TABLE `estacoes` (
     `id`            int          NOT NULL AUTO_INCREMENT,
     `nome`          varchar(30)  NOT NULL,
-    `nascimento`    date,
-    `sexo`          enum('M', 'F'),
-    `peso`          decimal(5,2),
-    `altura`        decimal(3,2),
-    `nacionalidade` varchar(20)  DEFAULT 'Brasil',
+    `instalacao`    date,
+    `tipo`          enum('Fixa', 'Movel'),
+    `temp_media`    decimal(4,1),
+    `precipitacao`  decimal(5,1),
+    `regiao`        varchar(20)  DEFAULT 'Sudeste',
     PRIMARY KEY (id)
 ) DEFAULT CHARSET = utf8;
 ```
@@ -52,25 +52,25 @@ Obrigatoriedade
 └── not null (em id e nome)                       → impede salvar o registro sem esses campos
 
 Dados mais precisos
-├── nascimento date  (substituiu idade)           → idade é volátil; a data de nascimento é fixa
-├── enum('M','F')    (substituiu char(1))         → trava o campo; char aceitaria qualquer letra
-├── decimal(5,2)     (substituiu float em peso)   → exato: 5 dígitos totais, 2 após a vírgula
-└── decimal(3,2)     (substituiu float em altura) → mesmo motivo; float é apenas aproximado
+├── instalacao date  (substituiu anos_operacao)   → tempo de operação é volátil; a data de instalação é fixa
+├── enum('Fixa','Movel') (substituiu tipo char(1))→ trava o campo; char aceitaria qualquer letra
+├── decimal(4,1)     (substituiu float em temp_media)    → exato: 4 dígitos totais, 1 após a vírgula
+└── decimal(5,1)     (substituiu float em precipitacao)  → mesmo motivo; float é apenas aproximado
 
 Valor padrão
-└── default 'Brasil' (em nacionalidade)           → campo vazio no cadastro? banco preenche sozinho
+└── default 'Sudeste' (em regiao)                 → campo vazio no cadastro? banco preenche sozinho
 ```
 
 ## IF NOT EXISTS
-Usada pra NÃO sobrescrever tabela que já existe. Se já tem uma tabela `cursos`, o comando não deixa criar de novo (não dá erro de apagar a antiga). Se não existe, ela cria.
+Usada pra NÃO sobrescrever tabela que já existe. Se já tem uma tabela `sensores`, o comando não deixa criar de novo (não dá erro de apagar a antiga). Se não existe, ela cria.
 ```sql
-CREATE TABLE IF NOT EXISTS cursos (
+CREATE TABLE IF NOT EXISTS sensores (
     nome varchar(30) NOT NULL UNIQUE,
     descricao text,
-    carga int UNSIGNED,
-    totalaulas int UNSIGNED,
+    alcance int UNSIGNED,
+    leituras_dia int UNSIGNED,
     ano year DEFAULT '2016'
 ) DEFAULT CHARSET=utf8;
 ```
 
-> Nota minha: `UNSIGNED` = só aceita número positivo (sem sinal de menos). Bom pra coisa que nunca é negativa, tipo carga horária.
+> Nota minha: `UNSIGNED` = só aceita número positivo (sem sinal de menos). Bom pra coisa que nunca é negativa, tipo alcance de sensor.
