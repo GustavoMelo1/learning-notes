@@ -5,66 +5,66 @@ Serve pra MUDAR a estrutura de uma tabela que já existe (adicionar, remover, mo
 
 ### Adicionar coluna
 ```sql
-ALTER TABLE pessoas
-ADD profissao VARCHAR(10);
+ALTER TABLE estacoes
+ADD responsavel VARCHAR(10);
 ```
 
 ### Remover coluna
 ```sql
-ALTER TABLE pessoas
-DROP profissao;
+ALTER TABLE estacoes
+DROP responsavel;
 ```
 
 ### Adicionar coluna numa POSIÇÃO específica
 Por padrão a coluna nova entra no fim. Pra escolher onde:
 ```sql
-ALTER TABLE pessoas
-ADD profissao VARCHAR(10) AFTER nome;   -- depois da coluna nome
+ALTER TABLE estacoes
+ADD responsavel VARCHAR(10) AFTER nome;   -- depois da coluna nome
 ```
 ```sql
-ALTER TABLE pessoas
-ADD codigo int FIRST;                   -- como primeira coluna
+ALTER TABLE estacoes
+ADD protocolo int FIRST;                  -- como primeira coluna
 ```
 > Nota minha: existe `FIRST` (primeira) e `AFTER` (depois de tal coluna). NÃO existe `BEFORE`.
 
 ### Modificar o tipo / constraint de uma coluna
 `MODIFY` muda o tipo e as regras, mas NÃO o nome da coluna.
 ```sql
-ALTER TABLE pessoas
-MODIFY profissao VARCHAR(20) NOT NULL;
+ALTER TABLE estacoes
+MODIFY responsavel VARCHAR(20) NOT NULL;
 ```
 Pra a coluna não ficar sem valor quando viro NOT NULL, posso dar um default vazio:
 ```sql
-ALTER TABLE pessoas
-MODIFY profissao VARCHAR(20) NOT NULL DEFAULT '';
+ALTER TABLE estacoes
+MODIFY responsavel VARCHAR(20) NOT NULL DEFAULT '';
 ```
 
 ### Renomear coluna
 `CHANGE` renomeia — preciso colocar o nome ANTIGO e o NOVO. (O CHANGE também serve pra modificar tipo, tipo o MODIFY, mas só uso quando vou trocar o nome.)
 ```sql
-ALTER TABLE pessoas
-CHANGE profissao prof VARCHAR(20);      -- profissao vira prof
+ALTER TABLE estacoes
+CHANGE responsavel coordenador VARCHAR(20);    -- responsavel vira coordenador
 ```
 
 ### Renomear a tabela inteira
 ```sql
-ALTER TABLE pessoas
-RENAME TO populacao;
+ALTER TABLE estacoes
+RENAME TO postos_meteorologicos;
 ```
 
 ### Adicionar chave primária depois
 ```sql
-ALTER TABLE cursos
-ADD idcurso int FIRST;
+ALTER TABLE sensores
+ADD idsensor int FIRST;
 
-ALTER TABLE cursos
-ADD PRIMARY KEY (idcurso);
+ALTER TABLE sensores
+ADD PRIMARY KEY (idsensor);
 ```
 
 ## DROP TABLE
 Apaga a tabela INTEIRA (estrutura + dados). Cuidado, não tem CTRL+Z.
 ```sql
-DROP TABLE IF EXISTS teste;
+DROP TABLE IF EXISTS rascunho;
 ```
 > `IF EXISTS` evita erro caso a tabela não exista.
 
