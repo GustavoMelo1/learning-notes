@@ -88,6 +88,12 @@ A flecha mostra: o `turma_id` do aluno aponta para o `id` da turma.
 
 Existem só 3 jeitos de duas caixas se ligarem. Sempre é um desses três.
 
+Antes de ver os exemplos, o que significa cada letra na notação:
+- **1** = "um". Quer dizer: só existe **uma** linha do outro lado.
+- **N** = "muitos". Quer dizer: pode existir **várias** linhas do outro lado.
+
+Por isso "1:N" se lê "um para muitos", e "N:1" se lê "muitos para um". É a mesma relação, só que olhada de lados diferentes — vou mostrar isso no item 5.2.
+
 ### 5.1 — Um para Um (1:1)
 
 Uma linha de uma tabela liga com **exatamente uma** linha da outra tabela. Nunca mais que uma.
@@ -123,6 +129,26 @@ turmas                        alunos
 
 Regra fixa: 1 turma pode ter muitos alunos. Mas 1 aluno está em uma turma só.
 
+### 5.2.1 — Muitos para Um (N:1) — é a mesma relação, olhada do outro lado
+
+"1:N" e "N:1" não são duas relações diferentes. É **a mesma ligação**, só que cada nome olha de um lado:
+
+- Olhando da turma para os alunos: **1 turma → N alunos** (1:N).
+- Olhando dos alunos para a turma: **N alunos → 1 turma** (N:1).
+
+```text
+   alunos                       turmas
++----+--------+----------+         +----+---------+
+| id | nome   | turma_id |         | id | nome    |
++----+--------+----------+         +----+---------+
+| 1  | Lucas  |    1     | ------> | 1  | Turma A |
+| 3  | Pedro  |    1     | ------> | 1  | Turma A |
+| 2  | Marina |    2     | ------> | 2  | Turma B |
++----+--------+----------+         +----+---------+
+```
+
+Regra fixa: quem tem a chave estrangeira (o `turma_id`) é sempre o lado "N" (muitos). Quem é apontado é sempre o lado "1" (um).
+
 ### 5.3 — Muitos para Muitos (N:N)
 
 Várias linhas de uma tabela ligam com várias linhas da outra tabela. Para isso, precisa de uma **terceira caixa** no meio, que só guarda os pares.
@@ -153,6 +179,7 @@ Regra fixa: a tabela do meio só existe para guardar os pares. Ela não tem outr
 |---|---|---|
 | 1:1 | uma linha liga com exatamente uma linha | pessoa → passaporte |
 | 1:N | uma linha liga com várias linhas | turma → alunos |
+| N:1 | várias linhas ligam com uma só (mesma coisa que 1:N, do outro lado) | alunos → turma |
 | N:N | várias linhas ligam com várias linhas (precisa de tabela do meio) | alunos ↔ matérias |
 
 Pontos fixos que nunca mudam:
