@@ -1,10 +1,10 @@
-# 08 - Modelo Relacional (explicado de um jeito simples e direto)
+# 08 - Relational Model (explained simply and directly)
 
 Modelo relacional é o jeito que o banco de dados usa para guardar informação em **caixas** (tabelas) e **ligar uma caixa na outra**. "Relacional" vem de "relação" — ou seja, como as caixas se conectam.
 
 Vou explicar passo a passo, sem pressa, com exemplos bem concretos.
 
-## 1. O que é uma tabela
+## 1. What is a table
 
 Uma tabela é uma **caixa com etiquetas**. Cada etiqueta é uma coluna. Cada item dentro da caixa é uma linha.
 
@@ -26,7 +26,7 @@ Exemplo: uma caixa chamada `alunos`.
 
 Regra fixa: cada coluna guarda sempre o mesmo tipo de coisa. A coluna `idade` é sempre número. A coluna `nome` é sempre texto. Isso nunca muda.
 
-## 2. Chave Primária (Primary Key) — o "documento de identidade" da linha
+## 2. Primary Key — the row's "ID document"
 
 Toda tabela precisa de uma coluna que **nunca se repete**. Essa coluna é a chave primária. Ela serve para identificar uma linha sem confusão, igual um documento de identidade.
 
@@ -42,7 +42,7 @@ Toda tabela precisa de uma coluna que **nunca se repete**. Essa coluna é a chav
 
 Regra fixa: o `id` 1 é sempre o Lucas. Nunca muda, nunca repete, nunca é igual ao de outra pessoa.
 
-## 3. Chave Estrangeira (Foreign Key) — o "fio" que liga uma caixa na outra
+## 3. Foreign Key — the "wire" that connects one box to another
 
 Quando uma tabela precisa apontar para uma linha de **outra** tabela, ela usa uma chave estrangeira. É um número que copia o `id` da outra tabela. Esse número é o fio que conecta as duas caixas.
 
@@ -69,7 +69,7 @@ Tabela: alunos
 
 Regra fixa: `turma_id = 1` significa "esse aluno está na Turma A". O número 1 em `alunos.turma_id` é o mesmo número 1 do `id` de `turmas`. É o fio que liga as duas caixas.
 
-## 4. Diagrama da ligação
+## 4. Connection diagram
 
 ```text
    turmas                    alunos
@@ -84,7 +84,7 @@ Regra fixa: `turma_id = 1` significa "esse aluno está na Turma A". O número 1 
 
 A flecha mostra: o `turma_id` do aluno aponta para o `id` da turma.
 
-## 5. Os 3 tipos de relação
+## 5. The 3 types of relationship
 
 Existem só 3 jeitos de duas caixas se ligarem. Sempre é um desses três.
 
@@ -94,7 +94,7 @@ Antes de ver os exemplos, o que significa cada letra na notação:
 
 Por isso "1:N" se lê "um para muitos", e "N:1" se lê "muitos para um". É a mesma relação, só que olhada de lados diferentes — vou mostrar isso no item 5.2.
 
-### 5.1 — Um para Um (1:1)
+### 5.1 — One to One (1:1)
 
 Uma linha de uma tabela liga com **exatamente uma** linha da outra tabela. Nunca mais que uma.
 
@@ -112,7 +112,7 @@ pessoas                  passaportes
 
 Regra fixa: 1 pessoa = 1 passaporte. Não existe pessoa com dois passaportes nesse exemplo.
 
-### 5.2 — Um para Muitos (1:N)
+### 5.2 — One to Many (1:N)
 
 Uma linha de uma tabela liga com **várias** linhas da outra tabela. É o exemplo que já vimos: uma turma tem vários alunos.
 
@@ -129,7 +129,7 @@ turmas                        alunos
 
 Regra fixa: 1 turma pode ter muitos alunos. Mas 1 aluno está em uma turma só.
 
-### 5.2.1 — Muitos para Um (N:1) — é a mesma relação, olhada do outro lado
+### 5.2.1 — Many to One (N:1) — the same relationship, seen from the other side
 
 "1:N" e "N:1" não são duas relações diferentes. É **a mesma ligação**, só que cada nome olha de um lado:
 
@@ -149,7 +149,7 @@ Regra fixa: 1 turma pode ter muitos alunos. Mas 1 aluno está em uma turma só.
 
 Regra fixa: quem tem a chave estrangeira (o `turma_id`) é sempre o lado "N" (muitos). Quem é apontado é sempre o lado "1" (um).
 
-### 5.3 — Muitos para Muitos (N:N)
+### 5.3 — Many to Many (N:N)
 
 Várias linhas de uma tabela ligam com várias linhas da outra tabela. Para isso, precisa de uma **terceira caixa** no meio, que só guarda os pares.
 
@@ -173,9 +173,9 @@ Como ler essa tabela do meio:
 
 Regra fixa: a tabela do meio só existe para guardar os pares. Ela não tem outra função.
 
-## 6. Resumo rápido (para revisar)
+## 6. Quick summary (for review)
 
-| Tipo de relação | O que significa | Exemplo |
+| Relationship type | What it means | Example |
 |---|---|---|
 | 1:1 | uma linha liga com exatamente uma linha | pessoa → passaporte |
 | 1:N | uma linha liga com várias linhas | turma → alunos |
