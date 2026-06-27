@@ -82,7 +82,7 @@ RH  4500
 TI  5500
 ```
 
-## HAVING (filtrar os grupos)
+## HAVING (filtering groups)
 O WHERE filtra LINHAS antes de agrupar. O HAVING filtra GRUPOS depois do GROUP BY — por isso não dá pra usar COUNT/SUM/AVG dentro do WHERE.
 
 Mostrar só setores com mais de 2 funcionários:
@@ -97,7 +97,7 @@ Resultado:
 TI  3
 ```
 
-## WHERE + GROUP BY + HAVING juntos
+## WHERE + GROUP BY + HAVING together
 Vendas acima de R$300, e só vendedores cujo total passou de R$700:
 ```sql
 SELECT vendedor, SUM(valor) AS total
@@ -111,7 +111,7 @@ Resultado:
 Maria  1100
 ```
 
-## DISTINCT (sem repetição)
+## DISTINCT (no repetition)
 Pega os valores ÚNICOS de uma coluna — diferente do GROUP BY, aqui não agrupa nem conta, só remove repetidos:
 ```sql
 CREATE TABLE clientes (
