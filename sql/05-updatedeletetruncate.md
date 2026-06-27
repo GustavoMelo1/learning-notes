@@ -1,4 +1,4 @@
-# 05 - Update, Delete e Truncate (DML)
+# 05 - Update, Delete and Truncate (DML)
 
 Comandos que mexem nos DADOS já inseridos. Os três mais perigosos do dia a dia — sempre com cuidado.
 
@@ -17,7 +17,7 @@ SET nome = 'Anemometro', ano = '2015'
 WHERE idsensor = '4';
 ```
 
-### ⚠️ A regra de ouro do UPDATE: sempre WHERE
+### ⚠️ The golden rule of UPDATE: always WHERE
 Se eu esquecer o `WHERE`, o UPDATE muda TODAS as linhas da tabela. Por isso o `LIMIT 1` é uma trava de segurança — garante que mexe em uma linha só:
 ```sql
 UPDATE sensores
@@ -39,7 +39,7 @@ WHERE ano = '2050'
 LIMIT 2;
 ```
 
-### ⚠️ DELETE sem WHERE apaga TUDO
+### ⚠️ DELETE without WHERE deletes EVERYTHING
 Mesma regra do UPDATE: DELETE sem WHERE = apaga a tabela inteira (linha por linha). Sempre WHERE.
 
 ## TRUNCATE
@@ -48,7 +48,7 @@ Apaga TODOS os registros de uma vez (esvazia a tabela), mas mantém a estrutura.
 TRUNCATE sensores;
 ```
 
-## Resumo das diferenças (importante)
+## Summary of differences (important)
 ```text
 DELETE   → apaga linhas escolhidas (com WHERE), pode desfazer com cuidado, mais lento
 TRUNCATE → apaga TODAS as linhas de uma vez, reinicia, mais rápido, mantém a estrutura
