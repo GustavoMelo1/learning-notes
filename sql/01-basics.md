@@ -43,10 +43,10 @@ Espacial
 
 **Mais usados:** Int, Decimal, Boolean, Date/DateTime, VarChar, Text
 
-## Char vs VarChar (a pegadinha)
+## Char vs VarChar (the gotcha)
 - `Char(30)` → tamanho FIXO. "Zé" vira "Zé" + 28 espaços ocupados de verdade. Bom pra coisa de tamanho cravado: UF(2), CEP.
 - `VarChar(30)` → o 30 é só o TETO. "Zé" ocupa o tamanho de "Zé", os 28 nem existem. Pra nome, email (95% dos casos).
 
-## Float vs Decimal (pegadinha de entrevista)
+## Float vs Decimal (interview gotcha)
 - `Float`/`Double` → APROXIMADO. 0.1 + 0.2 pode dar 0.30000004. Serve pra sensor, ciência.
 - `Decimal` → EXATO. **Dinheiro é SEMPRE Decimal, nunca Float.**
