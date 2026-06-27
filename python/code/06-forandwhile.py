@@ -44,5 +44,15 @@ while i < 5:
 #i is: 2
 #i is: 3
 #i is: 4
-#Functions encapsulate reusable blocks of code that can accept parameters and return values.
 
+#Another while loop: counts up from 1 until the condition becomes False.
+count = 1
+while count <= 1000:
+    print(count)
+    count += 1
+
+#1
+#2
+#3
+#...
+#1000
