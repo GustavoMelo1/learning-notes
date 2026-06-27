@@ -2,7 +2,7 @@
 
 DDL = Data Definition Language. Comandos que DEFINEM a estrutura (criar, alterar, apagar tabela). Não mexem nos dados, mexem na "forma".
 
-## Tabela simples
+## Simple table
 ```sql
 CREATE TABLE estacoes (
     nome varchar(30),
@@ -14,14 +14,14 @@ CREATE TABLE estacoes (
 );
 ```
 
-## Criando o banco antes da tabela
+## Creating the database before the table
 ```sql
 CREATE DATABASE clima
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 ```
 
-## Tabela com regras de cadastro (versão melhorada)
+## Table with registration rules (improved version)
 ```sql
 CREATE TABLE `estacoes` (
     `id`            int          NOT NULL AUTO_INCREMENT,
@@ -35,7 +35,7 @@ CREATE TABLE `estacoes` (
 ) DEFAULT CHARSET = utf8;
 ```
 
-## Melhorias aplicadas
+## Improvements applied
 ```text
 Encoding
 ├── character set utf8 / collate utf8_general_ci  → suporte a acentos e cedilha (PT-BR) no banco
