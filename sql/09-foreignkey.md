@@ -112,4 +112,4 @@ DELETE FROM turmas WHERE id = 1;
 
 Isso é a **integridade referencial**: o banco nunca deixa um aluno apontar pra uma turma que não existe (nem deixa apagar a turma e abandonar os alunos órfãos).
 
-> Bônus (não veio na aula, mas é útil saber que existe): dá pra mudar esse comportamento com `ON DELETE CASCADE` (apaga os alunos junto) ou `ON DELETE SET NULL` (zera o `turma_id` dos alunos). Sem isso, o padrão é travar a exclusão — o que geralmente é o mais seguro.
+> Bônus: dá pra mudar esse comportamento com `ON DELETE CASCADE` (apaga os alunos junto) ou `ON DELETE SET NULL` (zera o `turma_id` dos alunos). Sem isso, o padrão é travar a exclusão — o que geralmente é o mais seguro.
