@@ -42,7 +42,7 @@ VALUES
 ('Estacao Serra Negra',    '2010-03-15', 'Fixa',  '18.4', '120.5', 'Sudeste');
 ```
 
-## ⚠️ Mistakes I made and FIXED (remember this!)
+## Mistakes I made and FIXED (remember this!)
 - É `INSERT INTO`, NÃO `INSERT TO`. Sempre `INTO`.
 - É `VALUES` (com S) pra inserir. `VALUE` sem S não é o certo aqui.
 - Na lista de campos NÃO vai "e" antes do último: é `(nome, instalacao, tipo, temp_media, precipitacao, regiao)`, não `(... precipitacao e regiao)`. Em SQL separa TUDO com vírgula, sem "e".
