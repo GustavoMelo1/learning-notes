@@ -71,3 +71,4 @@ DROP TABLE IF EXISTS rascunho;
 ## MODIFY vs CHANGE difference (summary)
 - `MODIFY` → muda tipo/constraint, mantém o nome
 - `CHANGE` → muda tipo/constraint E permite renomear (precisa nome velho + novo)
+ 
