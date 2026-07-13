@@ -9,6 +9,11 @@ O `*` pega TODOS os campos da tabela:
 ```sql
 SELECT * FROM sensores;
 ```
+## Column alias (AS)
+Dá pra apelidar uma coluna no resultado usando `AS` — o apelido só aparece na saída, não muda o banco.
+```sql
+SELECT nome AS "Nome do sensor" FROM sensores;
+```
 
 ## Select specific columns
 ```sql
@@ -69,6 +74,9 @@ WHERE ano = 2016 AND alcance > 30;     -- as DUAS condições
 
 SELECT nome FROM sensores
 WHERE ano = 2014 OR ano = 2016;        -- QUALQUER uma das duas
+
+SELECT nome FROM sensores
+WHERE ano = 2015 and NOT > 2015  
 ```
 
 ## LIKE (searching similar text)
@@ -79,7 +87,3 @@ WHERE nome LIKE 'P%';        -- começa com P (Pluviometro)
 WHERE nome LIKE '%ometro%';  -- contém "ometro" (quase todo sensor: anemometro, termometro...)
 ```
 
----
-
-## >>> Next: GROUP BY (still need to study)
-GROUP BY agrupa linhas pra CONTAR ou SOMAR por grupo. Responde perguntas tipo "quantos sensores por ano?", "qual o alcance total por ano?". Vem junto com COUNT, SUM, AVG. **É meu critério de Fase 1.** Anotar quando chegar nessa aula.
