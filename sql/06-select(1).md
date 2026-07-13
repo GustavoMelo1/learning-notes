@@ -87,3 +87,29 @@ WHERE nome LIKE 'P%';        -- começa com P (Pluviometro)
 WHERE nome LIKE '%ometro%';  -- contém "ometro" (quase todo sensor: anemometro, termometro...)
 ```
 
+## IS NULL / IS NOT NULL
+Pra checar se um campo está vazio (sem valor). NÃO dá pra usar `= NULL` — isso nunca funciona em SQL. O jeito certo é `IS NULL`:
+```sql
+-- alunos que ainda não têm turma
+SELECT nome FROM alunos
+WHERE turma_id IS NULL;
+
+-- alunos que já têm turma
+SELECT nome FROM alunos
+WHERE turma_id IS NOT NULL;
+```
+
+## LIMIT (limiting rows)
+Limita quantas linhas aparecem no resultado. Muito usado pra pegar "os X primeiros" ou paginar dados:
+```sql
+-- só os 5 primeiros sensores em ordem alfabética
+SELECT nome FROM sensores
+ORDER BY nome
+LIMIT 5;
+
+-- pular os 5 primeiros e pegar os próximos 5 (página 2)
+SELECT nome FROM sensores
+ORDER BY nome
+LIMIT 5 OFFSET 5;
+```
+
