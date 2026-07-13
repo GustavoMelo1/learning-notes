@@ -83,7 +83,7 @@ TI  5500
 ```
 
 ## GROUP BY + MIN and MAX
-Maior e menor valor por grupo — os dois mais simples de todos:
+Maior e menor valor por grupo, os dois mais simples de todos:
 ```sql
 SELECT vendedor,
        MIN(valor) AS menor_venda,
@@ -99,7 +99,7 @@ Pedro  200   200
 ```
 
 ## HAVING (filtering groups)
-O WHERE filtra LINHAS antes de agrupar. O HAVING filtra GRUPOS depois do GROUP BY — por isso não dá pra usar COUNT/SUM/AVG dentro do WHERE.
+O WHERE filtra LINHAS antes de agrupar. O HAVING filtra GRUPOS depois do GROUP BY, por isso não dá pra usar COUNT/SUM/AVG dentro do WHERE.
 
 Mostrar só setores com mais de 2 funcionários:
 ```sql
@@ -128,7 +128,7 @@ Maria  1100
 ```
 
 ## DISTINCT (no repetition)
-Pega os valores ÚNICOS de uma coluna — diferente do GROUP BY, aqui não agrupa nem conta, só remove repetidos:
+Pega os valores ÚNICOS de uma coluna , diferente do GROUP BY aqui não agrupa nem conta, só remove repetidos:
 ```sql
 CREATE TABLE clientes (
     id INT,
@@ -174,7 +174,7 @@ Financeiro  1
 ## Subqueries (consulta dentro de consulta)
 Uma subquery é um `SELECT` dentro de outro `SELECT`. O resultado da consulta interna é usado pela externa. Aparece muito no `WHERE` e no `FROM`.
 
-Usando no WHERE — "quais alunos estão na Turma A?" sem saber o id dela:
+Usando no WHERE, "quais alunos estão na Turma A?" sem saber o id dela:
 ```sql
 SELECT nome FROM alunos
 WHERE turma_id IN (
@@ -183,7 +183,7 @@ WHERE turma_id IN (
 ```
 O banco roda o `SELECT` de dentro primeiro, pega os ids, e usa no `WHERE` de fora.
 
-Usando no FROM — tratar o resultado de uma consulta como se fosse uma tabela:
+Usando no FROM, pra tratar o resultado de uma consulta como se fosse uma tabela:
 ```sql
 SELECT vendedor, total
 FROM (
@@ -197,4 +197,4 @@ Resultado:
 ```text
 Maria  1100
 ```
-> A subquery no `FROM` precisa de um alias (`AS resumo`) — o MySQL exige nomear a "tabela temporária".
+> Nota: a subquery no `FROM` precisa de um alias (`AS resumo`), o MySQL exige nomear a "tabela temporária".

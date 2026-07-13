@@ -74,4 +74,4 @@ CREATE TABLE IF NOT EXISTS sensores (
 ```
 
 > Nota minha: `UNSIGNED` = só aceita número positivo (sem sinal de menos). Bom pra coisa que nunca é negativa, tipo alcance de sensor.
-> Nota minha: `NOT NULL` = campo obrigatório — o banco recusa o INSERT se não vier um valor pra essa coluna.
+> Nota minha: `NOT NULL` = campo obrigatório, o banco recusa o INSERT se não vier um valor pra essa coluna.

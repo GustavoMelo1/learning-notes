@@ -25,7 +25,7 @@ INSERT INTO estacoes VALUES
 - `DEFAULT` na regiao → vira 'Sudeste'
 
 ## Inserting WITHOUT naming the fields
-Se eu colocar os valores na ORDEM EXATA da tabela, não preciso nomear os campos — só os valores. Mas a ordem TEM que bater:
+Se eu colocar os valores na ORDEM EXATA da tabela, não preciso nomear os campos, só os valores. Mas a ordem TEM que bater:
 ```sql
 INSERT INTO estacoes VALUES
 (DEFAULT, 'Estacao Serra Negra', '2010-03-15', 'Fixa', '18.4', '120.5', DEFAULT);

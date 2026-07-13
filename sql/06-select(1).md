@@ -1,8 +1,8 @@
 # 06 - Select (DML / DQL)
 
-Agora começa o SQL "de verdade" — buscar e responder perguntas sobre os dados. SELECT é o comando mais usado de todos.
+Agora começa o SQL "de verdade", buscar e responder perguntas sobre os dados. SELECT é o comando mais usado de todos.
 
-> Como pensar (meu lembrete do "ver o todo"): SELECT serve pra RESPONDER PERGUNTAS sobre os dados. Cada parte responde uma coisa — *quais colunas* (SELECT), *de onde* (FROM), *filtra quais linhas* (WHERE), *em que ordem* (ORDER BY).
+> Como pensar (meu lembrete do "ver o todo"): SELECT serve pra RESPONDER PERGUNTAS sobre os dados. Cada parte responde uma coisa, *quais colunas* (SELECT), *de onde* (FROM), *filtra quais linhas* (WHERE), *em que ordem* (ORDER BY).
 
 ## Select everything
 O `*` pega TODOS os campos da tabela:
@@ -10,7 +10,7 @@ O `*` pega TODOS os campos da tabela:
 SELECT * FROM sensores;
 ```
 ## Column alias (AS)
-Dá pra apelidar uma coluna no resultado usando `AS` — o apelido só aparece na saída, não muda o banco.
+Dá pra apelidar uma coluna no resultado usando `AS`, o apelido só aparece na saída, não muda o banco.
 ```sql
 SELECT nome AS "Nome do sensor" FROM sensores;
 ```
@@ -45,7 +45,7 @@ ORDER BY nome;
 >=   maior ou igual
 <=   menor ou igual
 ```
-Exemplo — tudo que NÃO é de 2016:
+Exemplo, tudo que NÃO é de 2016:
 ```sql
 SELECT nome, alcance FROM sensores
 WHERE ano <> '2016'
@@ -67,7 +67,7 @@ WHERE ano IN (2014, 2016, 2018);
 ```
 
 ## Logical operators (AND / OR / NOT)
-Combinam condições no WHERE — igual eu vi na lógica do Python:
+Combinam condições no WHERE, igual eu vi na lógica do Python:
 ```sql
 SELECT nome FROM sensores
 WHERE ano = 2016 AND alcance > 30;     -- as DUAS condições
@@ -88,7 +88,7 @@ WHERE nome LIKE '%ometro%';  -- contém "ometro" (quase todo sensor: anemometro,
 ```
 
 ## IS NULL / IS NOT NULL
-Pra checar se um campo está vazio (sem valor). NÃO dá pra usar `= NULL` — isso nunca funciona em SQL. O jeito certo é `IS NULL`:
+Pra checar se um campo está vazio (sem valor). NÃO dá pra usar `= NULL`, isso nunca funciona em SQL. O jeito certo é `IS NULL`:
 ```sql
 -- alunos que ainda não têm turma
 SELECT nome FROM alunos

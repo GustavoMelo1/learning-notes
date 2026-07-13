@@ -32,7 +32,7 @@ Literal
 ├── Texto
 │   └── TinyText → Text → MediumText → LongText (texto longo, muda só o limite)
 ├── Binário
-│   └── TinyBlob → Blob → ... (arquivo cru no banco — na prática, salva só o caminho)
+│   └── TinyBlob → Blob → ... (arquivo cru no banco, na prática salva só o caminho)
 └── Coleção
     ├── Enum   → escolhe UM da lista. Ex: status(ativo, inativo)
     └── Set    → escolhe VÁRIOS da lista. Ex: toppings

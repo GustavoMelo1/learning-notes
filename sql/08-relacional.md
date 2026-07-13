@@ -1,6 +1,6 @@
 # 08 - Relational Model (explained simply and directly)
 
-Modelo relacional é o jeito que o banco de dados usa para guardar informação em **caixas** (tabelas) e **ligar uma caixa na outra**. "Relacional" vem de "relação" — ou seja, como as caixas se conectam.
+Modelo relacional é o jeito que o banco de dados usa para guardar informação em **caixas** (tabelas) e **ligar uma caixa na outra**. "Relacional" vem de "relação", ou seja, como as caixas se conectam.
 
 Vou explicar passo a passo, sem pressa, com exemplos bem concretos.
 
@@ -92,7 +92,7 @@ Antes de ver os exemplos, o que significa cada letra na notação:
 - **1** = "um". Quer dizer: só existe **uma** linha do outro lado.
 - **N** = "muitos". Quer dizer: pode existir **várias** linhas do outro lado.
 
-Por isso "1:N" se lê "um para muitos", e "N:1" se lê "muitos para um". É a mesma relação, só que olhada de lados diferentes — vou mostrar isso no item 5.2.
+Por isso "1:N" se lê "um para muitos", e "N:1" se lê "muitos para um". É a mesma relação, só que olhada de lados diferentes, vou mostrar isso no item 5.2.
 
 ### 5.1 — One to One (1:1)
 
@@ -185,5 +185,5 @@ Regra fixa: a tabela do meio só existe para guardar os pares. Ela não tem outr
 Pontos fixos que nunca mudam:
 1. Tabela = caixa. Coluna = etiqueta. Linha = item dentro da caixa.
 2. Chave primária (`id`) nunca se repete dentro da mesma tabela.
-3. Chave estrangeira é um número que copia o `id` de outra tabela — é o fio que liga as caixas.
+3. Chave estrangeira é um número que copia o `id` de outra tabela, é o fio que liga as caixas.
 4. Toda relação entre tabelas é sempre um desses três tipos: 1:1, 1:N ou N:N.

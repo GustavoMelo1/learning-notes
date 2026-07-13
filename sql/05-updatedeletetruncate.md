@@ -1,9 +1,9 @@
 # 05 - Update, Delete and Truncate (DML)
 
-Comandos que mexem nos DADOS já inseridos. Os três mais perigosos do dia a dia — sempre com cuidado.
+Comandos que mexem nos DADOS já inseridos. Os três mais perigosos do dia a dia, sempre com cuidado.
 
 ## UPDATE
-Altera dados de linhas que já existem. Uso o `WHERE` pra dizer QUAL linha — geralmente pelo `id`, porque é o mais fácil de identificar com certeza.
+Altera dados de linhas que já existem. Uso o `WHERE` pra dizer QUAL linha, geralmente pelo `id`, porque é o mais fácil de identificar com certeza.
 ```sql
 UPDATE sensores
 SET nome = 'Pluviometro'
@@ -18,7 +18,7 @@ WHERE idsensor = '4';
 ```
 
 ### ⚠️ The golden rule of UPDATE: always WHERE
-Se eu esquecer o `WHERE`, o UPDATE muda TODAS as linhas da tabela. Por isso o `LIMIT 1` é uma trava de segurança — garante que mexe em uma linha só:
+Se eu esquecer o `WHERE`, o UPDATE muda TODAS as linhas da tabela. Por isso o `LIMIT 1` é uma trava de segurança, garante que mexe em uma linha só:
 ```sql
 UPDATE sensores
 SET nome = 'Termometro', ano = '2015', alcance = '40'
@@ -27,7 +27,7 @@ LIMIT 1;
 ```
 
 ## DELETE
-Apaga LINHAS. Cuidado — não tem CTRL+Z.
+Apaga LINHAS. Cuidado, não tem CTRL+Z.
 ```sql
 DELETE FROM sensores
 WHERE idsensor = '8';

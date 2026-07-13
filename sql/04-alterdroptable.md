@@ -40,7 +40,7 @@ MODIFY responsavel VARCHAR(20) NOT NULL DEFAULT '';
 ```
 
 ### Rename column
-`CHANGE` renomeia — preciso colocar o nome ANTIGO e o NOVO. (O CHANGE também serve pra modificar tipo, tipo o MODIFY, mas só uso quando vou trocar o nome.)
+`CHANGE` renomeia, preciso colocar o nome ANTIGO e o NOVO. (O CHANGE também serve pra modificar tipo, tipo o MODIFY, mas só uso quando vou trocar o nome.)
 ```sql
 ALTER TABLE estacoes
 CHANGE responsavel coordenador VARCHAR(20);    -- responsavel vira coordenador
