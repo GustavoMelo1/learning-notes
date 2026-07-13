@@ -43,7 +43,7 @@ Pedro    Turma A
 ```
 
 ## The ON clause
-O `ON` diz QUAL coluna de uma tabela bate com qual coluna da outra — é a "cola" que junta as linhas certas. Sem o `ON` certo, o banco não sabe quem é parente de quem.
+O `ON` diz QUAL coluna de uma tabela bate com qual coluna da outra — é a "cola" que junta as linhas certas. Sem o `ON` certo, o banco não sabe quem é parente de quem. 
 ```sql
 ... JOIN turmas ON alunos.turma_id = turmas.id;
 --                 ^ coluna da tabela da esquerda = coluna da tabela da direita
@@ -65,7 +65,7 @@ Se eu tivesse um aluno sem turma (`turma_id` vazio) ou uma turma sem nenhum alun
 ### LEFT JOIN (LEFT OUTER JOIN)
 Mostra TUDO da tabela da ESQUERDA (a que vem logo depois do `FROM`), e completa com `NULL` quando não tem correspondência na tabela da direita.
 
-Exemplo: imagina que cadastrei um aluno novo sem turma ainda:
+Exemplo: imagina que cadastrei um aluno novo sem  turma ainda:
 ```sql
 INSERT INTO alunos (nome, turma_id) VALUES ('Ana', NULL);
 
@@ -99,7 +99,44 @@ RIGHT JOIN  -> tudo da tabela da DIREITA  + o que bater na esquerda
 ```
 Truque pra não esquecer: o lado que ganha "TUDO" é o lado do nome (`LEFT` = esquerda = primeira tabela escrita; `RIGHT` = direita = segunda tabela escrita).
 
+## FULL OUTER JOIN — tudo dos dois lados (com ou sem par)
+MySQL não tem `FULL OUTER JOIN` nativo. Pra simular, junta `LEFT JOIN` + `RIGHT JOIN` com `UNION`:
+```sql
+SELECT alunos.nome AS aluno, turmas.nome AS turma
+FROM alunos
+LEFT JOIN turmas ON alunos.turma_id = turmas.id
+
+UNION
+
+SELECT alunos.nome AS aluno, turmas.nome AS turma
+FROM alunos
+RIGHT JOIN turmas ON alunos.turma_id = turmas.id;
+```
+Resultado: todos os alunos (com ou sem turma) + todas as turmas (com ou sem aluno). Onde não há par, aparece `NULL`.
+
+> Pouco usado no dia a dia, mas cai em entrevista. PostgreSQL tem o `FULL OUTER JOIN` nativo e dispensa o `UNION`.
+
+## Anti JOIN — excluindo a interseção
+Mais útil que o FULL OUTER JOIN na prática. Serve pra achar registros que **não têm correspondência** no outro lado — ótimo pra encontrar dados órfãos ou inconsistências.
+
+Alunos sem turma (o que está em `alunos` mas não tem par em `turmas`):
+```sql
+SELECT alunos.nome AS aluno
+FROM alunos
+LEFT JOIN turmas ON alunos.turma_id = turmas.id
+WHERE turmas.id IS NULL;
+```
+
+Turmas sem nenhum aluno (o que está em `turmas` mas não tem par em `alunos`):
+```sql
+SELECT turmas.nome AS turma
+FROM alunos
+RIGHT JOIN turmas ON alunos.turma_id = turmas.id
+WHERE alunos.id IS NULL;
+```
+
+A lógica: faz o `LEFT`/`RIGHT JOIN` (que traz `NULL` onde não tem par) e depois filtra só os `NULL` — sobram exatamente os que não têm correspondência.
+
 ## Practical tips
-- O MySQL **não tem `FULL OUTER JOIN`** nativo (diferente do PostgreSQL). Pra simular "tudo dos dois lados", junta um `LEFT JOIN` com um `RIGHT JOIN` usando `UNION`.
 - Sempre que as duas tabelas tiverem coluna com o MESMO nome, prefixe com `tabela.coluna` — senão o MySQL acusa erro de ambiguidade.
 - `JOIN` sem `INNER`/`LEFT`/`RIGHT` na frente já é `INNER JOIN`. Escrever `INNER` é só pra deixar explícito.
