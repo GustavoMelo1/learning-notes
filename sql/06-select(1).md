@@ -76,7 +76,7 @@ SELECT nome FROM sensores
 WHERE ano = 2014 OR ano = 2016;        -- QUALQUER uma das duas
 
 SELECT nome FROM sensores
-WHERE ano = 2015 and NOT > 2015  
+WHERE NOT ano = 2016;              -- tudo que NÃO é 2016 (equivale a <>)
 ```
 
 ## LIKE (searching similar text)
