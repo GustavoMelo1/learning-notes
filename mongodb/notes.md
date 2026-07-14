@@ -124,14 +124,3 @@ db.series.replaceOne(               // substitui o documento inteiro
 db.series.deleteOne({ titulo: "Dark" })
 db.series.deleteMany({ genero: "Sci-fi" })
 ```
-# knowing Mongo DB
-
-Principais pontos de diferenca entre os outros bancos e o Mongo DB 
-
-- Capacidade maior de armazenamento 
-- Ele nao utiliza o formato de tabela(ele utiliza o formato de documento parecido com JSON)
-- O Schema nao e fixo, posso ter varios na mesma estrutura
-- Ele passui muitas replicas, pode possuir tudo em diferentes maquinas
-- Cluster, ele consegue lidar com uma grande quantidade de dados, assim tendo liberdade maior 
-
-# 
