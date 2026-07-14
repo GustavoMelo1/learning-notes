@@ -24,7 +24,10 @@ Esquema fixo                      Sem esquema fixo (schemaless)
 - Open source, gratuito, roda em Linux, Mac e Windows
 - **Réplicas**: além do servidor principal, dá pra ter mais 2 cópias em outras máquinas, garantindo disponibilidade se um cair
 - **Cluster**: espalha os dados em várias máquinas, garantindo capacidade pra lidar com grande volume
-- Versões: **Community** (gratuita), **Enterprise** (paga) e **Atlas** (cloud)
+- Versões:
+  - **Community** → gratuita, pra desenvolvimento e uso geral, cobre tudo que precisa no dia a dia
+  - **Enterprise** → paga, adiciona segurança avançada, suporte especializado e ferramentas extras
+  - **Atlas** → hospedada na nuvem, tem tier gratuito com cluster de 512 MB
 
 ---
 
@@ -121,3 +124,14 @@ db.series.replaceOne(               // substitui o documento inteiro
 db.series.deleteOne({ titulo: "Dark" })
 db.series.deleteMany({ genero: "Sci-fi" })
 ```
+# knowing Mongo DB
+
+Principais pontos de diferenca entre os outros bancos e o Mongo DB 
+
+- Capacidade maior de armazenamento 
+- Ele nao utiliza o formato de tabela(ele utiliza o formato de documento parecido com JSON)
+- O Schema nao e fixo, posso ter varios na mesma estrutura
+- Ele passui muitas replicas, pode possuir tudo em diferentes maquinas
+- Cluster, ele consegue lidar com uma grande quantidade de dados, assim tendo liberdade maior 
+
+# 
