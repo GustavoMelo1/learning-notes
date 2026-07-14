@@ -18,8 +18,12 @@ Esquema fixo                      Sem esquema fixo (schemaless)
 - **Grafo** → tudo são nós e relacionamentos. Ex: **Neo4j**
 
 ## MongoDB
+- 5° banco de dados mais utilizado no mundo, no mesmo nível de SQL Server, PostgreSQL, MySQL e Oracle
 - Baseado em documentos em formato JSON (por baixo é BSON)
 - Sem esquema fixo, cada documento pode ter campos diferentes na mesma coleção
+- Open source, gratuito, roda em Linux, Mac e Windows
+- **Réplicas**: além do servidor principal, dá pra ter mais 2 cópias em outras máquinas, garantindo disponibilidade se um cair
+- **Cluster**: espalha os dados em várias máquinas, garantindo capacidade pra lidar com grande volume
 - Versões: **Community** (gratuita), **Enterprise** (paga) e **Atlas** (cloud)
 
 ---
