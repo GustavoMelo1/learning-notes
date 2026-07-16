@@ -17,7 +17,7 @@ SET nome = 'Anemometro', ano = '2015'
 WHERE idsensor = '4';
 ```
 
-### ⚠️ The golden rule of UPDATE: always WHERE
+### The golden rule of UPDATE: always WHERE
 Se eu esquecer o `WHERE`, o UPDATE muda TODAS as linhas da tabela. Por isso o `LIMIT 1` é uma trava de segurança, garante que mexe em uma linha só:
 ```sql
 UPDATE sensores
@@ -39,7 +39,7 @@ WHERE ano = '2050'
 LIMIT 2;
 ```
 
-### ⚠️ DELETE without WHERE deletes EVERYTHING
+### DELETE without WHERE deletes EVERYTHING
 Mesma regra do UPDATE: DELETE sem WHERE = apaga a tabela inteira (linha por linha). Sempre WHERE.
 
 ## TRUNCATE
