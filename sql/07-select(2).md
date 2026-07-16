@@ -169,7 +169,7 @@ Financeiro  1
 
 ---
 
-> A ordem lógica é sempre: **WHERE → GROUP BY → HAVING → ORDER BY**. WHERE filtra linha por linha antes de agrupar, HAVING filtra o grupo já formado. Essa sequência é bem cobrada em entrevista de SQL/Engenharia de Dados.
+# A ordem lógica é sempre: **WHERE → GROUP BY → HAVING → ORDER BY**. WHERE filtra linha por linha antes de agrupar, HAVING filtra o grupo já formado. Essa sequência é bem cobrada em entrevista de SQL/Engenharia de Dados.
 
 ## Subqueries (consulta dentro de consulta)
 Uma subquery é um `SELECT` dentro de outro `SELECT`. O resultado da consulta interna é usado pela externa. Aparece muito no `WHERE` e no `FROM`.
@@ -197,4 +197,4 @@ Resultado:
 ```text
 Maria  1100
 ```
-> Nota: a subquery no `FROM` precisa de um alias (`AS resumo`), o MySQL exige nomear a "tabela temporária".
+# Nota: a subquery no `FROM` precisa de um alias (`AS resumo`), o MySQL exige nomear a "tabela temporária".
