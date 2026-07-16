@@ -2,7 +2,7 @@
 
 Agora começa o SQL "de verdade", buscar e responder perguntas sobre os dados. SELECT é o comando mais usado de todos.
 
-> Como pensar (meu lembrete do "ver o todo"): SELECT serve pra RESPONDER PERGUNTAS sobre os dados. Cada parte responde uma coisa, *quais colunas* (SELECT), *de onde* (FROM), *filtra quais linhas* (WHERE), *em que ordem* (ORDER BY).
+# Como pensar (meu lembrete do "ver o todo"): SELECT serve pra RESPONDER PERGUNTAS sobre os dados. Cada parte responde uma coisa, *quais colunas* (SELECT), *de onde* (FROM), *filtra quais linhas* (WHERE), *em que ordem* (ORDER BY).
 
 ## Select everything
 O `*` pega TODOS os campos da tabela:
