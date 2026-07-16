@@ -25,7 +25,7 @@ ADD responsavel VARCHAR(10) AFTER nome;   -- depois da coluna nome
 ALTER TABLE estacoes
 ADD protocolo int FIRST;                  -- como primeira coluna
 ```
-> Nota minha: existe `FIRST` (primeira) e `AFTER` (depois de tal coluna). NÃO existe `BEFORE`.
+# Nota: existe `FIRST` (primeira) e `AFTER` (depois de tal coluna). NÃO existe `BEFORE`.
 
 ### Modify a column's type / constraint
 `MODIFY` muda o tipo e as regras, mas NÃO o nome da coluna.
@@ -66,7 +66,7 @@ Apaga a tabela INTEIRA (estrutura + dados). Cuidado, não tem CTRL+Z.
 ```sql
 DROP TABLE IF EXISTS rascunho;
 ```
-> `IF EXISTS` evita erro caso a tabela não exista.
+# `IF EXISTS` evita erro caso a tabela não exista.
 
 ## MODIFY vs CHANGE difference (summary)
 - `MODIFY` → muda tipo/constraint, mantém o nome
