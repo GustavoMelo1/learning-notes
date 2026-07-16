@@ -18,16 +18,12 @@ Esquema fixo                      Sem esquema fixo (schemaless)
 - **Grafo** → tudo são nós e relacionamentos. Ex: **Neo4j**
 
 ## MongoDB
-- 5° banco de dados mais utilizado no mundo, no mesmo nível de SQL Server, PostgreSQL, MySQL e Oracle
 - Baseado em documentos em formato JSON (por baixo é BSON)
 - Sem esquema fixo, cada documento pode ter campos diferentes na mesma coleção
 - Open source, gratuito, roda em Linux, Mac e Windows
-- **Réplicas**: além do servidor principal, dá pra ter mais 2 cópias em outras máquinas, garantindo disponibilidade se um cair
-- **Cluster**: espalha os dados em várias máquinas, garantindo capacidade pra lidar com grande volume
-- Versões:
-  - **Community** → gratuita, pra desenvolvimento e uso geral, cobre tudo que precisa no dia a dia
-  - **Enterprise** → paga, adiciona segurança avançada, suporte especializado e ferramentas extras
-  - **Atlas** → hospedada na nuvem, tem tier gratuito com cluster de 512 MB
+- **Réplicas**: cópias do banco em outras máquinas, pra disponibilidade
+- **Cluster**: espalha os dados em várias máquinas, pra escala
+- Versão que uso: **Community** (gratuita)
 
 ---
 
@@ -45,8 +41,6 @@ db.series.drop()              // remove coleção
 
 ### Naming rules
 - Case sensitive: `AluraDB` e `aluradb` são bancos diferentes
-- Não pode conter: `/. "$*<>:|?` (Windows) ou `/. "$` (Linux/Mac)
-- Não pode estar vazio e deve ter menos de 64 caracteres
 
 ---
 
