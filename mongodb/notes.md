@@ -34,14 +34,19 @@ Esquema fixo                      Sem esquema fixo (schemaless)
 ## Database and collections
 
 ```js
-use nomeDoBanco              // cria ou acessa o banco
-db.dropDatabase()            // remove o banco atual
+use nomeDoBanco               // cria ou acessa o banco
+db.dropDatabase()             // remove o banco atual
 
 db.createCollection("series") // cria coleção
 db.series.drop()              // remove coleção
 ```
 
-> Nota: banco e coleção só aparecem depois que o primeiro documento é inserido.
+> Nota: banco e coleção só aparecem no Compass depois que o primeiro documento é inserido. Só executar `use` no mongosh não basta, precisa ter ao menos uma coleção.
+
+### Naming rules
+- Case sensitive: `AluraDB` e `aluradb` são bancos diferentes
+- Não pode conter: `/. "$*<>:|?` (Windows) ou `/. "$` (Linux/Mac)
+- Não pode estar vazio e deve ter menos de 64 caracteres
 
 ---
 
