@@ -114,7 +114,7 @@ RIGHT JOIN turmas ON alunos.turma_id = turmas.id;
 ```
 Resultado: todos os alunos (com ou sem turma) + todas as turmas (com ou sem aluno). Onde não há par, aparece `NULL`.
 
-> Nota: pouco usado no dia a dia mas cai em entrevista. PostgreSQL tem o `FULL OUTER JOIN` nativo e dispensa o `UNION`.
+# Nota: pouco usado no dia a dia mas cai em entrevista. PostgreSQL tem o `FULL OUTER JOIN` nativo e dispensa o `UNION`.
 
 ## Anti JOIN — excluindo a interseção
 Mais útil que o FULL OUTER JOIN na prática. Serve pra achar registros que não têm correspondência no outro lado, ótimo pra encontrar dados órfãos ou inconsistências.
