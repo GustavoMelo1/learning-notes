@@ -112,9 +112,8 @@ DELETE FROM turmas WHERE id = 1;
 
 Isso é a **integridade referencial**: o banco nunca deixa um aluno apontar pra uma turma que não existe (nem deixa apagar a turma e abandonar os alunos órfãos).
 
-> Nota: as opções de `ON DELETE` e `ON UPDATE` ao criar a FK:
-> - `NO ACTION` / `RESTRICT` → **padrão**. Retorna erro se tentar apagar/alterar o pai enquanto tiver filho apontando pra ele. Ex: deletar o livro que tem estoque vinculado vai retornar erro.
-> - `CASCADE` → apaga/altera o filho automaticamente junto com o pai.
-> - `SET NULL` → zera a coluna FK do filho quando o pai some.
->
-> Na dúvida, `NO ACTION` é o mais seguro, o banco avisa antes de deixar dado órfão.
+# Nota: as opções de `ON DELETE` e `ON UPDATE` ao criar a FK:
+# - `NO ACTION` / `RESTRICT` → **padrão**. Retorna erro se tentar apagar/alterar o pai enquanto tiver filho apontando pra ele. Ex: deletar o livro que tem estoque vinculado vai retornar erro.
+# - `CASCADE` → apaga/altera o filho automaticamente junto com o pai.
+# - `SET NULL` → zera a coluna FK do filho quando o pai some.
+# Na dúvida, `NO ACTION` é o mais seguro, o banco avisa antes de deixar dado órfão.
