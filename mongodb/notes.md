@@ -41,7 +41,7 @@ db.createCollection("series") // cria coleção
 db.series.drop()              // remove coleção
 ```
 
-> Nota: banco e coleção só aparecem no Compass depois que o primeiro documento é inserido. Só executar `use` no mongosh não basta, precisa ter ao menos uma coleção.
+# Nota: banco e coleção só aparecem no Compass depois que o primeiro documento é inserido. Só executar `use` no mongosh não basta, precisa ter ao menos uma coleção.
 
 ### Naming rules
 - Case sensitive: `AluraDB` e `aluradb` são bancos diferentes
@@ -129,3 +129,4 @@ db.series.replaceOne(               // substitui o documento inteiro
 db.series.deleteOne({ titulo: "Dark" })
 db.series.deleteMany({ genero: "Sci-fi" })
 ```
+
