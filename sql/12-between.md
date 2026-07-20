@@ -1,7 +1,16 @@
 # 12 - Between
 
-Pega tudo DENTRO de um intervalo (inclusivo nos dois extremos):
+Pega tudo dentro de um intervalo. Os dois extremos são INCLUÍDOS:
 ```sql
-SELECT nome, ano FROM sensores
-WHERE ano BETWEEN 2014 AND 2016;
+SELECT titulo, ano FROM jogos WHERE ano BETWEEN 2011 AND 2020;
+/*
+╭───────────────┬──────╮
+│ titulo        │ ano  │
+╞═══════════════╪══════╡
+│ Minecraft     │ 2011 │
+│ Terraria      │ 2011 │
+│ Valorant      │ 2020 │
+│ The Witcher 3 │ 2015 │
+╰───────────────┴──────╯
+*/
 ```

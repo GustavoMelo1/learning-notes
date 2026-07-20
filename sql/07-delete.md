@@ -1,16 +1,14 @@
 # 07 - Delete (DML)
 
-Apaga LINHAS. Cuidado, não tem CTRL+Z.
+Apaga LINHAS. Não tem CTRL+Z.
 ```sql
-DELETE FROM sensores
-WHERE idsensor = '8';
-```
-Com LIMIT pra não apagar demais sem querer:
-```sql
-DELETE FROM sensores
-WHERE ano = '2050'
-LIMIT 2;
+DELETE FROM jogos WHERE id = 4;
 ```
 
-## DELETE without WHERE deletes EVERYTHING
-Mesma regra do UPDATE: DELETE sem WHERE = apaga a tabela inteira (linha por linha). Sempre WHERE.
+Com LIMIT pra não apagar mais do que quero:
+```sql
+DELETE FROM jogos WHERE genero = 'FPS' LIMIT 1;
+```
+
+## Regra de ouro: sempre WHERE
+DELETE sem WHERE apaga a tabela inteira, linha por linha. Sempre WHERE.

@@ -2,9 +2,15 @@
 
 Filtra quais LINHAS aparecem. O SELECT escolhe as colunas, o WHERE escolhe as linhas.
 ```sql
-SELECT nome, alcance FROM sensores
-WHERE ano = '2016'
-ORDER BY nome;
+SELECT titulo, nota FROM jogos WHERE genero = 'RPG';
+/*
+╭───────────────┬──────╮
+│ titulo        │ nota │
+╞═══════════════╪══════╡
+│ The Witcher 3 │  9.8 │
+│ Elden Ring    │  9.5 │
+╰───────────────┴──────╯
+*/
 ```
 
 ## Comparison operators
@@ -16,9 +22,17 @@ ORDER BY nome;
 >=   maior ou igual
 <=   menor ou igual
 ```
-Exemplo, tudo que NÃO é de 2016:
+
+Jogos com nota maior que 9:
 ```sql
-SELECT nome, alcance FROM sensores
-WHERE ano <> '2016'
-ORDER BY nome;
+SELECT titulo, nota FROM jogos WHERE nota > 9.0;
+/*
+╭───────────────┬──────╮
+│ titulo        │ nota │
+╞═══════════════╪══════╡
+│ Minecraft     │  9.5 │
+│ The Witcher 3 │  9.8 │
+│ Elden Ring    │  9.5 │
+╰───────────────┴──────╯
+*/
 ```

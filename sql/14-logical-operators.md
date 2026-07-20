@@ -2,14 +2,14 @@
 
 Combinam condições no WHERE, igual à lógica do Python:
 ```sql
-SELECT nome FROM sensores
-WHERE ano = 2016 AND alcance > 30;     -- as DUAS condições
+SELECT titulo FROM jogos
+WHERE genero = 'RPG' AND nota > 9.0;       -- as DUAS condições
 
-SELECT nome FROM sensores
-WHERE ano = 2014 OR ano = 2016;        -- QUALQUER uma das duas
+SELECT titulo FROM jogos
+WHERE genero = 'FPS' OR genero = 'RPG';    -- QUALQUER uma das duas
 
-SELECT nome FROM sensores
-WHERE NOT ano = 2016;                  -- tudo que NÃO é 2016 (equivale a <>)
+SELECT titulo FROM jogos
+WHERE NOT genero = 'FPS';                  -- tudo que NÃO é FPS
 ```
 
 Despesas com valor maior que 10:

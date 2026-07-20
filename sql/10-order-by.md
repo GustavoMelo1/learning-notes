@@ -1,9 +1,22 @@
 # 10 - Order By
 
 Ordena o resultado. `ASC` = crescente (padrão), `DESC` = decrescente.
+
+Top jogos por nota:
 ```sql
-SELECT * FROM sensores
-ORDER BY nome DESC;
+SELECT titulo, nota FROM jogos ORDER BY nota DESC;
+/*
+╭───────────────┬──────╮
+│ titulo        │ nota │
+╞═══════════════╪══════╡
+│ The Witcher 3 │  9.8 │
+│ Minecraft     │  9.5 │
+│ Elden Ring    │  9.5 │
+│ Terraria      │  9.0 │
+│ Valorant      │  8.5 │
+│ CS2           │  8.0 │
+╰───────────────┴──────╯
+*/
 ```
 
 Todas as transações ordenadas por valor (crescente):

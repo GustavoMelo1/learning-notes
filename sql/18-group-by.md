@@ -1,68 +1,60 @@
 # 18 - Group By
 
-Agrupa linhas pra responder perguntas tipo "quanto cada um" ou "quantos por grupo". Vem sempre junto com COUNT, SUM, AVG, MIN ou MAX.
+Agrupa linhas pra responder "quantos por grupo" ou "total por grupo". Sempre junto com COUNT, SUM, AVG, MIN ou MAX.
 
 ## GROUP BY + COUNT
-Quantos funcionários existem em cada setor?
+Quantos jogos tem em cada gênero?
 ```sql
-CREATE TABLE funcionarios (
-    id INT,
-    nome VARCHAR(50),
-    setor VARCHAR(50)
-);
-
-INSERT INTO funcionarios VALUES
-(1, 'João', 'TI'),
-(2, 'Maria', 'RH'),
-(3, 'Pedro', 'TI'),
-(4, 'Ana', 'Financeiro'),
-(5, 'Carlos', 'TI');
-
-SELECT setor, COUNT(*) AS quantidade
-FROM funcionarios
-GROUP BY setor;
+SELECT genero, COUNT(*) AS quantidade FROM jogos GROUP BY genero;
 /*
-╭────────────┬────────────╮
-│ setor      │ quantidade │
-╞════════════╪════════════╡
-│ Financeiro │          1 │
-│ RH         │          1 │
-│ TI         │          3 │
-╰────────────┴────────────╯
+╭──────────┬────────────╮
+│ genero   │ quantidade │
+╞══════════╪════════════╡
+│ Survival │          2 │
+│ FPS      │          2 │
+│ RPG      │          2 │
+╰──────────┴────────────╯
 */
 ```
 
-## GROUP BY + SUM
-Quanto cada vendedor vendeu?
+## GROUP BY + AVG
+Nota média por gênero:
 ```sql
-CREATE TABLE vendas (
-    id INT,
-    vendedor VARCHAR(50),
-    valor DECIMAL(10,2)
-);
-
-INSERT INTO vendas VALUES
-(1, 'João', 500),
-(2, 'Maria', 700),
-(3, 'João', 300),
-(4, 'Maria', 400),
-(5, 'Pedro', 200);
-
-SELECT vendedor, SUM(valor) AS total_vendido
-FROM vendas
-GROUP BY vendedor;
+SELECT genero, AVG(nota) AS media FROM jogos GROUP BY genero;
 /*
-╭──────────┬───────────────╮
-│ vendedor │ total_vendido │
-╞══════════╪═══════════════╡
-│ João     │           800 │
-│ Maria    │          1100 │
-│ Pedro    │           200 │
-╰──────────┴───────────────╯
+╭──────────┬───────╮
+│ genero   │ media │
+╞══════════╪═══════╡
+│ Survival │  9.25 │
+│ FPS      │  8.25 │
+│ RPG      │  9.65 │
+╰──────────┴───────╯
 */
 ```
 
-Total geral gasto (SUM sem GROUP BY):
+## GROUP BY + MIN and MAX
+Menor e maior nota por gênero:
+```sql
+SELECT genero, MIN(nota) AS menor, MAX(nota) AS maior FROM jogos GROUP BY genero;
+/*
+╭──────────┬───────┬───────╮
+│ genero   │ menor │ maior │
+╞══════════╪═══════╪═══════╡
+│ Survival │   9.0 │   9.5 │
+│ FPS      │   8.0 │   8.5 │
+│ RPG      │   9.5 │   9.8 │
+╰──────────┴───────┴───────╯
+*/
+```
+
+## ORDER BY + GROUP BY
+Ordenar os grupos pelo resultado:
+```sql
+SELECT genero, COUNT(*) AS quantidade FROM jogos GROUP BY genero ORDER BY quantidade DESC;
+```
+
+## Projeto spending
+Total geral gasto:
 ```sql
 SELECT SUM(amount) FROM spending WHERE transaction_type = 'expense';
 /*
@@ -85,50 +77,5 @@ SELECT SUM(amount), category FROM spending WHERE transaction_type = 'expense' GR
 │         100 │ Leisure   │
 │           5 │ Transport │
 ╰─────────────┴───────────╯
-*/
-```
-
-## GROUP BY + AVG
-Média salarial por departamento:
-```sql
-SELECT departamento, AVG(salario) AS media_salario
-FROM colaboradores
-GROUP BY departamento;
-```
-
-## GROUP BY + MIN and MAX
-Maior e menor valor por grupo:
-```sql
-SELECT vendedor,
-       MIN(valor) AS menor_venda,
-       MAX(valor) AS maior_venda
-FROM vendas
-GROUP BY vendedor;
-/*
-╭──────────┬─────────────┬─────────────╮
-│ vendedor │ menor_venda │ maior_venda │
-╞══════════╪═════════════╪═════════════╡
-│ João     │         300 │         500 │
-│ Maria    │         400 │         700 │
-│ Pedro    │         200 │         200 │
-╰──────────┴─────────────┴─────────────╯
-*/
-```
-
-## ORDER BY + GROUP BY
-Ordenar os grupos pelo resultado da contagem:
-```sql
-SELECT setor, COUNT(*) AS quantidade
-FROM funcionarios
-GROUP BY setor
-ORDER BY quantidade DESC;
-/*
-╭────────────┬────────────╮
-│ setor      │ quantidade │
-╞════════════╪════════════╡
-│ TI         │          3 │
-│ RH         │          1 │
-│ Financeiro │          1 │
-╰────────────┴────────────╯
 */
 ```

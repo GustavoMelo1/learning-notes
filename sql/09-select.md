@@ -1,23 +1,34 @@
 # 09 - Select (DQL)
 
-Agora começa o SQL "de verdade", buscar e responder perguntas sobre os dados. SELECT é o comando mais usado de todos.
+SELECT responde perguntas sobre os dados. É o comando mais usado.
 
-# SELECT serve pra RESPONDER PERGUNTAS sobre os dados. Cada parte responde uma coisa: *quais colunas* (SELECT), *de onde* (FROM), *filtra quais linhas* (WHERE), *em que ordem* (ORDER BY).
+# Cada parte responde uma coisa: *quais colunas* (SELECT), *de onde* (FROM), *quais linhas* (WHERE), *em que ordem* (ORDER BY).
 
 ## Select everything
-O `*` pega TODOS os campos da tabela:
 ```sql
-SELECT * FROM sensores;
+SELECT * FROM jogos;
+/*
+╭────┬───────────────┬──────────┬──────┬──────╮
+│ id │ titulo        │ genero   │ nota │ ano  │
+╞════╪═══════════════╪══════════╪══════╪══════╡
+│  1 │ Minecraft     │ Survival │  9.5 │ 2011 │
+│  2 │ Terraria      │ Survival │  9.0 │ 2011 │
+│  3 │ Valorant      │ FPS      │  8.5 │ 2020 │
+│  4 │ CS2           │ FPS      │  8.0 │ 2023 │
+│  5 │ The Witcher 3 │ RPG      │  9.8 │ 2015 │
+│  6 │ Elden Ring    │ RPG      │  9.5 │ 2022 │
+╰────┴───────────────┴──────────┴──────┴──────╯
+*/
 ```
 
 ## Column alias (AS)
-Dá pra apelidar uma coluna no resultado usando `AS`. O apelido só aparece na saída, não muda o banco.
+Apelida uma coluna no resultado. Não muda o banco, só o que aparece na saída:
 ```sql
-SELECT nome AS "Nome do sensor" FROM sensores;
+SELECT titulo AS "Nome do jogo", nota AS "Minha nota" FROM jogos;
 ```
 
 ## Select specific columns
 ```sql
-SELECT idsensor FROM sensores;        -- só a coluna idsensor
-SELECT nome, alcance FROM sensores;   -- só nome e alcance
+SELECT titulo FROM jogos;
+SELECT titulo, nota FROM jogos;
 ```
