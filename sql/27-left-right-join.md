@@ -12,13 +12,16 @@ INSERT INTO alunos (nome, turma_id) VALUES ('Ana', NULL);
 SELECT alunos.nome AS aluno, turmas.nome AS turma
 FROM alunos
 LEFT JOIN turmas ON alunos.turma_id = turmas.id;
-```
-```text
-aluno    turma
-Lucas    Turma A
-Marina   Turma B
-Pedro    Turma A
-Ana      NULL
+/*
+╭────────┬─────────╮
+│ aluno  │ turma   │
+╞════════╪═════════╡
+│ Lucas  │ Turma A │
+│ Marina │ Turma B │
+│ Pedro  │ Turma A │
+│ Ana    │ NULL    │
+╰────────┴─────────╯
+*/
 ```
 A Ana aparece mesmo sem turma, isso o `INNER JOIN` nunca mostraria.
 

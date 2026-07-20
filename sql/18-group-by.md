@@ -21,12 +21,15 @@ INSERT INTO funcionarios VALUES
 SELECT setor, COUNT(*) AS quantidade
 FROM funcionarios
 GROUP BY setor;
-```
-Resultado:
-```text
-Financeiro  1
-RH          1
-TI          3
+/*
+╭────────────┬────────────╮
+│ setor      │ quantidade │
+╞════════════╪════════════╡
+│ Financeiro │          1 │
+│ RH         │          1 │
+│ TI         │          3 │
+╰────────────┴────────────╯
+*/
 ```
 
 ## GROUP BY + SUM
@@ -48,12 +51,15 @@ INSERT INTO vendas VALUES
 SELECT vendedor, SUM(valor) AS total_vendido
 FROM vendas
 GROUP BY vendedor;
-```
-Resultado:
-```text
-João   800
-Maria  1100
-Pedro  200
+/*
+╭──────────┬───────────────╮
+│ vendedor │ total_vendido │
+╞══════════╪═══════════════╡
+│ João     │           800 │
+│ Maria    │          1100 │
+│ Pedro    │           200 │
+╰──────────┴───────────────╯
+*/
 ```
 
 Total geral gasto (SUM sem GROUP BY):
@@ -98,12 +104,15 @@ SELECT vendedor,
        MAX(valor) AS maior_venda
 FROM vendas
 GROUP BY vendedor;
-```
-Resultado:
-```text
-João   300   500
-Maria  400   700
-Pedro  200   200
+/*
+╭──────────┬─────────────┬─────────────╮
+│ vendedor │ menor_venda │ maior_venda │
+╞══════════╪═════════════╪═════════════╡
+│ João     │         300 │         500 │
+│ Maria    │         400 │         700 │
+│ Pedro    │         200 │         200 │
+╰──────────┴─────────────┴─────────────╯
+*/
 ```
 
 ## ORDER BY + GROUP BY
@@ -113,10 +122,13 @@ SELECT setor, COUNT(*) AS quantidade
 FROM funcionarios
 GROUP BY setor
 ORDER BY quantidade DESC;
-```
-Resultado:
-```text
-TI          3
-RH          1
-Financeiro  1
+/*
+╭────────────┬────────────╮
+│ setor      │ quantidade │
+╞════════════╪════════════╡
+│ TI         │          3 │
+│ RH         │          1 │
+│ Financeiro │          1 │
+╰────────────┴────────────╯
+*/
 ```

@@ -20,9 +20,12 @@ FROM (
     GROUP BY vendedor
 ) AS resumo
 WHERE total > 700;
-```
-Resultado:
-```text
-Maria  1100
+/*
+╭──────────┬───────╮
+│ vendedor │ total │
+╞══════════╪═══════╡
+│ Maria    │  1100 │
+╰──────────┴───────╯
+*/
 ```
 # Nota: a subquery no `FROM` precisa de um alias (`AS resumo`), o MySQL exige nomear a "tabela temporária".

@@ -8,10 +8,13 @@ SELECT setor, COUNT(*) AS quantidade
 FROM funcionarios
 GROUP BY setor
 HAVING COUNT(*) > 2;
-```
-Resultado:
-```text
-TI  3
+/*
+╭────────┬────────────╮
+│ setor  │ quantidade │
+╞════════╪════════════╡
+│ TI     │          3 │
+╰────────┴────────────╯
+*/
 ```
 
 ## WHERE + GROUP BY + HAVING together
@@ -22,10 +25,13 @@ FROM vendas
 WHERE valor > 300
 GROUP BY vendedor
 HAVING SUM(valor) > 700;
-```
-Resultado:
-```text
-Maria  1100
+/*
+╭──────────┬───────╮
+│ vendedor │ total │
+╞══════════╪═══════╡
+│ Maria    │  1100 │
+╰──────────┴───────╯
+*/
 ```
 
 Categorias com total de gastos maior que 10:

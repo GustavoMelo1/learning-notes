@@ -11,12 +11,15 @@ Tabelas usadas:
 ## Por que precisamos do JOIN
 ```sql
 SELECT * FROM alunos;
-```
-```text
-id  nome    turma_id
-1   Lucas   1
-2   Marina  2
-3   Pedro   1
+/*
+╭────┬────────┬──────────╮
+│ id │ nome   │ turma_id │
+╞════╪════════╪══════════╡
+│  1 │ Lucas  │        1 │
+│  2 │ Marina │        2 │
+│  3 │ Pedro  │        1 │
+╰────┴────────┴──────────╯
+*/
 ```
 Isso mostra `1`, `2`, `1` mas ninguém lembra de cabeça qual `id` é qual turma. O `JOIN` resolve isso buscando o nome direto na tabela `turmas`.
 
@@ -25,13 +28,15 @@ Isso mostra `1`, `2`, `1` mas ninguém lembra de cabeça qual `id` é qual turma
 SELECT alunos.nome AS aluno, turmas.nome AS turma
 FROM alunos
 JOIN turmas ON alunos.turma_id = turmas.id;
-```
-Resultado:
-```text
-aluno    turma
-Lucas    Turma A
-Marina   Turma B
-Pedro    Turma A
+/*
+╭────────┬─────────╮
+│ aluno  │ turma   │
+╞════════╪═════════╡
+│ Lucas  │ Turma A │
+│ Marina │ Turma B │
+│ Pedro  │ Turma A │
+╰────────┴─────────╯
+*/
 ```
 Escrevi `alunos.nome` e `turmas.nome` porque as DUAS tabelas têm uma coluna chamada `nome`, então preciso dizer de qual tabela é cada uma, senão o MySQL não sabe qual usar.
 

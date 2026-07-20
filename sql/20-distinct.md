@@ -16,10 +16,13 @@ INSERT INTO clientes VALUES
 
 SELECT DISTINCT cidade
 FROM clientes;
-```
-Resultado:
-```text
-Porto Alegre
-São Paulo
-Rio de Janeiro
+/*
+╭────────────────╮
+│ cidade         │
+╞════════════════╡
+│ Porto Alegre   │
+│ São Paulo      │
+│ Rio de Janeiro │
+╰────────────────╯
+*/
 ```
