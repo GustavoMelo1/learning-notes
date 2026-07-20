@@ -28,4 +28,17 @@ Resultado:
 Maria  1100
 ```
 
+Categorias com total de gastos maior que 10:
+```sql
+SELECT category, SUM(amount) FROM spending WHERE transaction_type = 'expense' GROUP BY category HAVING SUM(amount) > 10;
+/*
+╭──────────┬─────────────╮
+│ category │ SUM(amount) │
+╞══════════╪═════════════╡
+│ Food     │        55.9 │
+│ Leisure  │         100 │
+╰──────────┴─────────────╯
+*/
+```
+
 # A ordem lógica é sempre: **WHERE → GROUP BY → HAVING → ORDER BY**. WHERE filtra linha por linha antes de agrupar, HAVING filtra o grupo já formado. Essa sequência é bem cobrada em entrevista de SQL/Engenharia de Dados.

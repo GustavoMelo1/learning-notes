@@ -56,6 +56,32 @@ Maria  1100
 Pedro  200
 ```
 
+Total geral gasto (SUM sem GROUP BY):
+```sql
+SELECT SUM(amount) FROM spending WHERE transaction_type = 'expense';
+/*
+╭─────────────╮
+│ SUM(amount) │
+╞═════════════╡
+│       160.9 │
+╰─────────────╯
+*/
+```
+
+Total gasto por categoria:
+```sql
+SELECT SUM(amount), category FROM spending WHERE transaction_type = 'expense' GROUP BY category;
+/*
+╭─────────────┬───────────╮
+│ SUM(amount) │ category  │
+╞═════════════╪═══════════╡
+│        55.9 │ Food      │
+│         100 │ Leisure   │
+│           5 │ Transport │
+╰─────────────┴───────────╯
+*/
+```
+
 ## GROUP BY + AVG
 Média salarial por departamento:
 ```sql
