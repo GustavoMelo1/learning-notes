@@ -8,6 +8,8 @@ I'm rebuilding my fundamentals (logic, SQL, Python) and this repo is where I doc
 
 ```text
 learning-notes/
+├── bi/
+│   └──qlik/
 ├── sql/                 
 ├── python/
 │   └──code/                          
