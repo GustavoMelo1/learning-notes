@@ -1,8 +1,8 @@
 ## fact table
 
-A tabela fato e basicamente a tabela que nao temos informacoes, sao coisas que iremos calcular.
+A tabela fato (Vendas) e basicamente a tabela que nao temos informacoes, sao coisas que iremos calcular.
 
-Dimensoes, basicamente sao as tabelas que vamos calcular pelo que na nossa tabela fato.
+Dimensoes (Produtos, Vendedores, Calendario), basicamente sao as tabelas que vamos calcular pelo que na nossa tabela fato.
 
 ```
 PRODUTOS                    VENDAS                        CALENDÁRIO
@@ -20,4 +20,5 @@ nome                        custo_venda                    MesAno
                                                            DiaSemana
                                                            Comp_test
 ```
+
 
