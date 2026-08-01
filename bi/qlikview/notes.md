@@ -1,5 +1,7 @@
 # Notes
 
-# Fazendo anotacoes aleatorias que vao ajudar 
+## Tabelas
+Sempre dar DROP na tabela depois de usar pra não ocupar memória desnecessária.
 
-Conseguimos descobrir o pai do QVD abrindo o XML do QVD, Botao direito, Node++
+## QVD
+Pra descobrir a origem de um QVD: abre o arquivo no Notepad++, o cabeçalho XML mostra de onde ele foi gerado.
