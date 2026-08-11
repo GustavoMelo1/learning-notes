@@ -9,14 +9,21 @@ I'm rebuilding my fundamentals (logic, SQL, Python) and this repo is where I doc
 ```text
 learning-notes/
 ├── bi/
-│   └──qlik/
-├── sql/                 
+│   ├── docs.md
+│   ├── star-schema.md
+│   └── qlikview/
+│       ├── 00-asks.md
+│       ├── 01-setanalysis.md
+│       └── notes.md
+├── mongodb/
+│   ├── documentstructure.md
+│   └── notes.md
 ├── python/
-│   └──code/                          
-├── logic/
-├── software-engineering/ 
-├── data-engineering/
-└── certificates/
+│   ├── pytest-notes.md
+│   └── code/
+│       └── 01-variables.py ... 13-objects.py
+└── sql/
+    └── 01-data-types.md ... 25-join.md
 ```
 
 ## How it works
