@@ -104,3 +104,22 @@ FULL OUTER JOIN TabelaB AS b ON a.Nome = b.Nome;
 */
 ```
 
+# Anti Join
+
+Retorna apenas os registros de uma tabela que não têm correspondência na outra. No MySQL não existe ANTI JOIN como palavra-chave — usa-se LEFT JOIN com WHERE IS NULL.
+
+```sql
+SELECT e.emp_no, e.emp_name
+FROM employee e
+LEFT JOIN dept d ON e.dept_no = d.dept_no
+WHERE d.dept_no IS NULL;
+
+/*
+╭────────┬──────────╮
+│ emp_no │ emp_name │
+╞════════╪══════════╡
+│ 3      │ Pedro    │
+╰────────┴──────────╯
+  Pedro não tem departamento — só ele aparece
+*/
+```
