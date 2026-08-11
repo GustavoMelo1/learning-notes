@@ -80,3 +80,27 @@ RIGHT JOIN dept d ON e.dept_no = d.dept_no;
   Financeiro aparece mesmo sem funcionário cadastrado
 */
 ```
+
+# Full Outer Join 
+
+O Outer Join (também conhecido por Full Outer Join ou Full Join), tem como resultado todoos os registros que estao na Tabela A e todos os registros da tabela B
+
+```sql
+SELECT a.Nome, b.Nome
+FROM TabelaA AS a
+FULL OUTER JOIN TabelaB AS b ON a.Nome = b.Nome;
+
+/*
+╭──────────┬──────────╮
+│ a.Nome   │ b.Nome   │
+╞══════════╪══════════╡
+│ Ana      │ Ana      │
+│ Carlos   │ NULL     │
+│ NULL     │ Maria    │
+╰──────────┴──────────╯
+  Ana: match dos dois lados
+  Carlos: só na TabelaA → NULL na B
+  Maria: só na TabelaB → NULL na A
+*/
+```
+
