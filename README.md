@@ -31,3 +31,4 @@ learning-notes/
 Each folder has numbered notes (`01-basics.md`, `02-joins.md`...) with three sections: the concept in my own words, examples I wrote, and mistakes I made along the way. 
 
 Notes start from the basics on purpose.
+
