@@ -3,3 +3,8 @@ certificates
 resumosemanal
 negocios
 1
+
+# site
+.frontend/node_modules
+.frontend/.vitepress/dist
+.frontend/.vitepress/cache
