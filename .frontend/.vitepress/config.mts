@@ -11,7 +11,7 @@ const resolvePkg = (pkg: string) =>
   fileURLToPath(new URL(`../node_modules/${pkg}`, import.meta.url))
 
 const sidebarOptions: VitePressSidebarOptions = {
-  documentRootPath: '/',
+  documentRootPath: '..',
   useTitleFromFileHeading: true,
   useFolderTitleFromIndexFile: true,
   useFolderLinkFromIndexFile: false,
