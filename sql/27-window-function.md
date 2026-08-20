@@ -1,4 +1,4 @@
-# Window function
+# 27 - Window Function
 
 Window function calcula sobre um conjunto de linhas (a janela) e
 mantem cada linha na saida. GROUP BY esmaga as linhas num resumo;

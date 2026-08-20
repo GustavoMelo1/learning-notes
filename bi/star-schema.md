@@ -1,4 +1,6 @@
-#Um esquema estrela é um tipo de banco de dados relacional esquema composto por uma única tabela de fatos central cercada por tabelas de dimensões. ## Esquema Estrela (Star Schema)
+# Esquema Estrela (Star Schema)
+
+Um esquema estrela é um tipo de banco de dados relacional composto por uma única tabela de fatos central cercada por tabelas de dimensões.
 
 O **Esquema Estrela** é um modelo de banco de dados utilizado em **Data Warehouses** para organizar informações de forma simples e otimizar consultas e relatórios.
 

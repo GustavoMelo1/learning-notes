@@ -1,4 +1,4 @@
-# For e While
+# 06 - For e While
 
 `for` itera sobre uma sequência, rodando um bloco pra cada elemento. `while` repete um bloco enquanto uma condição continuar `True`.
 

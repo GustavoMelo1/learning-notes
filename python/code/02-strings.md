@@ -1,4 +1,4 @@
-# Strings
+# 02 - Strings
 
 Strings são sequências de caracteres. Dá pra fatiar (slicing) pra pegar um pedaço, usando índice e passo.
 

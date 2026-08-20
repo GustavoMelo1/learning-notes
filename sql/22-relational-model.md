@@ -1,4 +1,4 @@
-# 08 - Relational Model (explained simply and directly)
+# 22 - Relational Model (explained simply and directly)
 
 Modelo relacional é o jeito que o banco de dados usa para guardar informação em **caixas** (tabelas) e **ligar uma caixa na outra**. "Relacional" vem de "relação", ou seja, como as caixas se conectam.
 
