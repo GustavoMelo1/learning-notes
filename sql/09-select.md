@@ -1,4 +1,4 @@
-# 09 - Select (DQL)
+# Select (DQL)
 
 SELECT responde perguntas sobre os dados. É o comando mais usado.
 

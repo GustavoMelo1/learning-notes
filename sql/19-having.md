@@ -1,4 +1,4 @@
-# 19 - Having
+# Having
 
 WHERE filtra LINHAS antes de agrupar. HAVING filtra GRUPOS depois do GROUP BY.
 

@@ -1,4 +1,4 @@
-# 24 - ACID
+# ACID
 
 ACID é o conjunto de 4 garantias que uma engine séria (tipo InnoDB) precisa cumprir numa transação. Pra ficar concreto, vou usar sempre o mesmo exemplo: **transferir R$100 da conta do João pra conta da Maria.**
 

@@ -1,4 +1,4 @@
-# 10 - Set
+# Set
 
 Set remove duplicados automaticamente e permite adicionar novos elementos.
 

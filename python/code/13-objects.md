@@ -1,4 +1,4 @@
-# 13 - Objects
+# Objects
 
 Em Python, tudo é objeto — as variáveis guardam objetos, que carregam dado e métodos prontos.
 

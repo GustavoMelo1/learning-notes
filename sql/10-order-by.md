@@ -1,4 +1,4 @@
-# 10 - Order By
+# Order By
 
 Ordena o resultado. `ASC` = crescente (padrão), `DESC` = decrescente.
 

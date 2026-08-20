@@ -1,4 +1,4 @@
-# 06 - Update (DML)
+# Update (DML)
 
 Altera dados de linhas que já existem.
 ```sql

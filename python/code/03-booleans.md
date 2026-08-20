@@ -1,4 +1,4 @@
-# 03 - Booleanos
+# Booleanos
 
 Variáveis booleanas representam só dois estados: `True` ou `False`.
 

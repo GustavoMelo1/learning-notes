@@ -1,4 +1,4 @@
-# 09 - Tuple
+# Tuple
 
 Tuplas são criadas com parênteses. Diferente da lista, são **imutáveis**.
 

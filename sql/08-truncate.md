@@ -1,4 +1,4 @@
-# 08 - Truncate (DML)
+# Truncate (DML)
 
 Apaga TODOS os registros de uma vez (esvazia a tabela), mas mantém a estrutura. Mais rápido que DELETE pra limpar tudo.
 ```sql

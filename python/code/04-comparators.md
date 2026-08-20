@@ -1,4 +1,4 @@
-# 04 - Comparadores e Operadores Lógicos
+# Comparadores e Operadores Lógicos
 
 Operadores de comparação, operadores lógicos e estruturas condicionais (`if`/`elif`/`else`).
 

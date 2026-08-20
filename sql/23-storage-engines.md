@@ -1,4 +1,4 @@
-# 23 - Storage Engines
+# Storage Engines
 
 A Engine é o "motor" que realmente guarda e organiza os dados no disco. A sintaxe do SQL (`SELECT`, `INSERT`...) é sempre a mesma por cima, mas por baixo cada engine lida diferente com travamento de linha, transação e índice. Cada tabela pode até ter uma engine diferente dentro do mesmo banco.
 

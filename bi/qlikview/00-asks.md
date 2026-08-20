@@ -1,4 +1,4 @@
-# 00 - Asks
+# Asks
 
 Perguntas padrão antes de começar qualquer projeto no QlikView. Se o cliente já respondeu isso no email, meio caminho andado.
 

@@ -1,4 +1,4 @@
-# 01 - MongoDB (NoSQL)
+# MongoDB (NoSQL)
 
 NoSQL surgiu em 2009. O nome significa **Não apenas SQL**, não veio pra substituir o banco relacional, veio pra complementar em casos onde ele não resolve bem, principalmente dados sem estrutura fixa e volume muito alto.
 

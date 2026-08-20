@@ -1,4 +1,4 @@
-# 04 - Alter Table (DDL)
+# Alter Table (DDL)
 
 Muda a estrutura de uma tabela que já existe.
 

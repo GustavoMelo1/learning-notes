@@ -1,4 +1,4 @@
-# 05 - Estruturas de Decisão
+# Estruturas de Decisão
 
 `if` / `elif` / `else` rodam blocos diferentes de código dependendo da condição.
 

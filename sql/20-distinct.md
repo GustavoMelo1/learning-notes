@@ -1,4 +1,4 @@
-# 20 - Distinct
+# Distinct
 
 Retorna só os valores ÚNICOS de uma coluna. Não agrupa nem conta, só remove repetidos.
 ```sql

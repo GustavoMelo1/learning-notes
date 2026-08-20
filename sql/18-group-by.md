@@ -1,4 +1,4 @@
-# 18 - Group By
+# Group By
 
 Agrupa linhas pra responder "quantos por grupo" ou "total por grupo". Sempre junto com COUNT, SUM, AVG, MIN ou MAX.
 

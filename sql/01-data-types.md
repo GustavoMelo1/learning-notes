@@ -1,4 +1,4 @@
-# 01 Basics (MySQL)
+# Basics (MySQL)
 
 Antes de criar uma tabela preciso saber o tipo de cada coluna. Cada dado tem seu tipo certo.
 

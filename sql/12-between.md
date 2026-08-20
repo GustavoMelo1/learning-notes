@@ -1,4 +1,4 @@
-# 12 - Between
+# Between
 
 Pega tudo dentro de um intervalo. Os dois extremos são INCLUÍDOS:
 ```sql

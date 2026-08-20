@@ -1,4 +1,4 @@
-# 25 - Foreign Key
+# Foreign Key
 
 Chave estrangeira é uma coluna que aponta pro `id` de outra tabela, criando a ligação entre elas. Ver teoria completa em [22-relational-model.md](22-relational-model.md).
 

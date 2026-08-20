@@ -21,6 +21,7 @@ const sidebarOptions: VitePressSidebarOptions = {
   excludeFolders: ['1', '.frontend', 'node_modules', '.git', '.vitepress', '.github'],
   excludeFiles: ['README.md'],
   sortMenusByFrequency: false,
+  sortFolderTo: 'top',
 }
 
 const vitePressOptions = defineConfig({

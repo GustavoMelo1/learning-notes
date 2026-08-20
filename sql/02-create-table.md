@@ -1,4 +1,4 @@
-# 02 - Create Table (DDL)
+# Create Table (DDL)
 
 DDL = Data Definition Language. Define a ESTRUTURA do banco, não mexe nos dados.
 

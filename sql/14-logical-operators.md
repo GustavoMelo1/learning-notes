@@ -1,4 +1,4 @@
-# 14 - Logical Operators (AND / OR / NOT)
+# Logical Operators (AND / OR / NOT)
 
 Combinam condições no WHERE, igual à lógica do Python:
 ```sql

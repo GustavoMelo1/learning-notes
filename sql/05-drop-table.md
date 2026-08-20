@@ -1,4 +1,4 @@
-# 05 - Drop Table (DDL)
+# Drop Table (DDL)
 
 Apaga a tabela INTEIRA (estrutura + dados). Cuidado, não tem CTRL+Z.
 ```sql

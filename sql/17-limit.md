@@ -1,4 +1,4 @@
-# 17 - Limit
+# Limit
 
 Limita quantas linhas aparecem no resultado:
 ```sql

@@ -1,4 +1,4 @@
-# 15 - Like
+# Like
 
 Busca parte de um texto. O `%` significa "qualquer coisa":
 ```sql

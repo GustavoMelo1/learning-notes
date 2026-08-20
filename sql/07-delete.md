@@ -1,4 +1,4 @@
-# 07 - Delete (DML)
+# Delete (DML)
 
 Apaga LINHAS. Não tem CTRL+Z.
 ```sql

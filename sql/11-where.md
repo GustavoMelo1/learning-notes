@@ -1,4 +1,4 @@
-# 11 - Where
+# Where
 
 Filtra quais LINHAS aparecem. O SELECT escolhe as colunas, o WHERE escolhe as linhas.
 ```sql

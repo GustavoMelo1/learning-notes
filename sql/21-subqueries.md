@@ -1,4 +1,4 @@
-# 21 - Subqueries
+# Subqueries
 
 Um SELECT dentro de outro SELECT. O banco roda o de dentro primeiro, depois usa o resultado no de fora.
 
