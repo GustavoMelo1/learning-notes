@@ -1,6 +1,6 @@
 # Learning Notes
 
-[![CI](https://github.com/GustavoMelo1/learning-notes/actions/workflows/ci.yml/badge.svg)](https://github.com/GustavoMelo1/learning-notes/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/GustavoMelo1/learning-notes/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/GustavoMelo1/learning-notes/actions/workflows/ci.yml)
 
 Notes on what I'm studying, written in my own words.
 
