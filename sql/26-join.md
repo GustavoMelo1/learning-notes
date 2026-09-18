@@ -2,6 +2,8 @@
 
 Serve basicamente para unir duas tabelas, que tenham um campo em comum em ambas. Uma tabela deve conter uma coluna que seja uma referência para a outra tabela e somente então poderemos executar as junções.
 
+<JoinLab />
+
 ```sql
 SELECT j.titulo, d.nome AS desenvolvedor
 FROM jogos j

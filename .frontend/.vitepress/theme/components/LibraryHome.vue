@@ -38,6 +38,7 @@ function reset() { query.value = ''; category.value = 'Todas' }
         <div class="home-actions">
           <a class="action primary" href="#biblioteca">Explorar {{ notes.length }} notas <span aria-hidden="true">↗</span></a>
           <a class="action" href="#trilhas">Comece por aqui <span aria-hidden="true">↓</span></a>
+          <a class="action" :href="withBase('/sql/26-join#join-lab-title')">Experimentar JOIN <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <aside class="field-note" aria-label="Uma descoberta do caderno">
