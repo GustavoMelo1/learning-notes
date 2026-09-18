@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { withSidebar } from 'vitepress-sidebar'
-import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
+import { createSidebar } from './sidebar'
 
 // Content lives one level up (repo root), outside this workspace's node_modules.
 // Vite resolves bare imports by walking up from the file being processed, so
@@ -9,20 +8,6 @@ import type { VitePressSidebarOptions } from 'vitepress-sidebar/types'
 // their own — point it explicitly at this workspace's copy.
 const resolvePkg = (pkg: string) =>
   fileURLToPath(new URL(`../node_modules/${pkg}`, import.meta.url))
-
-const sidebarOptions: VitePressSidebarOptions = {
-  documentRootPath: '..',
-  useTitleFromFileHeading: true,
-  useFolderTitleFromIndexFile: true,
-  useFolderLinkFromIndexFile: false,
-  collapsed: true,
-  collapseDepth: 2,
-  capitalizeFirst: true,
-  excludeFolders: ['1', '.frontend', 'node_modules', '.git', '.vitepress', '.github'],
-  excludeFiles: ['README.md'],
-  sortMenusByFrequency: false,
-  sortFolderTo: 'top',
-}
 
 const vitePressOptions = defineConfig({
   title: 'Learning Notes',
@@ -40,6 +25,7 @@ const vitePressOptions = defineConfig({
     },
   },
   themeConfig: {
+    sidebar: createSidebar(),
     search: {
       provider: 'local',
     },
@@ -65,4 +51,4 @@ const vitePressOptions = defineConfig({
   },
 })
 
-export default withSidebar(vitePressOptions, sidebarOptions)
+export default vitePressOptions

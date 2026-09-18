@@ -11,6 +11,11 @@
   --vp-c-brand-3: #347c5d;
   --vp-c-brand-soft: rgba(142, 219, 181, .12);
 }
+.VPSidebar .group + .group { border-top: 0; padding-top: 12px; }
+.VPSidebarItem.level-0 > .item > .text { font-size: 12px; letter-spacing: .04em; color: var(--vp-c-text-2); }
+.VPSidebarItem .link { border-radius: 6px; padding-left: 10px; padding-right: 8px; }
+.VPSidebarItem.is-active > .item > .link { background: var(--vp-c-brand-soft); }
+.VPSidebarItem .link:hover { background: var(--vp-c-bg-soft); }
 .notebook { max-width: 1152px; margin: auto; padding: 64px 32px 80px; }
 .notebook a { text-decoration: none; }
 .eyebrow { color: var(--vp-c-brand-1); font: 600 12px/1.6 var(--vp-font-family-mono); letter-spacing: .12em; text-transform: uppercase; }
