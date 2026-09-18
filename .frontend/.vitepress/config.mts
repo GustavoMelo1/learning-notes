@@ -26,6 +26,7 @@ const sidebarOptions: VitePressSidebarOptions = {
 
 const vitePressOptions = defineConfig({
   title: 'Learning Notes',
+  lang: 'pt-BR',
   description: "Gustavo's notes on SQL, Python, BI and data engineering",
   base: '/learning-notes/',
   srcDir: '..',
@@ -43,7 +44,9 @@ const vitePressOptions = defineConfig({
       provider: 'local',
     },
     nav: [
-      { text: 'Home', link: '/' },
+      { text: 'Caderno', link: '/' },
+      { text: 'Biblioteca', link: '/#biblioteca' },
+      { text: 'Trilhas', link: '/#trilhas' },
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/GustavoMelo1/learning-notes' },
