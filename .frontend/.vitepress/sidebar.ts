@@ -61,7 +61,7 @@ export function createSidebar(): DefaultTheme.SidebarMulti {
       groups.push({ text: 'QlikView', collapsed: true, items: pages.filter(page => page.link!.includes('/qlikview/')) })
     } else groups.push({ text: subject.text, items: pages })
     return [`/${subject.folder}/`, [
-      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/#biblioteca' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
+      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/biblioteca' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
       ...groups,
     ]]
   }))
