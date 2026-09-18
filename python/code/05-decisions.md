@@ -2,6 +2,8 @@
 
 `if` / `elif` / `else` rodam blocos diferentes de código dependendo da condição.
 
+<DecisionLab />
+
 ## Checagem simples
 
 ```python

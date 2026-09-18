@@ -1,6 +1,9 @@
 # Where
 
 Filtra quais LINHAS aparecem. O SELECT escolhe as colunas, o WHERE escolhe as linhas.
+
+<QueryLab />
+
 ```sql
 SELECT titulo, nota FROM jogos WHERE genero = 'RPG';
 /*

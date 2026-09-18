@@ -33,7 +33,7 @@ function reset() { query.value = ''; category.value = 'Todas' }
 
 <template>
   <main class="notebook">
-    <header class="catalog-heading"><p class="eyebrow">Caderno aberto</p><h1>Biblioteca</h1><p>Encontra uma anota??o ou escolhe um caminho de leitura.</p></header>
+    <header class="catalog-heading"><p class="eyebrow">Caderno aberto</p><h1>Biblioteca</h1><p>Encontra uma anotação ou escolhe um caminho de leitura.</p></header>
     <details id="trilhas" class="reading-trails"><summary>Trilhas de leitura <span>SQL, Python e dados</span></summary>
       <div class="section-heading"><h2 id="trails-title">Um caminho pra começar</h2><p>Escolhe um assunto e segue no teu ritmo.</p></div>
       <div class="trails">

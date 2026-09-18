@@ -8,3 +8,4 @@ negocios
 .frontend/node_modules
 .frontend/.vitepress/dist
 .frontend/.vitepress/cache
+.frontend/.vitepress/.temp

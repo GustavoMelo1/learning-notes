@@ -2,6 +2,8 @@
 
 SELECT responde perguntas sobre os dados. É o comando mais usado.
 
+<QueryLab />
+
 # Cada parte responde uma coisa: *quais colunas* (SELECT), *de onde* (FROM), *quais linhas* (WHERE), *em que ordem* (ORDER BY).
 
 ## Select everything
