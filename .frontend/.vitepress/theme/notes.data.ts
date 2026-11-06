@@ -5,11 +5,13 @@ export interface Note {
   url: string
   category: string
   description: string
+  kind: 'Anotação' | 'Prática'
 }
 
 export const categories = {
   sql: 'SQL', python: 'Python', bi: 'BI', mongodb: 'MongoDB',
   'data-engineering': 'Engenharia de Dados',
+  pratica: 'Projetos na prática',
 }
 
 declare const data: Note[]
@@ -20,7 +22,7 @@ export default createContentLoader(
   {
     includeSrc: true,
     transform(notes): Note[] {
-      return notes.map(({ url, src = '', frontmatter }) => {
+      return notes.filter(({ url }) => !['/pratica/', '/pratica/index.html'].includes(url)).map(({ url, src = '', frontmatter }) => {
         const text = src.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '')
           .replace(/```[\s\S]*?```/g, '')
         const title = frontmatter.title || text.match(/^#\s+(.+)$/m)?.[1] || url.split('/').pop()
@@ -30,6 +32,7 @@ export default createContentLoader(
           .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*`_]/g, '').replace(/\s+/g, ' ').trim()
         return {
           title: String(title).replace(/`/g, ''), url,
+          kind: url.startsWith('/pratica/') ? 'Prática' : 'Anotação',
           category: categories[url.split('/')[1] as keyof typeof categories],
           description: description.length > 150 ? `${description.slice(0, 147).trimEnd()}…` : description,
         }

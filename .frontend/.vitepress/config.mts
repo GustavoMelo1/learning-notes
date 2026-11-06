@@ -15,8 +15,9 @@ const vitePressOptions = defineConfig({
   description: "Gustavo's notes on SQL, Python, BI and data engineering",
   base: '/learning-notes/',
   srcDir: '..',
-  srcExclude: ['.frontend/**', '1/**', 'README.md', '**/*.py'],
+  srcExclude: ['.frontend/**', '1/**', 'README.md', 'docs/**', 'public/**', '**/*.py'],
   vite: {
+    publicDir: fileURLToPath(new URL('../../public', import.meta.url)),
     resolve: {
       alias: [
         { find: 'vue/server-renderer', replacement: resolvePkg('vue/server-renderer/index.mjs') },
@@ -28,10 +29,16 @@ const vitePressOptions = defineConfig({
     sidebar: createSidebar(),
     search: {
       provider: 'local',
+      options: { locales: { root: { translations: {
+        button: { buttonText: 'Buscar', buttonAriaLabel: 'Buscar nas notas' },
+        modal: { noResultsText: 'Nenhuma nota encontrada', resetButtonTitle: 'Limpar busca',
+          footer: { selectText: 'abrir', navigateText: 'navegar', closeText: 'fechar' } },
+      } } } },
     },
     nav: [
       { text: 'Caderno', link: '/' },
       { text: 'Biblioteca', link: '/biblioteca' },
+      { text: 'Prática', link: '/pratica/' },
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/GustavoMelo1/learning-notes' },
@@ -47,6 +54,12 @@ const vitePressOptions = defineConfig({
     lastUpdated: {
       text: 'Atualizado em',
     },
+    sidebarMenuLabel: 'Assuntos',
+    skipToContentLabel: 'Pular para o conteúdo',
+    darkModeSwitchLabel: 'Aparência',
+    lightModeSwitchTitle: 'Usar tema claro',
+    darkModeSwitchTitle: 'Usar tema escuro',
+    returnToTopLabel: 'Voltar ao topo',
   },
 })
 

@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import type { DefaultTheme } from 'vitepress'
+import { paths } from './theme/paths'
 
 const subjects = [
   { text: 'SQL', folder: 'sql', link: '/sql/09-select' },
@@ -35,7 +36,7 @@ function notes(folder: string): DefaultTheme.SidebarItem[] {
 }
 
 export function createSidebar(): DefaultTheme.SidebarMulti {
-  return Object.fromEntries(subjects.map(subject => {
+  const sidebar = Object.fromEntries(subjects.map(subject => {
     const pages = notes(subject.folder)
     const groups: DefaultTheme.SidebarItem[] = []
     if (subject.folder === 'sql') {
@@ -61,8 +62,15 @@ export function createSidebar(): DefaultTheme.SidebarMulti {
       groups.push({ text: 'QlikView', collapsed: true, items: pages.filter(page => page.link!.includes('/qlikview/')) })
     } else groups.push({ text: subject.text, items: pages })
     return [`/${subject.folder}/`, [
-      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/biblioteca' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
+      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/biblioteca' }, { text: 'Projetos na prática', link: '/pratica/' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
       ...groups,
     ]]
   }))
+  for (const path of paths) {
+    sidebar[`/pratica/${path.id}/`] = [
+      { text: 'Prática', items: [{ text: 'Todos os percursos', link: '/pratica/' }] },
+      { text: path.title, items: path.steps.map((step, index) => ({ text: `${index + 1}. ${step.title}`, link: step.url })) },
+    ]
+  }
+  return sidebar
 }
