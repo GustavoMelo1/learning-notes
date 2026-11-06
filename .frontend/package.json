@@ -4,12 +4,21 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:site": "node scripts/check-site.mjs",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/user-event": "^14.6.8",
+    "@testing-library/vue": "^8.1.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "jsdom": "^26.1.0",
     "vitepress": "^1.6.4",
-    "vitepress-sidebar": "^1.39.0"
+    "vitepress-sidebar": "^1.39.0",
+    "vitest": "^3.2.7"
   }
 }
