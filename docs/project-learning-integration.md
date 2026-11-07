@@ -1,30 +1,38 @@
-# Projetos como percursos de aprendizado
+# Conteúdo dos projetos organizado por assunto
 
 ## Escopo
 
 Somente Learning Notes foi alterado. `daily-routine-app` foi citado como referência de usabilidade e permaneceu fora do escopo após confirmação do usuário.
 
-Os repositórios originais continuam independentes. A integração é editorial: seus problemas, trechos e decisões viraram etapas de estudo, com links para a origem e exercícios separados. Não há sincronização automática nem cópia de dados pessoais.
+Os repositórios originais continuam independentes. A biblioteca ensina os conceitos usados neles: cada assunto tem introdução, exemplo simples e três etapas de aplicação. O projeto aparece como uso concreto do conteúdo, com link para a origem e exercícios separados. Não há sincronização automática nem cópia de dados pessoais.
 
 ## Origem e adaptação
 
 | Projeto | Revisão local consultada | Percurso |
 | --- | --- | --- |
-| data-engineering-studies | `3880977fad4edb644e066eb316b81318a22cfeef` | Dois arquivos, uma linguagem; Da API à tabela |
-| financial-analysis | `76c8330a7e0efa1bcb7a93b200aac633e6d6f700` | Para onde foi o dinheiro? |
+| data-engineering-studies | `3880977fad4edb644e066eb316b81318a22cfeef` | Python → CSV e JSON; Python → Requests |
+| financial-analysis | `76c8330a7e0efa1bcb7a93b200aac633e6d6f700` | SQL → Análise financeira |
 
 Os exercícios financeiros têm dados fictícios criados para a trilha. O `sample_data.sql` original estava praticamente vazio, por isso não foi apresentado como um exercício pronto. Não foi lido nem importado `data.sql` com lançamentos pessoais.
 
-O pipeline original está numa etapa de refatoração: acesso a atributo numa lista, nomes de campos específicos e partes comentadas. A trilha explicita esses pontos. O exercício baixável é uma adaptação pequena, executável e testada, não uma substituição silenciosa do código original.
+O guia de CSV e JSON ensina leitura, normalização e validação de arquivos. A união de dados de duas lojas é a aplicação desses conceitos. O exercício baixável é uma adaptação pequena e executável; o código original foi preservado.
 
-O exercício de API roda offline. Valida formato, nomes, limite de páginas e propagação de falhas. Não usa token nem dispara requisições. Para a integração real, as notas remetem à documentação do GitHub.
+O guia de Requests apresenta requisições HTTP, status, JSON e parâmetros antes de aplicar a paginação à API do GitHub. Os exemplos de Requests acessam a internet; o exercício baixável roda offline, com respostas simuladas, para validar formato, nomes, limite de páginas e propagação de falhas. Requests não é uma ferramenta de automação de navegador.
+
+## Destinos na biblioteca
+
+- `python/libs/requests/`: consumo de APIs com Requests; coleta de repositórios como aplicação.
+- `python/libs/csv-json/`: módulos da biblioteca padrão; integração de arquivos como aplicação.
+- `sql/aplicado/analise-financeira/`: consultas, agregações e funções de janela; gastos fictícios como aplicação.
+
+As nove URLs antigas em `/pratica/` permanecem como páginas com links para os novos destinos e ficam fora da busca. O índice `/pratica/` reúne os guias por assunto. O progresso salvo nos endereços antigos é convertido ao carregar, mantendo a mesma chave de armazenamento local.
 
 ## Organização da interface
 
 | Antes | Depois | Motivo |
 | --- | --- | --- |
 | Apresentação grande e catálogo em cartões | Introdução pessoal curta e índice em linhas | Facilitar leitura e comparação sem excesso de contornos |
-| Projetos em repositórios separados | Prática com 3 percursos e 9 etapas | Dar contexto, sequência e critério de conclusão |
+| Projetos em repositórios separados | 3 guias nos assuntos Python e SQL, com 9 etapas de aplicação | Ensinar o conteúdo e dar um destino ao projeto dentro da biblioteca |
 | Notas e exercícios sem distinção no catálogo | Busca por assunto e filtro Anotações/Prática | Encontrar o formato útil para a tarefa |
 | Navegação de documento genérica | Contexto da etapa, anterior/próxima e progresso opcional | Ajudar a retomar o estudo |
 

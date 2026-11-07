@@ -34,17 +34,17 @@ Each folder has numbered notes (`01-basics.md`, `02-joins.md`...) with three sec
 
 Notes start from the basics on purpose.
 
-## Practice paths
+## Subject guides
 
-The site also turns my existing experiments into guided learning paths:
+The library teaches the subjects behind my existing experiments, with each project serving as an application:
 
-- **Financial analysis:** understand transactions, answer questions with SQL and compare rows with window functions.
-- **File pipeline:** read CSV/JSON, normalize columns and validate an export.
-- **Repository API:** understand responses, paginate and build a table without hiding failures.
+- **[SQL applied to financial analysis](sql/aplicado/analise-financeira/index.md):** understand transactions, answer questions with SQL and compare rows with window functions.
+- **[CSV and JSON in Python](python/libs/csv-json/index.md):** read files, normalize columns and validate an export using the standard library.
+- **[Requests](python/libs/requests/index.md):** learn HTTP requests, responses and pagination, then collect repository data as an example.
 
 The original `financial-analysis` and `data-engineering-studies` repositories remain unchanged. The library adds nine lessons with exercises, expected results and links back to the source. Downloadable examples use fictional data; the API exercise runs offline.
 
-Open **Prática** in the site to follow a path. Progress is optional and saved only in the current browser. **Biblioteca** searches both notes and practical lessons.
+Find each guide under its subject in **Biblioteca**, or open **Guias** for the overview. Each starts with a simple concept and example before the three application lessons. Progress is optional and saved only in the current browser. Old lesson links lead to their new locations, and previously saved progress is preserved.
 
 ## Frontend development
 

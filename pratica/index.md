@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Prática
-description: Aprenda com os projetos de análise financeira, tratamento de arquivos e consumo de APIs.
+title: Guias por assunto
+description: Aprenda Requests, CSV e JSON em Python e SQL aplicado com explicações e exemplos completos.
 ---
 
 <PracticePaths />
