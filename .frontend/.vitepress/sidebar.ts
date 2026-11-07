@@ -37,7 +37,7 @@ function notes(folder: string): DefaultTheme.SidebarItem[] {
 
 export function createSidebar(): DefaultTheme.SidebarMulti {
   const sidebar = Object.fromEntries(subjects.map(subject => {
-    const pages = notes(subject.folder)
+    const pages = notes(subject.folder).filter(page => !paths.some(path => page.link!.startsWith(path.url)))
     const groups: DefaultTheme.SidebarItem[] = []
     if (subject.folder === 'sql') {
       const sections: [string, (number: number) => boolean][] = [
@@ -61,14 +61,16 @@ export function createSidebar(): DefaultTheme.SidebarMulti {
       groups.push({ text: 'Conceitos de BI', collapsed: false, items: pages.filter(page => !page.link!.includes('/qlikview/')) })
       groups.push({ text: 'QlikView', collapsed: true, items: pages.filter(page => page.link!.includes('/qlikview/')) })
     } else groups.push({ text: subject.text, items: pages })
+    const guides = paths.filter(path => path.url.startsWith(`/${subject.folder}/`))
+    if (guides.length) groups.push({ text: subject.folder === 'python' ? 'Bibliotecas e arquivos' : 'SQL aplicado', items: guides.map(path => ({ text: path.title, link: path.url })) })
     return [`/${subject.folder}/`, [
-      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/biblioteca' }, { text: 'Projetos na prática', link: '/pratica/' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
+      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/biblioteca' }, { text: 'Guias por assunto', link: '/pratica/' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
       ...groups,
     ]]
   }))
   for (const path of paths) {
-    sidebar[`/pratica/${path.id}/`] = [
-      { text: 'Prática', items: [{ text: 'Todos os percursos', link: '/pratica/' }] },
+    sidebar[path.url] = [
+      { text: path.subject, items: [{ text: 'Biblioteca', link: '/biblioteca' }, { text: 'Introdução ao assunto', link: path.url }, ...paths.filter(other => other.id !== path.id).map(other => ({ text: other.title, link: other.url }))] },
       { text: path.title, items: path.steps.map((step, index) => ({ text: `${index + 1}. ${step.title}`, link: step.url })) },
     ]
   }

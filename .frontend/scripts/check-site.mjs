@@ -21,7 +21,7 @@ for (const file of pages) {
     if (anchor.hasAttribute('download')) assert.ok(!target.endsWith('.html'), `Download points to a page: ${href}`)
     checkedLinks++
   }
-  if (file.includes(`${'pratica'}`) && !file.endsWith('pratica/index.html') && document.querySelector('.lesson-context')) {
+  if (document.querySelector('.lesson-context')) {
     assert.ok(document.querySelector('.lesson-navigation'), `Missing lesson navigation: ${file}`)
     assert.equal(document.querySelectorAll('.prev-next').length, 0, `Duplicate lesson navigation: ${file}`)
   }
@@ -35,6 +35,11 @@ const catalog = new JSDOM(readFileSync(resolve(dist, 'biblioteca.html'), 'utf8')
 assert.equal(catalog.querySelectorAll('.note-row').length, 12)
 const practice = new JSDOM(readFileSync(resolve(dist, 'pratica/index.html'), 'utf8')).window.document
 assert.equal(practice.querySelectorAll('.path-steps a').length, 9)
+for (const guide of ['python/libs/requests', 'python/libs/csv-json', 'sql/aplicado/analise-financeira']) {
+  const intro = new JSDOM(readFileSync(resolve(dist, guide, 'index.html'), 'utf8')).window.document
+  assert.ok(intro.querySelector('h1'), `Missing subject introduction: ${guide}`)
+  assert.ok(intro.querySelector(`a[href^="/learning-notes/${guide}/01-"]`), `Missing example link: ${guide}`)
+}
 const css = readFileSync(resolve('.vitepress/theme/style.css'), 'utf8')
 const luminance = hex => {
   const channels = hex.match(/[a-f\d]{2}/gi).map(value => parseInt(value, 16) / 255)

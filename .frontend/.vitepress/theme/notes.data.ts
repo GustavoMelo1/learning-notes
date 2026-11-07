@@ -11,7 +11,6 @@ export interface Note {
 export const categories = {
   sql: 'SQL', python: 'Python', bi: 'BI', mongodb: 'MongoDB',
   'data-engineering': 'Engenharia de Dados',
-  pratica: 'Projetos na prática',
 }
 
 declare const data: Note[]
@@ -32,7 +31,7 @@ export default createContentLoader(
           .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*`_]/g, '').replace(/\s+/g, ' ').trim()
         return {
           title: String(title).replace(/`/g, ''), url,
-          kind: url.startsWith('/pratica/') ? 'Prática' : 'Anotação',
+          kind: frontmatter.path ? 'Prática' : 'Anotação',
           category: categories[url.split('/')[1] as keyof typeof categories],
           description: description.length > 150 ? `${description.slice(0, 147).trimEnd()}…` : description,
         }

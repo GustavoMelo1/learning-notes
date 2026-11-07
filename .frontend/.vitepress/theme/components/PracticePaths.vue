@@ -8,10 +8,10 @@ const { completed, message } = useProgress()
 <template>
   <div class="notebook practice-page">
     <header class="page-heading">
-      <p class="eyebrow">Aprender fazendo</p><h1>Projetos, por dentro.</h1>
-      <p>O caminho entre ler sobre um conceito e usar de verdade. Meus experimentos, organizados em etapas para tu acompanhar.</p>
+      <p class="eyebrow">Aprender por assunto</p><h1>Bibliotecas e aplicações.</h1>
+      <p>Escolhe o que tu quer aprender. Cada guia começa pelo conceito e usa um projeto para colocar o conteúdo em prática.</p>
     </header>
-    <p class="quiet-note">Três percursos, dois projetos de origem. Os repositórios continuam como estão; aqui entram as explicações, exercícios e dados fictícios.</p>
+    <p class="quiet-note">Requests e arquivos ficam em Python. Análise financeira fica em SQL aplicado. Os exemplos vieram dos meus estudos e projetos.</p>
     <p v-if="message" role="status" class="save-message">{{ message }}</p>
     <div class="path-list">
       <section v-for="(path, index) in paths" :key="path.id" class="path-section" :aria-labelledby="`path-${path.id}`">
@@ -19,6 +19,7 @@ const { completed, message } = useProgress()
         <div class="path-content">
           <p class="eyebrow">{{ path.subject }}</p>
           <h2 :id="`path-${path.id}`">{{ path.title }}</h2><p>{{ path.description }}</p>
+          <a class="text-link" :href="withBase(path.url)">Começar pela introdução →</a>
           <p class="path-prerequisite">Antes de começar: {{ path.prerequisite }}.</p>
           <ol class="path-steps">
             <li v-for="(step, stepIndex) in path.steps" :key="step.url">

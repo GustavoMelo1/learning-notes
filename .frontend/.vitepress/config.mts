@@ -38,7 +38,7 @@ const vitePressOptions = defineConfig({
     nav: [
       { text: 'Caderno', link: '/' },
       { text: 'Biblioteca', link: '/biblioteca' },
-      { text: 'Prática', link: '/pratica/' },
+      { text: 'Guias', link: '/pratica/' },
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/GustavoMelo1/learning-notes' },

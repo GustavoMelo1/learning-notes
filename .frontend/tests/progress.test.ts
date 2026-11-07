@@ -7,13 +7,21 @@ import PracticePaths from '../.vitepress/theme/components/PracticePaths.vue'
 
 vi.mock('vitepress', () => ({ withBase: (url: string) => `/learning-notes${url}` }))
 const key = 'learning-notes:practice:v1'
-const url = '/pratica/financas/01-preparar'
+const url = '/sql/aplicado/analise-financeira/01-preparar'
 const Lesson = defineComponent({
   setup() { return { ...useProgress(), url } },
   template: '<button :aria-pressed="completed.includes(url)" @click="toggle(url)">Marcar etapa</button><p role="status">{{ message }}</p>',
 })
 
 describe('Progresso dos percursos', () => {
+  it('preserva etapas marcadas nos endereços antigos por projeto', async () => {
+    localStorage.setItem(key, JSON.stringify(['/pratica/financas/01-preparar', '/pratica/api/01-resposta']))
+    render(PracticePaths)
+    await nextTick()
+    expect(screen.getAllByText('1 de 3 estudadas')).toHaveLength(2)
+    expect(screen.getByRole('link', { name: /Entender a resposta/ })).toHaveTextContent('Estudada')
+    expect(screen.getByRole('link', { name: /Entender a resposta/ })).toHaveAttribute('href', '/learning-notes/python/libs/requests/01-resposta')
+  })
   it('marca pelo teclado e restaura a etapa depois de reabrir', async () => {
     const user = userEvent.setup()
     const { unmount } = render(Lesson)
@@ -28,11 +36,11 @@ describe('Progresso dos percursos', () => {
   })
 
   it('permite desmarcar uma etapa sem afetar as outras', async () => {
-    localStorage.setItem(key, JSON.stringify([url, '/pratica/api/01-resposta']))
+    localStorage.setItem(key, JSON.stringify([url, '/python/libs/requests/01-resposta']))
     const user = userEvent.setup()
     render(Lesson)
     await user.click(screen.getByRole('button'))
-    expect(JSON.parse(localStorage.getItem(key)!)).toEqual(['/pratica/api/01-resposta'])
+    expect(JSON.parse(localStorage.getItem(key)!)).toEqual(['/python/libs/requests/01-resposta'])
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
   })
 

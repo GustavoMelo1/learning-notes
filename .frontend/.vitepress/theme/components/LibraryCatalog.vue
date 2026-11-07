@@ -29,7 +29,7 @@ async function more() {
 
 <template>
   <div class="notebook catalog-page">
-    <header class="page-heading"><p class="eyebrow">Para encontrar de novo</p><h1>Biblioteca.</h1><p>Busca uma ideia, revisa um fundamento ou abre uma etapa de projeto.</p></header>
+    <header class="page-heading"><p class="eyebrow">Para encontrar de novo</p><h1>Biblioteca.</h1><p>Busca uma ideia, aprende uma biblioteca ou revisa um fundamento.</p></header>
     <form class="library-controls" role="search" aria-label="Buscar na biblioteca" @submit.prevent>
       <div class="search-field"><label for="note-search">Buscar nas notas</label><input id="note-search" ref="search" v-model="query" type="search" placeholder="Título, conceito ou assunto" aria-controls="note-results" autocomplete="off"></div>
       <div class="subject-field"><label for="note-category">Assunto</label><select id="note-category" v-model="category" aria-controls="note-results"><option v-for="item in categories" :key="item">{{ item }}</option></select></div>
@@ -40,6 +40,6 @@ async function more() {
       <div v-else class="empty-state"><h2>Nada encontrado por aqui.</h2><p>Tenta um termo mais curto ou outro assunto.</p><button class="action" @click="reset">Limpar busca e filtros</button></div>
       <button v-if="visibleCount < filtered.length" class="load-more action" @click="more">Mostrar mais <span class="muted">({{ filtered.length - visibleCount }} restantes)</span></button>
     </div>
-    <aside class="catalog-help"><h2>Prefere seguir um caminho?</h2><p>Na prática, cada projeto tem uma sequência de exercícios e resultados para conferir.</p><a class="text-link" :href="withBase('/pratica/')">Escolher um percurso →</a><details class="reading-trails"><summary>Começando pelos fundamentos</summary><ul><li><a :href="withBase('/sql/09-select')">SQL: SELECT → WHERE → GROUP BY → JOIN</a></li><li><a :href="withBase('/python/code/00-typevariables')">Python: tipos → decisões → laços → funções</a></li><li><a :href="withBase('/bi/docs')">BI: arquitetura → esquema estrela → análise</a></li></ul></details></aside>
+    <aside class="catalog-help"><h2>Prefere seguir um caminho?</h2><p>Os guias começam pelo assunto e mostram como aplicá-lo em exemplos completos.</p><a class="text-link" :href="withBase('/pratica/')">Escolher um assunto →</a><details class="reading-trails"><summary>Começando pelos fundamentos</summary><ul><li><a :href="withBase('/sql/09-select')">SQL: SELECT → WHERE → GROUP BY → JOIN</a></li><li><a :href="withBase('/python/code/00-typevariables')">Python: tipos → decisões → laços → funções</a></li><li><a :href="withBase('/bi/docs')">BI: arquitetura → esquema estrela → análise</a></li></ul></details></aside>
   </div>
 </template>

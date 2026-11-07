@@ -20,7 +20,7 @@ const previous = computed(() => path.value?.steps[position.value - 1])
     </template>
     <template #doc-before>
       <nav v-if="path && step" class="lesson-context" aria-label="Percurso atual">
-        <a :href="withBase('/pratica')">Prática</a><span aria-hidden="true">/</span><span>{{ path.title }}</span>
+        <a :href="withBase(path.url)">{{ path.title }}</a><span aria-hidden="true">/</span><span>Aplicação</span>
         <span class="lesson-position">Etapa {{ position + 1 }} de {{ path.steps.length }}</span>
       </nav>
       <p v-else class="note-context">Caderno de estudos / Gustavo Melo</p>
@@ -30,8 +30,8 @@ const previous = computed(() => path.value?.steps[position.value - 1])
         <div class="lesson-check"><div><h2>Fez o exercício?</h2><p>Marca para encontrar teu lugar depois.</p></div><button class="action" :aria-pressed="completed.includes(step.url)" @click="toggle(step.url)">{{ completed.includes(step.url) ? 'Estudada ✓' : 'Marcar como estudada' }}</button></div>
         <p role="status" class="save-message">{{ message }}</p>
         <nav class="lesson-navigation" aria-label="Etapas do percurso">
-          <a :href="withBase(previous?.url || '/pratica')"><small>{{ previous ? 'Anterior' : 'Voltar' }}</small>{{ previous?.title || 'Todos os percursos' }}</a>
-          <a :href="withBase(next?.url || '/pratica')"><small>{{ next ? 'Próxima etapa' : 'Percurso concluído' }}</small>{{ next?.title || 'Escolher outro percurso' }} →</a>
+          <a :href="withBase(previous?.url || path.url)"><small>{{ previous ? 'Anterior' : 'Voltar' }}</small>{{ previous?.title || 'Introdução ao assunto' }}</a>
+          <a :href="withBase(next?.url || path.url)"><small>{{ next ? 'Próxima etapa' : 'Revisar' }}</small>{{ next?.title || path.title }} →</a>
         </nav>
       </section>
     </template>

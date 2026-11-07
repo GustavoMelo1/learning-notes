@@ -5,12 +5,19 @@ const key = 'learning-notes:practice:v1'
 const allowed = new Set(paths.flatMap(path => path.steps.map(step => step.url)))
 const completed = ref<string[]>([])
 const message = ref('')
+// Preserve progress recorded before lessons were placed under their subjects.
+const legacyRoutes = Object.fromEntries(paths.flatMap(path => path.steps.map(step => [
+  `/pratica/${path.id}/${step.url.split('/').pop()}`, step.url,
+])))
 
 export function useProgress() {
   onMounted(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(key) || '[]')
-      completed.value = Array.isArray(saved) ? [...new Set(saved.filter(url => typeof url === 'string' && allowed.has(url)))] : []
+      completed.value = Array.isArray(saved) ? [...new Set(saved
+        .filter(url => typeof url === 'string')
+        .map(url => legacyRoutes[url] || url)
+        .filter(url => allowed.has(url)))] : []
       message.value = ''
     } catch {
       completed.value = []
