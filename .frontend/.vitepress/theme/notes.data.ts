@@ -11,6 +11,7 @@ export interface Note {
 export const categories = {
   sql: 'SQL', python: 'Python', bi: 'BI', mongodb: 'MongoDB',
   'data-engineering': 'Engenharia de Dados',
+  frontend: 'Frontend',
 }
 
 declare const data: Note[]

@@ -18,14 +18,23 @@ for (const file of pages) {
     if (existsSync(target) && statSync(target).isDirectory()) target = resolve(target, 'index.html')
     if (!existsSync(target) && !extname(target)) target += '.html'
     assert.ok(existsSync(target), `${file}: missing ${href}`)
-    if (anchor.hasAttribute('download')) assert.ok(!target.endsWith('.html'), `Download points to a page: ${href}`)
+    if (anchor.hasAttribute('download')) assert.ok(existsSync(resolve('../public', local)), `Download must point to a source file in public: ${href}`)
     checkedLinks++
   }
   if (document.querySelector('.lesson-context')) {
     assert.ok(document.querySelector('.lesson-navigation'), `Missing lesson navigation: ${file}`)
     assert.equal(document.querySelectorAll('.prev-next').length, 0, `Duplicate lesson navigation: ${file}`)
   }
+  for (const img of document.querySelectorAll('img[src]')) {
+    const src = img.getAttribute('src')
+    if (!src.startsWith('/learning-notes/')) continue
+    assert.ok(existsSync(resolve(dist, decodeURIComponent(src.slice('/learning-notes/'.length)))), `Missing image: ${src}`)
+    assert.ok(img.getAttribute('alt')?.trim(), `Missing image description: ${file}`)
+  }
 }
+assert.deepEqual(readFileSync(resolve(dist, 'exercicios/frontend/biblioteca.html')), readFileSync(resolve('../public/exercicios/frontend/biblioteca.html')))
+const frontend = new JSDOM(readFileSync(resolve(dist, 'frontend/index.html'), 'utf8')).window.document
+assert.ok(frontend.querySelector('a[download]'), 'Missing frontend exercise download')
 for (const relative of ['financas/preparar.sql', 'financas/consultas.sql', 'arquivos/pipeline.py', 'api/repositorios.py']) {
   const original = resolve('../public/exercicios', relative)
   const published = resolve(dist, 'exercicios', relative)
@@ -58,4 +67,4 @@ for (const theme of [':root', '.dark']) {
   }
 }
 console.log('PASS: text and link color contrast in both themes')
-console.log(`PASS: ${pages.length} pages, ${checkedLinks} internal links, 9 lessons and 4 downloadable files`)
+console.log(`PASS: ${pages.length} pages, ${checkedLinks} internal links, local images, 9 lessons and 5 downloadable files`)

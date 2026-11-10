@@ -4,6 +4,7 @@ import type { DefaultTheme } from 'vitepress'
 import { paths } from './theme/paths'
 
 const subjects = [
+  { text: 'Frontend', folder: 'frontend', link: '/frontend/' },
   { text: 'SQL', folder: 'sql', link: '/sql/09-select' },
   { text: 'Python', folder: 'python', link: '/python/code/00-typevariables' },
   { text: 'BI', folder: 'bi', link: '/bi/docs' },

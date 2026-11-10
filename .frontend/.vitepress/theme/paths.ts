@@ -38,6 +38,7 @@ export const paths = [
 ] as const
 
 export const subjects = [
+  { name: 'Frontend', description: 'HTML, CSS e interação usando este site como exemplo.', url: '/frontend/' },
   { name: 'SQL', description: 'Consultar, relacionar e conferir dados.', url: '/sql/09-select' },
   { name: 'Python', description: 'Da lógica aos scripts de tratamento.', url: '/python/code/00-typevariables' },
   { name: 'Engenharia de Dados', description: 'Fluxos, armazenamento e nuvem.', url: '/data-engineering/business-intelligence' },
