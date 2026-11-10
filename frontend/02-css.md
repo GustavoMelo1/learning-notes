@@ -19,8 +19,8 @@ Coloca este bloco dentro do `head` do exemplo anterior:
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: #faf9f6;
-    color: #252b28;
+    background: #fafafa;
+    color: #27272a;
     font-family: system-ui, sans-serif;
     line-height: 1.6;
   }
@@ -30,13 +30,13 @@ Coloca este bloco dentro do `head` do exemplo anterior:
     padding: 1.5rem;
   }
   h1 { font-family: Georgia, serif; }
-  a { color: #24634e; }
-  a:focus-visible { outline: 2px solid #24634e; outline-offset: 4px; }
+  a { color: #3f3f46; }
+  a:focus-visible { outline: 2px solid #3f3f46; outline-offset: 4px; }
   li { padding-block: 0.75rem; }
 </style>
 ```
 
-O seletor `body` escolhe o elemento. `color` é a propriedade; `#252b28` é seu valor. `max-width` limita a largura, e `margin-inline: auto` centraliza o bloco quando sobra espaço.
+O seletor `body` escolhe o elemento. `color` é a propriedade; `#27272a` é seu valor. `max-width` limita a largura, e `margin-inline: auto` centraliza o bloco quando sobra espaço.
 
 ## Entendendo o espaço
 
@@ -48,7 +48,7 @@ O seletor `body` escolhe o elemento. `color` é a propriedade; `#252b28` é seu 
 
 ## Aplicação no site
 
-Em `.frontend/.vitepress/theme/style.css`, o Learning Notes usa fundo claro neutro, verde nos links e Georgia nos títulos de leitura. Variáveis como `--vp-c-bg` e `--vp-c-brand-1` centralizam as cores; o tema escuro redefine seus valores.
+Em `.frontend/.vitepress/theme/style.css`, o Learning Notes usa branco, cinza e grafite, com Georgia nos títulos de leitura. Variáveis como `--vp-c-bg` e `--vp-c-brand-1` centralizam as cores; o tema escuro redefine seus valores.
 
 A biblioteca usa linhas com espaço entre os elementos. Isso ajuda a comparar os títulos sem colocar cada nota dentro de um cartão.
 
