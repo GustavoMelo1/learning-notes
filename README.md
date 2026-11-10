@@ -48,6 +48,8 @@ Find each guide under its subject in **Biblioteca**, or open **Guias** for the o
 
 ## Frontend development
 
+The [Frontend learning section](frontend/index.md) starts with HTML, CSS and JavaScript, then connects them to the Vue/VitePress implementation of this library. It includes three explanatory diagrams and a downloadable mini-library example. These illustrations are not screenshots of the site. Study notes live in `frontend/`; site implementation stays in `.frontend/`.
+
 ```powershell
 cd .frontend
 npm.cmd ci
