@@ -1,16 +1,15 @@
 import { readdirSync, readFileSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, URL as NodeURL } from 'node:url'
 import type { DefaultTheme } from 'vitepress'
 import { paths } from './theme/paths'
+import { subjects as subjectRegistry } from './theme/subjects'
 
-const subjects = [
-  { text: 'Frontend', folder: 'frontend', link: '/frontend/' },
-  { text: 'SQL', folder: 'sql', link: '/sql/09-select' },
-  { text: 'Python', folder: 'python', link: '/python/code/00-typevariables' },
-  { text: 'BI', folder: 'bi', link: '/bi/docs' },
-  { text: 'Engenharia de Dados', folder: 'data-engineering', link: '/data-engineering/business-intelligence' },
-  { text: 'MongoDB', folder: 'mongodb', link: '/mongodb/notes' },
-]
+const subjects = subjectRegistry.map(subject => ({ text: subject.name, folder: subject.folder, link: subject.url }))
+const explore: DefaultTheme.SidebarItem = { text: 'Explorar', items: [
+  { text: 'Biblioteca', link: '/biblioteca' }, { text: 'Todas as notas', link: '/indice' },
+  { text: 'Guias por assunto', link: '/pratica/' },
+  ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` })),
+] }
 const labels: Record<string, string> = {
   '01-data-types': 'Tipos de dados', '22-relational-model': 'Modelo relacional',
   '23-storage-engines': 'Motores de armazenamento', '25-foreign-key': 'Chaves estrangeiras',
@@ -26,7 +25,7 @@ const labels: Record<string, string> = {
 }
 
 function notes(folder: string): DefaultTheme.SidebarItem[] {
-  const directory = fileURLToPath(new URL(`../../${folder}/`, import.meta.url))
+  const directory = fileURLToPath(new NodeURL(`../../${folder}/`, import.meta.url))
   return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
     if (entry.isDirectory()) return notes(`${folder}/${entry.name}`)
     if (!entry.name.endsWith('.md')) return []
@@ -65,14 +64,18 @@ export function createSidebar(): DefaultTheme.SidebarMulti {
     const guides = paths.filter(path => path.url.startsWith(`/${subject.folder}/`))
     if (guides.length) groups.push({ text: subject.folder === 'python' ? 'Bibliotecas e arquivos' : 'SQL aplicado', items: guides.map(path => ({ text: path.title, link: path.url })) })
     return [`/${subject.folder}/`, [
-      { text: 'Explorar', items: [{ text: 'Biblioteca', link: '/biblioteca' }, { text: 'Guias por assunto', link: '/pratica/' }, ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` }))] },
+      explore,
       ...groups,
     ]]
   }))
   for (const path of paths) {
+    const covered = new Set([`${path.url}index`, ...path.steps.map(step => step.url)])
+    const additional = notes(path.url.slice(1, -1)).filter(page => !covered.has(page.link!))
     sidebar[path.url] = [
-      { text: path.subject, items: [{ text: 'Biblioteca', link: '/biblioteca' }, { text: 'Introdução ao assunto', link: path.url }, ...paths.filter(other => other.id !== path.id).map(other => ({ text: other.title, link: other.url }))] },
+      explore,
+      { text: path.subject, items: [{ text: 'Introdução ao assunto', link: path.url }] },
       { text: path.title, items: path.steps.map((step, index) => ({ text: `${index + 1}. ${step.title}`, link: step.url })) },
+      ...(additional.length ? [{ text: 'Mais sobre o assunto', items: additional }] : []),
     ]
   }
   return sidebar

@@ -38,6 +38,7 @@ const vitePressOptions = defineConfig({
     nav: [
       { text: 'Caderno', link: '/' },
       { text: 'Biblioteca', link: '/biblioteca' },
+      { text: 'Todas as notas', link: '/indice' },
       { text: 'Guias', link: '/pratica/' },
     ],
     socialLinks: [

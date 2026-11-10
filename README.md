@@ -48,6 +48,8 @@ Find each guide under its subject in **Biblioteca**, or open **Guias** for the o
 
 ## Frontend development
 
+Use **Todas as notas** (`/indice`) for the full subject index without pagination or active filters. The home page, catalog and sidebar share their subject registry. `check:site` compares the index against every source note and checks that each page is built; navigation tests check each note's sidebar. The deployment workflow runs tests and site checks before publishing.
+
 The [Frontend learning section](frontend/index.md) starts with HTML, CSS and JavaScript, then connects them to the Vue/VitePress implementation of this library. It includes three explanatory diagrams and a downloadable mini-library example. These illustrations are not screenshots of the site. Study notes live in `frontend/`; site implementation stays in `.frontend/`.
 
 ```powershell

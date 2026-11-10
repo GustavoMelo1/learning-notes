@@ -62,6 +62,15 @@ button:not(:disabled), summary { cursor: pointer; }
 .lesson-position { flex-basis: 100%; font-variant-numeric: tabular-nums; }
 .notebook { max-width: 1080px; margin-inline: auto; padding: 64px 36px 88px; }
 .notebook a { text-decoration: none; }
+.index-subjects { display: flex; flex-wrap: wrap; gap: 12px 24px; padding-bottom: 24px; border-bottom: 1px solid var(--vp-c-divider); }
+.index-subjects a, .index-note { color: var(--vp-c-brand-1); }
+.index-section { margin-block: 36px; }
+.index-section h2 { font-size: 24px; scroll-margin-top: 100px; }
+.index-section h2 small { font-size: 13px; color: var(--vp-c-text-2); font-weight: 400; }
+.index-section ul { list-style: none; padding: 0; }
+.index-section li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; padding-block: 10px; border-bottom: 1px solid var(--vp-c-divider); }
+.index-section li span { font-size: 12px; color: var(--vp-c-text-2); }
+.index-section a { text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
 .eyebrow { color: var(--vp-c-text-2); font: 500 11px/1.5 var(--vp-font-family-mono); letter-spacing: .06em; text-transform: uppercase; }
 .project-index .home-guide-steps { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 0 0 24px 32px; list-style: decimal; }
 .project-index .home-guide-steps li { border: 0; margin-left: 20px; }

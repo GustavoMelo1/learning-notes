@@ -4,6 +4,7 @@ import ExerciseDownload from './components/ExerciseDownload.vue'
 import PracticePaths from './components/PracticePaths.vue'
 import LibraryHome from './components/LibraryHome.vue'
 import LibraryCatalog from './components/LibraryCatalog.vue'
+import LibraryIndex from './components/LibraryIndex.vue'
 import JoinLab from './components/JoinLab.vue'
 import QueryLab from './components/QueryLab.vue'
 import GroupLab from './components/GroupLab.vue'
@@ -19,6 +20,7 @@ export default {
     app.component('ExerciseDownload', ExerciseDownload)
     app.component('PracticePaths', PracticePaths)
     app.component('LibraryCatalog', LibraryCatalog)
+    app.component('LibraryIndex', LibraryIndex)
     app.component('JoinLab', JoinLab)
     app.component('QueryLab', QueryLab)
     app.component('GroupLab', GroupLab)

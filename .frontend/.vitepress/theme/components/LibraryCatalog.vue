@@ -29,13 +29,14 @@ async function more() {
 
 <template>
   <div class="notebook catalog-page">
-    <header class="page-heading"><p class="eyebrow">Para encontrar de novo</p><h1>Biblioteca.</h1><p>Busca uma ideia, aprende uma biblioteca ou revisa um fundamento.</p></header>
+    <header class="page-heading"><p class="eyebrow">Para encontrar de novo</p><h1>Biblioteca.</h1><p>Busca uma ideia, aprende uma biblioteca ou revisa um fundamento.</p><a class="text-link" :href="withBase('/indice')">Ver todas as notas por assunto, sem filtros →</a></header>
     <form class="library-controls" role="search" aria-label="Buscar na biblioteca" @submit.prevent>
       <div class="search-field"><label for="note-search">Buscar nas notas</label><input id="note-search" ref="search" v-model="query" type="search" placeholder="Título, conceito ou assunto" aria-controls="note-results" autocomplete="off"></div>
       <div class="subject-field"><label for="note-category">Assunto</label><select id="note-category" v-model="category" aria-controls="note-results"><option v-for="item in categories" :key="item">{{ item }}</option></select></div>
     </form>
     <div class="catalog-toolbar"><div class="format-filters" role="group" aria-label="Tipo de conteúdo"><button v-for="item in ['Tudo', 'Anotação', 'Prática']" :key="item" :aria-pressed="kind === item" @click="kind = item">{{ item === 'Anotação' ? 'Anotações' : item }}</button></div><p class="result-count" role="status">{{ filtered.length }} {{ filtered.length === 1 ? 'resultado' : 'resultados' }}</p></div>
     <div id="note-results" ref="results">
+      <p v-if="filtered.length" class="quiet-note">Exibindo {{ visibleNotes.length }} de {{ filtered.length }}. {{ visibleNotes.length < filtered.length ? 'Usa Mostrar mais abaixo ou abre o índice completo.' : 'Todos os resultados estão nesta lista.' }}</p>
       <ul v-if="filtered.length" class="note-list"><li v-for="note in visibleNotes" :key="note.url"><a class="note-row" :href="withBase(note.url)"><span class="note-meta">{{ note.category }}<small>{{ note.kind }}</small></span><span class="note-content"><h2>{{ note.title }}</h2><p>{{ note.description }}</p></span><span class="note-arrow" aria-hidden="true">↗</span></a></li></ul>
       <div v-else class="empty-state"><h2>Nada encontrado por aqui.</h2><p>Tenta um termo mais curto ou outro assunto.</p><button class="action" @click="reset">Limpar busca e filtros</button></div>
       <button v-if="visibleCount < filtered.length" class="load-more action" @click="more">Mostrar mais <span class="muted">({{ filtered.length - visibleCount }} restantes)</span></button>

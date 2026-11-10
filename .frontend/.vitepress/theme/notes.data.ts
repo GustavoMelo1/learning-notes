@@ -1,4 +1,5 @@
 import { createContentLoader } from 'vitepress'
+import { subjects } from './subjects'
 
 export interface Note {
   title: string
@@ -8,11 +9,7 @@ export interface Note {
   kind: 'Anotação' | 'Prática'
 }
 
-export const categories = {
-  sql: 'SQL', python: 'Python', bi: 'BI', mongodb: 'MongoDB',
-  'data-engineering': 'Engenharia de Dados',
-  frontend: 'Frontend',
-}
+export const categories = Object.fromEntries(subjects.map(subject => [subject.folder, subject.name]))
 
 declare const data: Note[]
 export { data }
