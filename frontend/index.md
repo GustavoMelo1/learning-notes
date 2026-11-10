@@ -27,7 +27,7 @@ Vamos começar pequeno: um título, uma lista de notas e uma busca. Depois conec
 import { withBase } from 'vitepress'
 </script>
 
-<a :href="withBase('/exercicios/frontend/biblioteca.html')">Abrir a minibiblioteca funcionando →</a>
+<a :href="withBase('/exercicios/frontend/biblioteca.html')" target="_blank" rel="noopener">Abrir a minibiblioteca funcionando (nova aba) →</a>
 
 O exemplo é uma página independente com HTML, CSS e JavaScript. Tu pode testar a busca, usar a tecla Tab e diminuir a janela. O código completo está no arquivo, para abrir no editor e mexer.
 

@@ -1,4 +1,8 @@
 ---
+path: frontend
+step: 3
+prev: false
+next: false
 title: JavaScript — uma busca simples
 description: Conecta um campo de texto à lista de notas usando eventos e filtros.
 ---

@@ -1,4 +1,8 @@
 ---
+path: frontend
+step: 4
+prev: false
+next: false
 title: Vue e VitePress — aplicação no Learning Notes
 description: Entende o caminho das anotações Markdown até a biblioteca, usando os componentes reais do projeto.
 ---

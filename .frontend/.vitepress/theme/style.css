@@ -63,6 +63,9 @@ button:not(:disabled), summary { cursor: pointer; }
 .notebook { max-width: 1080px; margin-inline: auto; padding: 64px 36px 88px; }
 .notebook a { text-decoration: none; }
 .eyebrow { color: var(--vp-c-text-2); font: 500 11px/1.5 var(--vp-font-family-mono); letter-spacing: .06em; text-transform: uppercase; }
+.project-index .home-guide-steps { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 0 0 24px 32px; list-style: decimal; }
+.project-index .home-guide-steps li { border: 0; margin-left: 20px; }
+.project-index .home-guide-steps a { display: inline; padding: 6px 0; color: var(--vp-c-brand-1); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
 .muted, .quiet-note { color: var(--vp-c-text-2); font-size: 13px; }
 .quiet-note { max-width: 690px; line-height: 1.8; }
 .text-link { display: inline-block; color: var(--vp-c-brand-1); font-size: 14px; font-weight: 600; padding-block: 8px; }

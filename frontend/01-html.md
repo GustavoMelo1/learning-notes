@@ -1,4 +1,8 @@
 ---
+path: frontend
+step: 1
+prev: false
+next: false
 title: HTML — estrutura e significado
 description: Organiza uma página com título, navegação, conteúdo e links antes de pensar no visual.
 ---

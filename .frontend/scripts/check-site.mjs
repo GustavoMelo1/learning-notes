@@ -43,8 +43,11 @@ for (const relative of ['financas/preparar.sql', 'financas/consultas.sql', 'arqu
 const catalog = new JSDOM(readFileSync(resolve(dist, 'biblioteca.html'), 'utf8')).window.document
 assert.equal(catalog.querySelectorAll('.note-row').length, 12)
 const practice = new JSDOM(readFileSync(resolve(dist, 'pratica/index.html'), 'utf8')).window.document
-assert.equal(practice.querySelectorAll('.path-steps a').length, 9)
-for (const guide of ['python/libs/requests', 'python/libs/csv-json', 'sql/aplicado/analise-financeira']) {
+assert.equal(practice.querySelectorAll('.path-steps a').length, 13)
+const home = new JSDOM(readFileSync(resolve(dist, 'index.html'), 'utf8')).window.document
+assert.equal(home.querySelectorAll('.home-guide-steps a').length, 4, 'Frontend steps must be reachable from home')
+assert.ok(frontend.querySelector('a[target="_blank"][href="/learning-notes/exercicios/frontend/biblioteca.html"]'), 'Standalone example must open outside the notes router')
+for (const guide of ['frontend', 'python/libs/requests', 'python/libs/csv-json', 'sql/aplicado/analise-financeira']) {
   const intro = new JSDOM(readFileSync(resolve(dist, guide, 'index.html'), 'utf8')).window.document
   assert.ok(intro.querySelector('h1'), `Missing subject introduction: ${guide}`)
   assert.ok(intro.querySelector(`a[href^="/learning-notes/${guide}/01-"]`), `Missing example link: ${guide}`)
@@ -67,4 +70,4 @@ for (const theme of [':root', '.dark']) {
   }
 }
 console.log('PASS: text and link color contrast in both themes')
-console.log(`PASS: ${pages.length} pages, ${checkedLinks} internal links, local images, 9 lessons and 5 downloadable files`)
+console.log(`PASS: ${pages.length} pages, ${checkedLinks} internal links, local images, 13 lessons and 5 downloadable files`)

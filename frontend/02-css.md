@@ -1,4 +1,8 @@
 ---
+path: frontend
+step: 2
+prev: false
+next: false
 title: CSS — aparência e espaço
 description: Aprende seletores, modelo de caixa e largura responsiva com as escolhas visuais do Learning Notes.
 ---
