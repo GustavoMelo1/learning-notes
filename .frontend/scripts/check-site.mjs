@@ -1,11 +1,24 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
-import { resolve, extname } from 'node:path'
+import { resolve, extname, relative } from 'node:path'
 import { JSDOM } from 'jsdom'
 import assert from 'node:assert/strict'
 
 const dist = resolve('.vitepress/dist')
 const files = directory => readdirSync(directory, { withFileTypes: true }).flatMap(entry => entry.isDirectory() ? files(resolve(directory, entry.name)) : [resolve(directory, entry.name)])
 const pages = files(dist).filter(file => file.endsWith('.html'))
+// Compare the rendered index with source files, independently of catalog configuration.
+const contentFolders = readdirSync('..', { withFileTypes: true })
+  .filter(entry => entry.isDirectory() && !entry.name.startsWith('.') && !['docs', 'public', 'pratica', 'node_modules', '1'].includes(entry.name))
+const sourceNotes = contentFolders.flatMap(entry => files(resolve('..', entry.name))).filter(file => file.endsWith('.md'))
+const route = path => path.replace(/\\/g, '/').replace(/\.(html|md)$/, '').replace(/\/index$/, '').replace(/\/$/, '')
+const indexDocument = new JSDOM(readFileSync(resolve(dist, 'indice.html'), 'utf8')).window.document
+const indexLinks = [...indexDocument.querySelectorAll('.index-note')].map(link => route(decodeURIComponent(link.getAttribute('href')).replace('/learning-notes/', '')))
+assert.equal(new Set(indexLinks).size, indexLinks.length, 'Duplicate notes in complete index')
+assert.deepEqual([...indexLinks].sort(), sourceNotes.map(file => route(relative(resolve('..'), file))).sort(), 'Some source notes are missing from the catalog/index')
+for (const source of sourceNotes) {
+  const output = resolve(dist, relative(resolve('..'), source).replace(/\.md$/, '.html'))
+  assert.ok(existsSync(output), `Note not published: ${source}`)
+}
 let checkedLinks = 0
 for (const file of pages) {
   const document = new JSDOM(readFileSync(file, 'utf8')).window.document
@@ -70,4 +83,5 @@ for (const theme of [':root', '.dark']) {
   }
 }
 console.log('PASS: text and link color contrast in both themes')
+console.log(`PASS: all ${sourceNotes.length} source notes appear in the complete index and build`)
 console.log(`PASS: ${pages.length} pages, ${checkedLinks} internal links, local images, 13 lessons and 5 downloadable files`)
