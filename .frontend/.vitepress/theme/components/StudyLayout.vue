@@ -21,8 +21,9 @@ const previous = computed(() => path.value?.steps[position.value - 1])
     <template #doc-before>
       <nav v-if="path && step" class="lesson-context" aria-label="Percurso atual">
         <a :href="withBase(path.url)">{{ path.title }}</a><span aria-hidden="true">/</span><span>Aplicação</span>
-        <span class="lesson-position">Etapa {{ position + 1 }} de {{ path.steps.length }}</span>
+        <span class="lesson-position">Etapa {{ position + 1 }} de {{ path.steps.length }} · {{ step.title }}</span>
       </nav>
+      <details v-if="path && step" class="lesson-outline"><summary>Ver etapas deste guia</summary><ol><li v-for="(item, index) in path.steps" :key="item.url"><a :href="withBase(item.url)" :aria-current="item.url === step.url ? 'step' : undefined">{{ index + 1 }}. {{ item.title }}<span v-if="completed.includes(item.url)"> · Estudada</span></a></li></ol></details>
       <p v-else class="note-context">Caderno de estudos / Gustavo Melo</p>
     </template>
     <template #doc-after>

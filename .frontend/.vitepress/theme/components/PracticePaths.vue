@@ -3,6 +3,8 @@ import { withBase } from 'vitepress'
 import { paths } from '../paths'
 import { useProgress } from '../progress'
 const { completed, message } = useProgress()
+const nextStep = (path: typeof paths[number]) => path.steps.find(step => !completed.value.includes(step.url))
+const started = (path: typeof paths[number]) => path.steps.some(step => completed.value.includes(step.url))
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const { completed, message } = useProgress()
         <div class="path-content">
           <p class="eyebrow">{{ path.subject }}</p>
           <h2 :id="`path-${path.id}`">{{ path.title }}</h2><p>{{ path.description }}</p>
-          <a class="text-link" :href="withBase(path.url)">Começar pela introdução →</a>
+          <div class="guide-actions"><a class="action primary-action" :href="withBase(started(path) ? nextStep(path)?.url || path.url : path.steps[0].url)">{{ started(path) ? nextStep(path) ? 'Continuar estudo' : 'Revisar guia' : 'Começar primeira etapa' }} →</a><a class="text-link" :href="withBase(path.url)">Começar pela introdução →</a></div>
           <p class="path-prerequisite">Antes de começar: {{ path.prerequisite }}.</p>
           <ol class="path-steps">
             <li v-for="(step, stepIndex) in path.steps" :key="step.url">

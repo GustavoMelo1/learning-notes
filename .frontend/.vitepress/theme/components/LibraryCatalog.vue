@@ -2,6 +2,7 @@
 import { computed, nextTick, ref, watch } from 'vue'
 import { withBase } from 'vitepress'
 import { data as notes } from '../notes.data'
+import StudyStarts from './StudyStarts.vue'
 
 const query = ref('')
 const category = ref('Todos os assuntos')
@@ -29,7 +30,9 @@ async function more() {
 
 <template>
   <div class="notebook catalog-page">
-    <header class="page-heading"><p class="eyebrow">Para encontrar de novo</p><h1>Biblioteca.</h1><p>Busca uma ideia, aprende uma biblioteca ou revisa um fundamento.</p><a class="text-link" :href="withBase('/indice')">Ver todas as notas por assunto, sem filtros →</a></header>
+    <header class="page-heading"><p class="eyebrow">Learning Notes</p><h1>Um assunto de cada vez.</h1><p>Segue um guia para aprender ou busca uma nota para consultar.</p></header>
+    <StudyStarts />
+    <div class="section-heading catalog-heading"><div><p class="eyebrow">Consultar</p><h2>Encontra uma nota.</h2></div><a class="text-link" :href="withBase('/indice')">Índice completo →</a></div>
     <form class="library-controls" role="search" aria-label="Buscar na biblioteca" @submit.prevent>
       <div class="search-field"><label for="note-search">Buscar nas notas</label><input id="note-search" ref="search" v-model="query" type="search" placeholder="Título, conceito ou assunto" aria-controls="note-results" autocomplete="off"></div>
       <div class="subject-field"><label for="note-category">Assunto</label><select id="note-category" v-model="category" aria-controls="note-results"><option v-for="item in categories" :key="item">{{ item }}</option></select></div>
