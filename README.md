@@ -36,6 +36,8 @@ Notes start from the basics on purpose.
 
 ## Subject guides
 
+Learning Notes also offers [learning trails](trilhas/index.md) for SQL and Python fundamentals. Trails reference existing notes, keep progress in the browser and preserve direct library access. See [Learning Notes 2.0 maintenance](docs/learning-notes-2.md) for components, visual tokens, trail definitions and progress compatibility.
+
 The library teaches the subjects behind my existing experiments, with each project serving as an application:
 
 - **[SQL applied to financial analysis](sql/aplicado/analise-financeira/index.md):** understand transactions, answer questions with SQL and compare rows with window functions.
