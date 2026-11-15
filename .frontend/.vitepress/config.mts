@@ -12,7 +12,8 @@ const resolvePkg = (pkg: string) =>
 const vitePressOptions = defineConfig({
   title: 'Learning Notes',
   lang: 'pt-BR',
-  description: "Gustavo's notes on SQL, Python, BI and data engineering",
+  description: 'Aprenda tecnologia, um conceito de cada vez. Biblioteca aberta e trilhas de aprendizado.',
+  appearance: true,
   base: '/learning-notes/',
   srcDir: '..',
   srcExclude: ['.frontend/**', '1/**', 'README.md', 'docs/**', 'public/**', '**/*.py'],
@@ -36,10 +37,10 @@ const vitePressOptions = defineConfig({
       } } } },
     },
     nav: [
-      { text: 'Caderno', link: '/' },
+      { text: 'Início', link: '/' },
       { text: 'Biblioteca', link: '/biblioteca' },
-      { text: 'Todas as notas', link: '/indice' },
-      { text: 'Guias', link: '/pratica/' },
+      { text: 'Trilhas', link: '/trilhas/' },
+      { text: 'Sobre', link: '/sobre' },
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/GustavoMelo1/learning-notes' },

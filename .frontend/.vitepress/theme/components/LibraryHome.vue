@@ -1,18 +1,19 @@
 ﻿<script setup lang="ts">
 import { withBase } from 'vitepress'
-import { paths, subjects } from '../paths'
+import { subjects } from '../subjects'
+import { trails } from '../trails'
+import { useProgress } from '../progress'
+import SectionHeader from './SectionHeader.vue'
+import LearningPathCard from './LearningPathCard.vue'
+const { completed, message } = useProgress()
 </script>
 
 <template>
   <div class="notebook home-page">
-    <header class="home-intro">
-      <div><p class="eyebrow">O caderno de Gustavo Melo</p><h1>O que aprendo<br>com dados.</h1><p class="intro-copy">Anotações, tentativas e projetos que me ajudam a entender as coisas. Organizados para consultar e colocar em prática.</p><a class="text-link" :href="withBase('/biblioteca')">Abrir a biblioteca <span aria-hidden="true">→</span></a></div>
-      <aside class="margin-note"><span class="margin-rule" aria-hidden="true"></span><p>Escrevo depois de testar.<br>Às vezes, depois de errar.</p><small>Este caderno cresce junto com os meus estudos.</small></aside>
-    </header>
-    <section class="home-practice" aria-labelledby="practice-title">
-      <div class="section-heading"><div><p class="eyebrow">Do conceito ao código</p><h2 id="practice-title">O que tu quer aprender?</h2></div><a class="text-link" :href="withBase('/pratica/')">Ver guias →</a></div>
-      <ol class="project-index"><li v-for="(path, index) in paths" :key="path.id"><a :href="withBase(path.url)"><span class="index-number" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</span><span class="project-info"><span class="project-subject">{{ path.subject }}</span><strong>{{ path.title }}</strong><span class="project-description">{{ path.description }}</span></span><span class="project-length">Abrir guia <span aria-hidden="true">↗</span></span></a><ol v-if="path.id === 'frontend'" class="home-guide-steps" aria-label="Etapas de Frontend"><li v-for="step in path.steps" :key="step.url"><a :href="withBase(step.url)">{{ step.title }}</a></li></ol></li></ol>
-    </section>
-    <section class="home-subjects" aria-labelledby="subjects-title"><div class="section-heading"><h2 id="subjects-title">Consultar por assunto</h2><span class="muted">Uma nota de cada vez.</span></div><div class="subject-index"><a v-for="subject in subjects" :key="subject.name" :href="withBase(subject.url)"><strong>{{ subject.name }}</strong><span>{{ subject.description }}</span><span aria-hidden="true">→</span></a></div></section>
+    <header class="home-hero"><p class="eyebrow">Learning Notes</p><h1>Aprenda tecnologia,<br>um conceito de cada vez.</h1><p class="hero-description">Uma biblioteca aberta de conhecimentos em programação, desenvolvimento e tecnologia. Explore conteúdos, siga trilhas e aprenda no seu ritmo.</p><div class="guide-actions"><a class="action primary-action" :href="withBase('/biblioteca')">Explorar biblioteca <span aria-hidden="true">→</span></a><a class="action" :href="withBase('/trilhas/')">Ver trilhas de aprendizado</a></div></header>
+    <section class="home-section" aria-labelledby="subjects-title"><SectionHeader id="subjects-title" title="Encontre seu assunto" eyebrow="Biblioteca aberta"><a class="text-link" :href="withBase('/indice')">Todas as notas →</a></SectionHeader><div class="subject-index"><a v-for="subject in subjects" :key="subject.name" :href="withBase(subject.url)"><strong>{{ subject.name }}</strong><span>{{ subject.description }}</span><span aria-hidden="true">→</span></a></div></section>
+    <section class="home-section" aria-labelledby="home-trails"><SectionHeader id="home-trails" title="Um caminho para começar" eyebrow="Trilhas de aprendizado"><a class="text-link" :href="withBase('/trilhas/')">Ver trilhas →</a></SectionHeader><div class="trail-grid"><LearningPathCard v-for="trail in trails" :key="trail.id" :trail="trail" :completed="completed" /></div><p v-if="message" role="status" class="save-message">{{ message }}</p></section>
+    <section class="home-section" aria-labelledby="how-title"><SectionHeader id="how-title" title="Aprenda no seu ritmo" /><ol class="how-it-works"><li><span>01</span><h3>Escolha um assunto</h3><p>Consulte uma nota ou siga uma trilha desde os fundamentos.</p></li><li><span>02</span><h3>Leia e experimente</h3><p>Use as explicações e os exemplos dos conteúdos para praticar.</p></li><li><span>03</span><h3>Continue de onde parou</h3><p>Marque as etapas estudadas. O progresso fica no seu navegador.</p></li></ol></section>
+    <aside class="home-about"><div><h2>Conhecimento para compartilhar.</h2><p>Um projeto aberto, criado por Gustavo Melo, que cresce junto com o aprendizado.</p></div><div class="guide-actions"><a class="text-link" :href="withBase('/sobre')">Sobre e documentação →</a><a class="text-link" href="https://github.com/GustavoMelo1/learning-notes">Repositório ↗</a></div></aside>
   </div>
 </template>

@@ -7,6 +7,7 @@ import { subjects as subjectRegistry } from './theme/subjects'
 const subjects = subjectRegistry.map(subject => ({ text: subject.name, folder: subject.folder, link: subject.url }))
 const explore: DefaultTheme.SidebarItem = { text: 'Explorar', items: [
   { text: 'Biblioteca', link: '/biblioteca' }, { text: 'Todas as notas', link: '/indice' },
+  { text: 'Trilhas de aprendizado', link: '/trilhas/' },
   { text: 'Guias por assunto', link: '/pratica/' },
   ...subjects.map(({ text, link, folder }) => ({ text, link, activeMatch: `^/${folder}/` })),
 ] }

@@ -1,7 +1,7 @@
 ﻿---
 layout: page
-title: Caderno aberto
-description: Anotações de Gustavo Melo sobre SQL, Python, BI e engenharia de dados. Explore a biblioteca e siga as trilhas de leitura.
+title: Learning Notes — aprenda tecnologia
+description: Uma biblioteca aberta de conhecimentos em programação, desenvolvimento e tecnologia. Explore conteúdos, siga trilhas e aprenda no seu ritmo.
 ---
 
 <LibraryHome />

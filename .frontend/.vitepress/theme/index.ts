@@ -5,6 +5,9 @@ import PracticePaths from './components/PracticePaths.vue'
 import LibraryHome from './components/LibraryHome.vue'
 import LibraryCatalog from './components/LibraryCatalog.vue'
 import LibraryIndex from './components/LibraryIndex.vue'
+import LearningTrails from './components/LearningTrails.vue'
+import LearningTrail from './components/LearningTrail.vue'
+import { syncTrailLocation } from './trail-context'
 import JoinLab from './components/JoinLab.vue'
 import QueryLab from './components/QueryLab.vue'
 import GroupLab from './components/GroupLab.vue'
@@ -15,12 +18,15 @@ import './style.css'
 export default {
   extends: DefaultTheme,
   Layout: StudyLayout,
-  enhanceApp({ app }) {
+  enhanceApp({ app, router }) {
+    router.onAfterRouteChange = href => syncTrailLocation(href)
     app.component('LibraryHome', LibraryHome)
     app.component('ExerciseDownload', ExerciseDownload)
     app.component('PracticePaths', PracticePaths)
     app.component('LibraryCatalog', LibraryCatalog)
     app.component('LibraryIndex', LibraryIndex)
+    app.component('LearningTrails', LearningTrails)
+    app.component('LearningTrail', LearningTrail)
     app.component('JoinLab', JoinLab)
     app.component('QueryLab', QueryLab)
     app.component('GroupLab', GroupLab)

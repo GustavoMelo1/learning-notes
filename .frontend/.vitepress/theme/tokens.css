@@ -1,0 +1,52 @@
+/* Edit this file to change the visual identity. Keep both themes in sync. */
+:root {
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #fafafa;
+  --vp-c-bg-soft: #f5f5f5;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-text-1: #171717;
+  --vp-c-text-2: #606060;
+  --vp-c-text-3: #666666;
+  --vp-c-divider: #e5e5e5;
+  --control-border: #858585;
+  --vp-c-brand-1: #303030;
+  --vp-c-brand-2: #111111;
+  --vp-c-brand-3: #303030;
+  --vp-c-brand-soft: #1717170d;
+  --vp-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --vp-font-family-mono: 'Cascadia Code', Consolas, ui-monospace, monospace;
+  --reading-font: var(--vp-font-family-base);
+  --vp-sidebar-width: 260px;
+  --vp-layout-max-width: 1440px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius-small: 6px;
+  --radius-surface: 10px;
+  --vp-code-block-bg: var(--vp-c-bg-soft);
+  --vp-code-bg: var(--vp-c-bg-soft);
+  --vp-code-color: var(--vp-c-text-1);
+  --vp-button-brand-bg: var(--vp-c-text-1);
+  --vp-button-brand-text: var(--vp-c-bg);
+  color-scheme: light;
+}
+.dark {
+  --vp-c-bg: #111111;
+  --vp-c-bg-alt: #171717;
+  --vp-c-bg-soft: #1f1f1f;
+  --vp-c-bg-elv: #1f1f1f;
+  --vp-c-text-1: #f5f5f5;
+  --vp-c-text-2: #b0b0b0;
+  --vp-c-text-3: #a3a3a3;
+  --vp-c-divider: #303030;
+  --control-border: #858585;
+  --vp-c-brand-1: #e5e5e5;
+  --vp-c-brand-2: #ffffff;
+  --vp-c-brand-3: #d4d4d4;
+  --vp-c-brand-soft: #ffffff0d;
+  color-scheme: dark;
+}

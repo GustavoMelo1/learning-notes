@@ -7,12 +7,11 @@ import PracticePaths from '../.vitepress/theme/components/PracticePaths.vue'
 vi.mock('vitepress', () => ({ withBase: (url: string) => `/learning-notes${url}` }))
 
 describe('Acesso ao guia Frontend', () => {
-  it('expõe as quatro etapas diretamente no início', () => {
+  it('mantém Frontend acessível no início junto com as trilhas', () => {
     render(LibraryHome)
-    const steps = within(screen.getByRole('list', { name: 'Etapas de Frontend' }))
-    expect(steps.getAllByRole('link')).toHaveLength(4)
-    expect(steps.getByRole('link', { name: /HTML/ })).toHaveAttribute('href', '/learning-notes/frontend/01-html')
-    expect(steps.getByRole('link', { name: /JavaScript/ })).toHaveAttribute('href', '/learning-notes/frontend/03-javascript')
+    expect(screen.getByRole('link', { name: /^Frontend/ })).toHaveAttribute('href', '/learning-notes/frontend/')
+    expect(screen.getByRole('link', { name: /Ver trilhas de aprendizado/ })).toHaveAttribute('href', '/learning-notes/trilhas/')
+    expect(screen.getByRole('link', { name: /Explorar biblioteca/ })).toHaveAttribute('href', '/learning-notes/biblioteca')
   })
   it('inclui Frontend nos guias e restaura o progresso da aula', async () => {
     localStorage.setItem('learning-notes:practice:v1', JSON.stringify(['/frontend/01-html']))

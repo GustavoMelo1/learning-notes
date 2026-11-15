@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { useData, withBase } from 'vitepress'
 import { paths } from '../paths'
 import { useProgress } from '../progress'
-const { frontmatter } = useData()
+import { activeTrailId, syncTrailLocation } from '../trail-context'
+import { resolveTrailContext } from '../trails'
+import TrailLessonContext from './TrailLessonContext.vue'
+const { frontmatter, page } = useData()
+onMounted(() => syncTrailLocation(window.location.href))
+const trailContext = computed(() => resolveTrailContext(page.value.relativePath, activeTrailId.value))
 const { completed, message, toggle } = useProgress()
 const path = computed(() => paths.find(path => path.id === frontmatter.value.path))
 const position = computed(() => Number(frontmatter.value.step) - 1)
@@ -14,20 +19,24 @@ const previous = computed(() => path.value?.steps[position.value - 1])
 </script>
 
 <template>
-  <DefaultTheme.Layout>
+  <DefaultTheme.Layout :class="{ 'in-learning-trail': !!trailContext }">
     <template #not-found>
       <main class="notebook missing-page"><p class="eyebrow">Página não encontrada</p><h1>Essa anotação não está aqui.</h1><p>O endereço pode ter mudado. A biblioteca é um bom lugar para procurar.</p><a class="text-link" :href="withBase('/biblioteca')">Buscar na biblioteca →</a></main>
     </template>
     <template #doc-before>
+      <TrailLessonContext v-if="trailContext" :trail="trailContext.trail" :index="trailContext.index" placement="top" />
+      <template v-else>
       <nav v-if="path && step" class="lesson-context" aria-label="Percurso atual">
         <a :href="withBase(path.url)">{{ path.title }}</a><span aria-hidden="true">/</span><span>Aplicação</span>
         <span class="lesson-position">Etapa {{ position + 1 }} de {{ path.steps.length }} · {{ step.title }}</span>
       </nav>
       <details v-if="path && step" class="lesson-outline"><summary>Ver etapas deste guia</summary><ol><li v-for="(item, index) in path.steps" :key="item.url"><a :href="withBase(item.url)" :aria-current="item.url === step.url ? 'step' : undefined">{{ index + 1 }}. {{ item.title }}<span v-if="completed.includes(item.url)"> · Estudada</span></a></li></ol></details>
-      <p v-else class="note-context">Caderno de estudos / Gustavo Melo</p>
+      <p v-else class="note-context"><a :href="withBase('/biblioteca')">Biblioteca</a> / Learning Notes</p>
+      </template>
     </template>
     <template #doc-after>
-      <section v-if="path && step" class="lesson-footer" aria-label="Seu próximo passo">
+      <TrailLessonContext v-if="trailContext" :trail="trailContext.trail" :index="trailContext.index" placement="bottom" />
+      <section v-else-if="path && step" class="lesson-footer" aria-label="Seu próximo passo">
         <div class="lesson-check"><div><h2>Fez o exercício?</h2><p>Marca para encontrar teu lugar depois.</p></div><button class="action" :aria-pressed="completed.includes(step.url)" @click="toggle(step.url)">{{ completed.includes(step.url) ? 'Estudada ✓' : 'Marcar como estudada' }}</button></div>
         <p role="status" class="save-message">{{ message }}</p>
         <nav class="lesson-navigation" aria-label="Etapas do percurso">
@@ -36,6 +45,6 @@ const previous = computed(() => path.value?.steps[position.value - 1])
         </nav>
       </section>
     </template>
-    <template #layout-bottom><footer class="site-colophon"><span>Learning Notes</span><p>Escrito enquanto aprendo. Por Gustavo Melo.</p><a href="https://github.com/GustavoMelo1/learning-notes">Ver no GitHub ↗</a></footer></template>
+    <template #layout-bottom><footer class="site-colophon"><span>Learning Notes</span><p>Conhecimento aberto, no seu ritmo.</p><a :href="withBase('/sobre')">Sobre o projeto</a><a href="https://github.com/GustavoMelo1/learning-notes">Repositório ↗</a></footer></template>
   </DefaultTheme.Layout>
 </template>

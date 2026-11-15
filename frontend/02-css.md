@@ -48,7 +48,7 @@ O seletor `body` escolhe o elemento. `color` é a propriedade; `#27272a` é seu 
 
 ## Aplicação no site
 
-Em `.frontend/.vitepress/theme/style.css`, o Learning Notes usa branco, cinza e grafite, com Georgia nos títulos de leitura. Variáveis como `--vp-c-bg` e `--vp-c-brand-1` centralizam as cores; o tema escuro redefine seus valores.
+Em `.frontend/.vitepress/theme/tokens.css`, o Learning Notes usa branco, cinza e grafite, com uma fonte de interface do sistema. Variáveis como `--vp-c-bg` e `--vp-c-brand-1` centralizam as cores; o tema escuro redefine seus valores. As regras de layout ficam em `style.css`.
 
 A biblioteca usa linhas com espaço entre os elementos. Isso ajuda a comparar os títulos sem colocar cada nota dentro de um cartão.
 

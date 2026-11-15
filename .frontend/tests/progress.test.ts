@@ -2,7 +2,7 @@ import { defineComponent, nextTick } from 'vue'
 import { render, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
-import { useProgress } from '../.vitepress/theme/progress'
+import { useProgress, progressKey } from '../.vitepress/theme/progress'
 import PracticePaths from '../.vitepress/theme/components/PracticePaths.vue'
 
 vi.mock('vitepress', () => ({ withBase: (url: string) => `/learning-notes${url}` }))
@@ -28,7 +28,7 @@ describe('Progresso dos percursos', () => {
     await user.tab()
     await user.keyboard(' ')
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
-    expect(JSON.parse(localStorage.getItem(key)!)).toEqual([url])
+    expect(JSON.parse(localStorage.getItem(progressKey)!)).toEqual({ version: 2, completed: [url] })
     unmount()
     render(PracticePaths)
     expect(screen.getByText('1 de 3 estudadas')).toBeVisible()
@@ -40,7 +40,8 @@ describe('Progresso dos percursos', () => {
     const user = userEvent.setup()
     render(Lesson)
     await user.click(screen.getByRole('button'))
-    expect(JSON.parse(localStorage.getItem(key)!)).toEqual(['/python/libs/requests/01-resposta'])
+    expect(JSON.parse(localStorage.getItem(progressKey)!)).toEqual({ version: 2, completed: ['/python/libs/requests/01-resposta'] })
+    expect(JSON.parse(localStorage.getItem(key)!)).toEqual([url, '/python/libs/requests/01-resposta'])
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
   })
 
@@ -76,6 +77,7 @@ describe('Progresso dos percursos', () => {
     await nextTick()
     expect(screen.getByRole('status')).toHaveTextContent('Não foi possível ler')
     await user.click(screen.getByRole('button'))
-    expect(JSON.parse(localStorage.getItem(key)!)).toEqual([url])
+    expect(JSON.parse(localStorage.getItem(progressKey)!)).toEqual({ version: 2, completed: [url] })
+    expect(localStorage.getItem(key)).toBe('{invalido')
   })
 })

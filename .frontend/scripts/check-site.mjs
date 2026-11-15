@@ -8,7 +8,7 @@ const files = directory => readdirSync(directory, { withFileTypes: true }).flatM
 const pages = files(dist).filter(file => file.endsWith('.html'))
 // Compare the rendered index with source files, independently of catalog configuration.
 const contentFolders = readdirSync('..', { withFileTypes: true })
-  .filter(entry => entry.isDirectory() && !entry.name.startsWith('.') && !['docs', 'public', 'pratica', 'node_modules', '1'].includes(entry.name))
+  .filter(entry => entry.isDirectory() && !entry.name.startsWith('.') && !['docs', 'public', 'pratica', 'trilhas', 'node_modules', '1'].includes(entry.name))
 const sourceNotes = contentFolders.flatMap(entry => files(resolve('..', entry.name))).filter(file => file.endsWith('.md'))
 const route = path => path.replace(/\\/g, '/').replace(/\.(html|md)$/, '').replace(/\/index$/, '').replace(/\/$/, '')
 const indexDocument = new JSDOM(readFileSync(resolve(dist, 'indice.html'), 'utf8')).window.document
@@ -58,14 +58,38 @@ assert.equal(catalog.querySelectorAll('.note-row').length, 12)
 const practice = new JSDOM(readFileSync(resolve(dist, 'pratica/index.html'), 'utf8')).window.document
 assert.equal(practice.querySelectorAll('.path-steps a').length, 13)
 const home = new JSDOM(readFileSync(resolve(dist, 'index.html'), 'utf8')).window.document
-assert.equal(home.querySelectorAll('.home-guide-steps a').length, 4, 'Frontend steps must be reachable from home')
+assert.ok(home.querySelector('a[href="/learning-notes/frontend/"]'), 'Frontend must remain reachable from home')
+assert.equal(home.querySelectorAll('.trail-card').length, 2, 'Home must show the real learning trails')
+for (const [id, steps] of [['sql', 9], ['python', 10]]) {
+  const trail = new JSDOM(readFileSync(resolve(dist, `trilhas/${id}/index.html`), 'utf8')).window.document
+  assert.equal(trail.querySelectorAll('.trail-sequence a').length, steps)
+  for (const anchor of trail.querySelectorAll('.trail-sequence a')) {
+    assert.equal(new URL(anchor.getAttribute('href'), 'https://local.test').searchParams.get('trilha'), id)
+  }
+}
+for (const page of ['sobre.html', 'trilhas/index.html']) assert.ok(existsSync(resolve(dist, page)))
+// Exercise the native VitePress startup preference code in a DOM simulation.
+// This checks initial appearance, not visual layout or real browser interaction.
+const appearanceScript = [...home.querySelectorAll('script:not([src])')].find(script => script.textContent.includes('vitepress-theme-appearance'))?.textContent
+assert.ok(appearanceScript, 'Missing native theme preference script')
+for (const [preference, systemDark, expectedDark] of [[null, true, true], [null, false, false], ['light', true, false], ['dark', false, true]]) {
+  const simulation = new JSDOM('<!doctype html><html></html>', { url: 'https://local.test', runScripts: 'outside-only' })
+  simulation.window.matchMedia = () => ({ matches: systemDark })
+  if (preference) simulation.window.localStorage.setItem('vitepress-theme-appearance', preference)
+  simulation.window.eval(appearanceScript)
+  assert.equal(simulation.window.document.documentElement.classList.contains('dark'), expectedDark)
+  simulation.window.close()
+}
+assert.ok(home.querySelector('.VPSwitchAppearance[role="switch"]'), 'Missing native theme switch')
+const reading = new JSDOM(readFileSync(resolve(dist, 'sql/09-select.html'), 'utf8')).window.document
+assert.ok(reading.querySelector('button.copy'), 'Code copy controls must remain available')
 assert.ok(frontend.querySelector('a[target="_blank"][href="/learning-notes/exercicios/frontend/biblioteca.html"]'), 'Standalone example must open outside the notes router')
 for (const guide of ['frontend', 'python/libs/requests', 'python/libs/csv-json', 'sql/aplicado/analise-financeira']) {
   const intro = new JSDOM(readFileSync(resolve(dist, guide, 'index.html'), 'utf8')).window.document
   assert.ok(intro.querySelector('h1'), `Missing subject introduction: ${guide}`)
   assert.ok(intro.querySelector(`a[href^="/learning-notes/${guide}/01-"]`), `Missing example link: ${guide}`)
 }
-const css = readFileSync(resolve('.vitepress/theme/style.css'), 'utf8')
+const css = readFileSync(resolve('.vitepress/theme/tokens.css'), 'utf8')
 const luminance = hex => {
   const channels = hex.match(/[a-f\d]{2}/gi).map(value => parseInt(value, 16) / 255)
     .map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4)
@@ -83,5 +107,6 @@ for (const theme of [':root', '.dark']) {
   }
 }
 console.log('PASS: text and link color contrast in both themes')
+console.log('PASS: native initial theme preference and code copy controls')
 console.log(`PASS: all ${sourceNotes.length} source notes appear in the complete index and build`)
 console.log(`PASS: ${pages.length} pages, ${checkedLinks} internal links, local images, 13 lessons and 5 downloadable files`)
