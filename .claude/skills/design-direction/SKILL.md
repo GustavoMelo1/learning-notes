@@ -21,7 +21,7 @@ O Learning Notes é o caderno de alguém que está aprendendo de verdade: anotad
 - **Uma** cor de destaque tipo marca-texto (amarelo `#ffe066` ou verde-limão) usada como grifo atrás de texto, não como cor de botão.
 - Uma cor de "caneta" para links e ações (azul tinta `#2b4acb` ou vermelho correção `#c8402e` para erros/feedback).
 - Modo escuro = caderno à noite: fundo `#1a1816`, grifo dessaturado, nunca preto puro.
-- Tokens em `.frontend/.vitepress/theme/tokens.css`; mantenha claro e escuro sincronizados.
+- Tokens em `.frontend/app/assets/css/tokens.css` (`--paper`, `--ink`, `--pen`, `--marker`, `--red`); mantenha `:root` e `:root.dark` sincronizados. `check:site` reprova contraste abaixo de 4,5:1.
 
 ## Elementos de assinatura
 
@@ -51,4 +51,4 @@ O Learning Notes é o caderno de alguém que está aprendendo de verdade: anotad
 
 ## Verificação
 
-Depois de mudar a interface, gere screenshots com `.claude/scripts/screenshots.mjs`, olhe para eles e rode o subagent `ui-critic`. Rode `npm.cmd test` e `npm.cmd run check:site` em `.frontend/`.
+Depois de mudar a interface, gere screenshots com `.claude/scripts/screenshots.mjs`, olhe para eles e rode o subagent `ui-critic`. Rode `npm.cmd test`, `npm.cmd run build` e `npm.cmd run check:site` em `.frontend/`.

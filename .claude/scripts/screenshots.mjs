@@ -2,7 +2,8 @@
 //
 // Pré-requisitos (uma vez, fora do projeto, para não poluir .frontend/package.json):
 //   npm i --prefix "$TEMP/ln-shots" playwright-core
-// Suba o site:  cd .frontend && npm.cmd run docs:dev   (porta 5173)
+// Gere e sirva o site:  cd .frontend && npm.cmd run build && node scripts/serve.mjs   (porta 4173)
+//   ou use o modo dev:   npm.cmd run dev   (porta 3000, BASE_URL=http://localhost:3000/learning-notes)
 // Rode:         NODE_PATH="$TEMP/ln-shots/node_modules" node .claude/scripts/screenshots.mjs [pastaSaida]
 //
 // Usa o Microsoft Edge instalado (channel "msedge"); troque para "chrome" se preferir.
@@ -13,7 +14,7 @@ import { join } from 'node:path'
 const require = createRequire(join(process.env.NODE_PATH || '.', 'x.js'))
 const { chromium } = require('playwright-core')
 
-const base = process.env.BASE_URL || 'http://localhost:5173/learning-notes'
+const base = process.env.BASE_URL || 'http://localhost:4173/learning-notes'
 const out = process.argv[2] || 'screenshots'
 mkdirSync(out, { recursive: true })
 
@@ -23,6 +24,11 @@ const pages = {
   trilhas: '/trilhas/',
   'trilha-sql': '/trilhas/sql/',
   'nota-group-by': '/sql/18-group-by',
+  'nota-trilha': '/sql/18-group-by?trilha=sql',
+  'projeto': '/sql/aplicado/analise-financeira/02-consultar',
+  indice: '/indice',
+  sobre: '/sobre',
+  '404': '/nao-existe',
 }
 const viewports = { desktop: { width: 1440, height: 900 }, mobile: { width: 390, height: 844 } }
 const themes = ['light', 'dark']

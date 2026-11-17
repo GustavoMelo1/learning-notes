@@ -1,6 +1,4 @@
 ---
-path: frontend
-step: 3
 prev: false
 next: false
 title: JavaScript — uma busca simples
@@ -64,4 +62,4 @@ O Learning Notes usa a mesma ideia em `LibraryCatalog.vue`: combina texto digita
 
 O [exemplo completo](./index#ver-o-resultado) junta HTML, CSS e essa busca em um arquivo.
 
-Próximo: [como isso se conecta ao Vue e ao VitePress](./04-learning-notes).
+Próximo: [como isso se conecta ao Vue e ao Nuxt](./04-learning-notes).

@@ -36,7 +36,7 @@ Notes start from the basics on purpose.
 
 ## Subject guides
 
-Learning Notes also offers [learning trails](trilhas/index.md) for SQL and Python fundamentals. Trails reference existing notes, keep progress in the browser and preserve direct library access. See [Learning Notes 2.0 maintenance](docs/learning-notes-2.md) for components, visual tokens, trail definitions and progress compatibility.
+Learning Notes also offers [learning trails](trilhas/index.md) for SQL and Python fundamentals. Trails reference existing notes, keep progress in the browser and preserve direct library access. The site is a static Nuxt + Nuxt Content app. See [architecture and maintenance](docs/learning-notes-2.md) for writing notes, creating trails, visual tokens and progress compatibility.
 
 The library teaches the subjects behind my existing experiments, with each project serving as an application:
 
@@ -52,15 +52,16 @@ Find each guide under its subject in **Biblioteca**, or open **Guias** for the o
 
 Use **Todas as notas** (`/indice`) for the full subject index without pagination or active filters. The home page, catalog and sidebar share their subject registry. `check:site` compares the index against every source note and checks that each page is built; navigation tests check each note's sidebar. The deployment workflow runs tests and site checks before publishing.
 
-The [Frontend learning section](frontend/index.md) starts with HTML, CSS and JavaScript, then connects them to the Vue/VitePress implementation of this library. It includes three explanatory diagrams and a downloadable mini-library example. These illustrations are not screenshots of the site. Study notes live in `frontend/`; site implementation stays in `.frontend/`.
+The [Frontend learning section](frontend/index.md) starts with HTML, CSS and JavaScript, then connects them to the Vue/Nuxt implementation of this library. It includes three explanatory diagrams and a downloadable mini-library example. These illustrations are not screenshots of the site. Study notes live in `frontend/`; site implementation stays in `.frontend/`.
 
 ```powershell
 cd .frontend
 npm.cmd ci
-npm.cmd run docs:dev
+npm.cmd run dev
 npm.cmd test
-npm.cmd run docs:build
+npm.cmd run build
 npm.cmd run check:site
+npm.cmd run preview
 ```
 
 Exercise tests, from the repository root:

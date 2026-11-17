@@ -1,6 +1,4 @@
 ---
-path: frontend
-step: 2
 prev: false
 next: false
 title: CSS — aparência e espaço
@@ -48,7 +46,7 @@ O seletor `body` escolhe o elemento. `color` é a propriedade; `#27272a` é seu 
 
 ## Aplicação no site
 
-Em `.frontend/.vitepress/theme/tokens.css`, o Learning Notes usa branco, cinza e grafite, com uma fonte de interface do sistema. Variáveis como `--vp-c-bg` e `--vp-c-brand-1` centralizam as cores; o tema escuro redefine seus valores. As regras de layout ficam em `style.css`.
+Em `.frontend/app/assets/css/tokens.css`, o Learning Notes usa a cor do papel, da tinta, de uma caneta azul e de um marca-texto amarelo. Variáveis como `--paper`, `--ink` e `--pen` centralizam as cores; o tema escuro (`:root.dark`) redefine seus valores. As regras de layout ficam em `base.css` e a tipografia das notas em `prose.css`.
 
 A biblioteca usa linhas com espaço entre os elementos. Isso ajuda a comparar os títulos sem colocar cada nota dentro de um cartão.
 

@@ -48,7 +48,7 @@ O projeto é Vue/VitePress, portanto foi usada Testing Library para Vue, com Vit
 ```powershell
 cd .frontend
 npm.cmd test
-npm.cmd run docs:build
+npm.cmd run build
 npm.cmd run check:site
 ```
 

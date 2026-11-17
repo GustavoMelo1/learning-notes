@@ -1,121 +1,85 @@
-# Learning Notes 2.0 — arquitetura e manutenção
+# Learning Notes — arquitetura e manutenção
 
-## Auditoria antes da implementação
+O site é um app **Nuxt 4 + Nuxt Content 3** (Vue 3, TypeScript) em `.frontend/`. Ele lê as notas em Markdown direto das pastas da raiz (`sql/`, `python/`, ...) e gera um site estático para o GitHub Pages, sem backend. A mesma base aceita rotas de servidor (`.frontend/server/`) quando o projeto precisar de contas, progresso sincronizado ou exercícios com banco de dados.
 
-O projeto usa Vue 3, TypeScript e VitePress 1.6.4, sem backend. A configuração em `.frontend/.vitepress/config.mts` mantém `srcDir: '..'` e o base `/learning-notes/`. O deploy do GitHub Pages compila `.frontend/.vitepress/dist` e executa Vitest e `check:site` antes de publicar.
-
-As 71 notas existentes ficam em seis pastas de assuntos. `subjects.ts` é o cadastro compartilhado de assuntos; `notes.data.ts` lê os Markdown durante o build, produzindo títulos, descrições e categorias. A biblioteca já tem busca sem acentos, filtros e paginação. O índice completo e os testes de cobertura impedem que notas fiquem sem acesso.
-
-O tema estende o tema padrão do VitePress. `StudyLayout.vue` acrescenta contexto e navegação aos quatro guias de `paths.ts`. O progresso anterior é uma lista de URLs em `learning-notes:practice:v1`, com compatibilidade para endereços antigos de `/pratica/`. A busca local, os botões de copiar código, o menu móvel e o controle de aparência já vêm do VitePress e serão mantidos.
-
-## Plano
-
-1. Consolidar tokens neutros e componentes de apresentação, refazer início e navegação e preservar a biblioteca de consulta.
-2. Acrescentar trilhas declarativas de SQL e Python, usando os arquivos existentes.
-3. Conectar cada etapa por contexto explícito na URL e migrar progresso sem apagar a chave antiga.
-4. Verificar persistência, teclado, rotas e conteúdo no build; registrar limites da validação visual.
-
-Escopo: somente redesign e trilhas. Os laboratórios existentes são preservados; nenhum novo jogo, backend, login, ranking ou sistema de pontos é introduzido.
+Até novembro de 2026 o site usava VitePress. A migração manteve os endereços antigos (`/sql/09-select.html`, `/frontend/`, `/trilhas/sql/`, `/pratica/...`), o progresso salvo dos leitores e a preferência de tema.
 
 ## Onde mexer
 
 | Arquivo ou pasta | Responsabilidade |
 | --- | --- |
-| `.frontend/.vitepress/config.mts` | Rotas principais, busca local, tema e base de publicação |
-| `.frontend/.vitepress/theme/tokens.css` | Cores dos dois temas, fontes, espaçamentos e raios |
-| `.frontend/.vitepress/theme/style.css` | Layouts e regras responsivas dos componentes |
-| `.frontend/.vitepress/theme/components/LibraryHome.vue` | Início, assuntos e trilhas em destaque |
-| `LibraryCatalog.vue` e `LibraryIndex.vue`, na mesma pasta | Busca com filtros e índice completo |
-| `LearningTrails.vue`, `LearningPathCard.vue`, `LearningTrail.vue` | Catálogo, resumo e página de uma trilha |
-| `ProgressIndicator.vue` e `SectionHeader.vue` | Progresso acessível e títulos de seções reutilizáveis |
-| `StudyLayout.vue` e `TrailLessonContext.vue` | Leitura normal, contexto da trilha e navegação entre etapas |
-| `.frontend/.vitepress/theme/trails.ts` | Definição tipada e ordenada das trilhas |
-| `.frontend/.vitepress/theme/progress.ts` | Leitura, migração e escrita do progresso local |
-| `.frontend/.vitepress/theme/trail-context.ts` | Contexto explícito da trilha na URL |
+| `.frontend/nuxt.config.ts` | Base `/learning-notes/`, fontes, destaque de código, pré-renderização e data de atualização (git) |
+| `.frontend/content.config.ts` | Quais Markdown entram no site e os campos de frontmatter aceitos |
+| `.frontend/app/assets/css/tokens.css` | Cores dos dois temas, fontes e medidas — a identidade "caderno" |
+| `.frontend/app/assets/css/base.css` | Cabeçalho, páginas, trilhas, biblioteca, layout de leitura, busca, responsivo |
+| `.frontend/app/assets/css/prose.css` | Tipografia das notas, blocos de código, tabelas e labs |
+| `.frontend/app/pages/` | Rotas: início, biblioteca, índice, trilhas e `[...slug].vue` (toda nota) |
+| `.frontend/app/components/` | Cabeçalho, busca, barra lateral, post-it da trilha, fim da etapa, labs |
+| `.frontend/app/components/content/` | Componentes usados dentro do Markdown (labs, downloads) e `Prose*` (como o Markdown é desenhado) |
+| `.frontend/app/lib/trails.ts` | Todas as trilhas: fundamentos e projetos aplicados |
+| `.frontend/app/lib/notes.ts` | Catálogo, rótulos da navegação, menu de cada assunto |
+| `.frontend/app/lib/progress.ts` | Leitura, migração e escrita do progresso local |
+| `.frontend/app/lib/motion.ts` | Animações (entrada ao rolar, confete) — respeitam "reduzir movimento" |
+| `.frontend/server/routes/search.json.ts` | Índice da busca (Ctrl K), gerado no build |
+| `.frontend/scripts/` | `check-site.mjs` (checagem do build), `static-aliases.mjs` (endereços antigos), `serve.mjs` (preview igual ao GitHub Pages) |
 
-Os componentes de laboratório e os guias práticos anteriores continuam funcionando. `paths.ts` mantém esses guias; `trails.ts` organiza as novas jornadas de fundamentos. Não é necessário copiar uma aula para vinculá-la a uma trilha.
+## Escrever uma nota
 
-## Alterar cores e fontes
+Crie um `.md` na pasta do assunto. O primeiro `# Título` vira o título da página; o primeiro parágrafo vira a descrição na biblioteca (ou use `description:` no frontmatter). A nota aparece sozinha na biblioteca, no índice, na busca e no menu do assunto. Para um nome mais curto no menu, acrescente o arquivo ao mapa `labels` em `app/lib/notes.ts`.
 
-Abra `tokens.css`. `:root` define o tema claro e `.dark` altera somente as cores do tema escuro. `--vp-c-bg` é o fundo; `--vp-c-text-1` é o texto principal; `--vp-c-brand-1` é o destaque neutro. Os tons discretos foram ajustados para manter contraste de texto em superfícies claras e escuras.
+Links entre notas podem ser escritos como arquivos: `[JOIN](./26-join.md)`, `[CSS](./02-css)` ou `/sql/26-join`. Imagens ficam ao lado da nota (`./imagens/x.svg`).
 
-Altere `--vp-font-family-base` para a interface e `--vp-font-family-mono` para código. O site usa fontes locais e alternativas do sistema, sem baixar uma fonte externa. `--space-*` e `--radius-*` centralizam medidas dos novos componentes. Procure a classe do componente em `style.css` para mudar seu layout, em vez de adicionar estilos no final que sobrescrevam regras existentes.
-
-`appearance: true` reutiliza o controle nativo do VitePress. Sem preferência salva, segue o sistema. A escolha manual usa a chave `vitepress-theme-appearance`. O menu móvel, a busca e os botões de copiar código também são nativos.
-
-## Criar uma trilha
-
-1. Adicione um objeto ao array `trails` em `trails.ts`, seguindo o tipo `LearningTrail`.
-2. Use um `id` estável, como `nova-trilha`, e escreva título, descrição, nível, assuntos, pré-requisitos e objetivos reais.
-3. Liste as etapas na ordem de estudo. Cada uma precisa de `id`, `title`, `url` e `outcome` (o que se aprende naquela página).
-4. Crie `trilhas/nova-trilha/index.md` com o conteúdo abaixo.
+Componentes dentro do Markdown usam a sintaxe do Nuxt Content (MDC):
 
 ```md
----
-layout: page
-title: Nome da trilha
-description: Uma descrição curta e fiel ao conteúdo.
----
+::group-lab
+::
 
-<LearningTrail id="nova-trilha" />
+Baixe o :exercise-download[script completo]{file="arquivos/pipeline.py"}.
+
+[Abrir em nova aba](/exercicios/frontend/biblioteca.html){target="_blank"}
 ```
 
-Exemplo de referência a uma nota existente:
+Os arquivos para download ficam em `public/exercicios/`.
 
-```ts
-{ id: 'sql-select', title: 'Selecionar dados com SELECT',
-  url: '/sql/09-select', outcome: 'Escolher colunas e dar nomes aos resultados.' }
-```
+## Criar ou mudar uma trilha
 
-O exemplo já existe na trilha SQL: não reutilize seu ID para outro conteúdo. Ao renomear um título ou mover um arquivo, mantenha o ID para preservar o progresso. As URLs são relativas à raiz do site, sem `/learning-notes/`; os componentes usam `withBase` para acrescentar esse prefixo.
+Adicione um objeto em `trails` (`app/lib/trails.ts`). `kind: 'fundamentos'` aparece no primeiro grupo de `/trilhas`; `kind: 'projeto'` em "Projetos aplicados" (com `intro` apontando para a página de introdução e `source` para o código de origem). A página `/trilhas/<id>` é criada automaticamente.
 
-Para acrescentar uma etapa, inclua-a no array `steps`, apontando para um Markdown existente. O número de etapas e o progresso são calculados. Os testes verificam IDs duplicados e arquivos ausentes. A checagem de build também verifica as páginas das trilhas: ao adicionar uma nova, acrescente sua expectativa em `check:site`.
+Cada etapa tem `id`, `title`, `url` e, opcionalmente, `outcome` (o que se aprende ali). **O `id` é o que fica salvo no navegador: nunca mude um id existente.** Ao renomear ou mover uma nota, mude só `url`. Os testes verificam ids repetidos e notas inexistentes; `check:site` confere o número de etapas de cada trilha (atualize a lista ao criar uma nova).
 
-## Contexto e progresso
+Uma nota que pertence a uma trilha sempre mostra o post-it da trilha e o botão de concluir, mesmo aberta pela biblioteca. `?trilha=<id>` só escolhe a trilha quando a nota faz parte de mais de uma.
 
-Um link de etapa tem o formato `/sql/09-select?trilha=sql`. `resolveTrailContext` aceita o contexto somente se aquela nota pertence à trilha indicada. A navegação anterior/próxima conserva o parâmetro; abrir a mesma nota diretamente pela biblioteca não herda a trilha. A URL pode ser recarregada ou compartilhada.
+## Progresso
 
-O progresso atual é salvo em `learning-notes:progress:v2`:
+Salvo em `learning-notes:progress:v2`, só no navegador:
 
 ```json
 { "version": 2, "completed": ["sql-select", "/frontend/01-html"] }
 ```
 
-As novas trilhas usam IDs estáveis. Os guias antigos mantêm suas URLs como identificadores por compatibilidade. Na ausência de v2, o sistema lê `learning-notes:practice:v1`, normaliza endereços antigos e só grava a versão nova quando o usuário altera uma marcação. A chave antiga não é apagada nem sobrescrita. Depois da migração, v2 é a fonte de verdade, evitando recuperar marcações já desfeitas.
+Trilhas de fundamentos usam ids como `sql-select`; as etapas que vieram dos antigos "Guias" usam a URL como id, o que preserva o que foi marcado antes. Sem v2, o site lê `learning-notes:practice:v1` (e converte endereços `/pratica/...`), sem apagar a chave antiga. Entradas desconhecidas são preservadas; uma versão futura não é sobrescrita; JSON corrompido é copiado para `learning-notes:progress:v2:backup`. Outra aba aberta é acompanhada pelo evento `storage`.
 
-Entradas desconhecidas são preservadas na escrita, mas não contam no progresso atual. Uma versão futura não é sobrescrita. JSON corrompido em v2 é copiado para `learning-notes:progress:v2:backup` antes da recuperação. Se ler ou salvar falhar, o site informa o problema e mantém o acesso às páginas. Eventos `storage` atualizam a interface quando outra aba altera o progresso. Não há sincronização com servidor.
+## Visual
+
+A direção "caderno de estudos" está em `.claude/skills/design-direction/SKILL.md` (papel, tinta, caneta, marca-texto, vermelho de correção; Fraunces, Source Serif 4, JetBrains Mono e Caveat). Mude cores em `tokens.css`, mantendo `:root` e `:root.dark` em sincronia — `check:site` reprova contraste de texto abaixo de 4,5:1. O tema escolhido usa a chave `vitepress-theme-appearance` (mantida da versão anterior).
 
 ## Desenvolver e verificar
 
-Na raiz do repositório, com Node.js instalado (o CI usa Node 20):
+Node.js 22.5 ou mais novo (o Nuxt Content usa o SQLite nativo do Node).
 
 ```powershell
 cd .frontend
 npm.cmd ci
-npm.cmd run docs:dev
+npm.cmd run dev          # http://localhost:3000/learning-notes/
+npm.cmd test             # Vitest: trilhas, links, catálogo, progresso, labs
+npm.cmd run build        # site estático em .output/public
+npm.cmd run check:site   # notas, endereços antigos, links, downloads, busca, tema, contraste
+npm.cmd run preview      # serve o build como o GitHub Pages: http://localhost:4173/learning-notes/
 ```
 
-Abra o endereço exibido no terminal, incluindo `/learning-notes/`. Em outros sistemas, `npm` substitui `npm.cmd`.
+Testes dos exercícios Python, a partir da raiz: `python -B -m unittest discover -s .frontend/tests -p "test_*.py" -v`.
 
-```powershell
-npm.cmd test
-npm.cmd run docs:build
-npm.cmd run check:site
-npm.cmd run docs:preview
-```
+O GitHub Actions roda testes, build e `check:site` antes de publicar a `main`; o checkout usa o histórico completo para mostrar a data da última alteração de cada nota.
 
-O preview serve o build de produção. Testes de exercícios existentes, a partir da raiz:
-
-```powershell
-python -B -m unittest discover -s .frontend/tests -p "test_*.py" -v
-```
-
-Vitest cobre filtros, teclado, guias anteriores, trilhas, migração e falhas de armazenamento. `check:site` compara todas as notas com o índice e o build, verifica links, imagens, downloads, entradas das trilhas e contraste das cores de texto. O GitHub Actions executa testes, build e checagem antes de publicar na `main`. Não há mudança no destino do deploy.
-
-## Conferência visual
-
-No navegador, revise início, biblioteca, trilhas e uma aula em 390 px, 768 px e 1280 px, nos dois temas. Use Tab e Enter, abra o menu móvel, teste a busca e copie um bloco de código. Marque uma etapa, recarregue, avance e volte. Abra a mesma nota sem `?trilha=` para conferir a leitura normal. Observe erros no console.
-
-Limite desta sessão: o navegador integrado não estava disponível. Testes de DOM, build e contraste não substituem a conferência visual, o clipboard real, o console do navegador ou a troca de tema em um dispositivo real.
-
-Validação executada na entrega: 38 testes Vitest e 8 testes Python passaram. O build gerou 90 páginas; a checagem confirmou as 71 notas existentes, 2.878 links internos, imagens, downloads e contraste nos dois temas. A preferência inicial de aparência foi testada com o script nativo do VitePress em uma simulação de DOM (sistema claro/escuro e preferências salvas), e a presença dos botões de copiar código foi verificada no HTML gerado. A interação manual com esses controles permanece na lista de conferência visual acima.
+Para revisar o visual com screenshots reais e uma crítica de design, use o script `.claude/scripts/screenshots.mjs` e o agente `ui-critic` (instruções nos próprios arquivos).
