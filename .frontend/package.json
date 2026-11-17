@@ -12,11 +12,17 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.3.1",
+    "@fontsource/caveat": "^5.3.0",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/user-event": "^14.6.8",
     "@testing-library/vue": "^8.1.0",
     "@vitejs/plugin-vue": "^5.2.4",
+    "canvas-confetti": "^1.9.4",
     "jsdom": "^26.1.0",
+    "rough-notation": "^0.5.1",
     "vitepress": "^1.6.4",
     "vitepress-sidebar": "^1.39.0",
     "vitest": "^3.2.7"

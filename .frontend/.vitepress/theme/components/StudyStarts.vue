@@ -16,7 +16,7 @@ const guides = computed(() => paths.map(path => {
 
 <template>
   <section class="study-starts" aria-labelledby="study-starts-title">
-    <div class="section-heading"><div><p class="eyebrow">Aprender em sequência</p><h2 id="study-starts-title">Escolhe teu próximo estudo.</h2></div><a class="text-link" :href="withBase('/pratica/')">Ver todas as etapas →</a></div>
+    <div class="section-heading"><div><h2 id="study-starts-title">Escolha seu próximo estudo.</h2></div><a class="text-link" :href="withBase('/pratica/')">Ver todas as etapas</a></div>
     <div class="study-start-list">
       <a v-for="guide in guides" :key="guide.id" class="study-start" :href="withBase(guide.target)">
         <span class="study-start-copy"><strong>{{ guide.title }}</strong><span>{{ guide.detail }}</span></span>

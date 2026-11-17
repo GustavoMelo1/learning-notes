@@ -35,7 +35,7 @@ function select(value: Kind) { kind.value = value; revealed.value = false }
 
 <template>
   <section class="join-lab" aria-labelledby="join-lab-title">
-    <p class="eyebrow">Laboratório / SQL</p>
+    <p class="lab-tag">experimente</p>
     <h2 id="join-lab-title">Quem entra no resultado?</h2>
     <p>As tabelas são as mesmas. Troca a junção e observa o que muda.</p>
     <div class="source-tables">

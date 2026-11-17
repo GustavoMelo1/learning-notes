@@ -7,7 +7,7 @@ const groups = subjects.map(subject => ({ ...subject, notes: notes.filter(note =
 
 <template>
   <main class="notebook full-index">
-    <header class="page-heading"><p class="eyebrow">Tudo em um lugar</p><h1>Todas as notas.</h1><p>{{ notes.length }} notas em {{ groups.length }} assuntos. Esta lista é completa, sem filtros nem paginação.</p><a class="text-link" :href="withBase('/biblioteca')">Prefere buscar? Abrir biblioteca →</a></header>
+    <header class="page-heading"><h1>Todas as notas.</h1><p>{{ notes.length }} notas em {{ groups.length }} assuntos. Esta lista é completa, sem filtros nem paginação.</p><a class="text-link" :href="withBase('/biblioteca')">Prefere buscar? Abrir biblioteca</a></header>
     <nav class="index-subjects" aria-label="Ir para um assunto"><a v-for="group in groups" :key="group.folder" :href="`#${group.folder}`">{{ group.name }} ({{ group.notes.length }})</a></nav>
     <section v-for="group in groups" :key="group.folder" class="index-section" :aria-labelledby="group.folder">
       <h2 :id="group.folder">{{ group.name }} <small>{{ group.notes.length }} notas</small></h2>

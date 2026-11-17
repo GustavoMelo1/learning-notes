@@ -17,7 +17,7 @@ const result = computed(() => groups.value.filter(group => having.value === 'non
 const code = computed(() => `SELECT genero, ${expression.value} AS resultado\nFROM jogos${minimum.value > 0 ? `\nWHERE nota >= ${minimum.value.toFixed(1)}` : ''}\nGROUP BY genero${having.value === 'on' ? `\nHAVING ${expression.value} > ${threshold.value}` : ''}\nORDER BY genero;`)
 </script>
 <template>
-  <LearningLab id="group-lab" title="Das linhas aos grupos" :code="code" prompt="Quantos grupos sobram depois de aplicar WHERE e HAVING?">
+  <LearningLab id="group-lab" title="Das linhas aos grupos" :code="code" prompt="Quantos grupos sobram depois de aplicar WHERE e HAVING?" :expected="result.length" guess-label="Quantos grupos ficam no resultado?">
     <template #source><p>Filtra os jogos, agrupa por gênero e decide quais grupos ficam.</p><GameTable /></template>
     <template #controls>
       <label>WHERE · nota mínima: {{ minimum.toFixed(1) }}<input v-model.number="minimum" type="range" min="0" max="10" step="0.5"></label>
@@ -27,7 +27,7 @@ const code = computed(() => `SELECT genero, ${expression.value} AS resultado\nFR
     <template #result>
       <p><strong>{{ filtered.length }} linhas → {{ groups.length }} grupos → {{ result.length }} no resultado.</strong> WHERE atua antes do agrupamento; HAVING, depois.</p>
       <div v-if="result.length" class="lab-table" tabindex="0" role="region" aria-label="Resultado do agrupamento"><table><thead><tr><th scope="col">genero</th><th scope="col">{{ expression }}</th></tr></thead><tbody><tr v-for="group in result" :key="group.genre"><td>{{ group.genre }}</td><td>{{ metric === 'COUNT' ? group.value : group.value.toFixed(2) }}</td></tr></tbody></table></div>
-      <p v-else>Nenhum grupo atende aos filtros. Reduz a nota mínima ou desliga o HAVING para comparar.</p>
+      <p v-else>Nenhum grupo atende aos filtros. Reduza a nota mínima ou desligue o HAVING para comparar.</p>
     </template>
   </LearningLab>
 </template>

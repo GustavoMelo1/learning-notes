@@ -13,7 +13,7 @@ const code = computed(() => {
 })
 </script>
 <template>
-  <LearningLab id="query-lab" title="Colunas ou linhas: o que muda?" :code="code" prompt="Quais jogos vão aparecer? E quais colunas vão sobrar?">
+  <LearningLab id="query-lab" title="Colunas ou linhas: o que muda?" :code="code" prompt="Quais jogos vão aparecer? E quais colunas vão sobrar?" :expected="rows.length" guess-label="Quantas linhas o SELECT devolve?">
     <template #source><p>SELECT escolhe as colunas. WHERE decide quais linhas passam pelo filtro.</p><GameTable /></template>
     <template #controls>
       <label>Colunas do SELECT<select v-model="columns"><option>titulo</option><option>titulo, nota</option><option>*</option></select></label>

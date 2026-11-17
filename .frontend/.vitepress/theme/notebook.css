@@ -1,0 +1,194 @@
+/* Camada "caderno de estudos". Carregada depois de style.css; a direção está em .claude/skills/design-direction. */
+
+/* ---------- Tipografia ---------- */
+body { background: var(--vp-c-bg); font-feature-settings: 'kern', 'liga', 'onum' 0; }
+:is(.vp-doc h1, .vp-doc h2, .vp-doc h3, .home-hero h1, .page-heading h1, .section-heading h2, .trail-card h2,
+  .path-content h2, .trail-overview h2, .home-about h2, .catalog-help h2, .lesson-check h2, .missing-page h1,
+  .empty-state h2, .index-section h2, .note-content h2, .VPNavBarTitle .title, .learning-lab h2, .join-lab h2) {
+  font-family: var(--heading-font);
+  font-variation-settings: 'SOFT' 60, 'WONK' 0;
+  font-optical-sizing: auto;
+  letter-spacing: -.012em;
+}
+.vp-doc h1, .home-hero h1, .page-heading h1 { font-weight: 560; letter-spacing: -.025em; }
+.vp-doc h2 { font-weight: 560; font-size: 26px; }
+.vp-doc h3 { font-weight: 560; font-size: 20px; }
+.VPNavBarTitle .title { font-size: 19px; font-weight: 600; letter-spacing: -.01em; }
+.vp-doc { font-size: 17px; }
+.vp-doc p, .vp-doc li { line-height: 1.75; }
+.vp-doc :not(pre) > code { font-size: .86em; border-radius: 3px; }
+.vp-doc div[class*='language-'] { border: 1px solid var(--vp-c-divider); border-radius: 4px; }
+
+/* Grupos da barra lateral como títulos de capítulo, não rótulos em caixa alta. */
+.VPSidebarItem.level-0 > .item > .text { font: italic 560 15px/1.4 var(--heading-font); text-transform: none; letter-spacing: 0; color: var(--vp-c-text-1); }
+.VPSidebarItem .link { border-radius: 2px; }
+.VPSidebarItem.is-active > .item > .link { background: linear-gradient(100deg, transparent 2%, var(--highlight) 4%, var(--highlight) 96%, transparent 98%); }
+.VPSidebarItem.is-active > .item .text { color: var(--vp-c-text-1); }
+
+/* ---------- Marca-texto e anotações ---------- */
+.vp-doc mark, .grifo-highlight:not(.is-pending):not(.is-drawn) {
+  color: inherit; padding: 0 .12em; margin: 0 -.06em; border-radius: .2em .4em .3em .5em;
+  background: linear-gradient(104deg, transparent .1em, var(--highlight) .25em, var(--highlight) calc(100% - .3em), transparent calc(100% - .1em));
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.grifo { position: relative; } /* paints the text above rough-notation's SVG */
+
+.eyebrow, .lab-tag, .vp-doc .learning-lab .lab-tag, .vp-doc .join-lab .lab-tag {
+  display: inline-block; font: 500 22px/1 var(--hand-font); letter-spacing: 0; text-transform: none;
+  color: var(--correction); transform: rotate(-2deg); transform-origin: left;
+}
+.margin-note {
+  font: 500 21px/1.25 var(--hand-font); color: var(--vp-c-brand-1);
+  border-left: 2px solid var(--margin-line); padding: 2px 0 2px 14px; transform: rotate(-1deg);
+}
+.margin-note a { text-decoration: underline wavy; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.trail-hint { margin: -12px 0 28px; max-width: 520px; }
+
+/* ---------- Links e ações ---------- */
+.text-link { font-weight: 600; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-decoration-thickness: 1.5px; text-underline-offset: 5px; transition: text-decoration-color .2s; }
+.text-link:hover { text-decoration-color: currentColor; }
+.quiet-link { color: var(--vp-c-text-2); font-weight: 500; }
+.note-context { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 13px; }
+.note-context a { color: var(--vp-c-brand-1); }
+
+/* Ação principal com "sombra de carimbo": a única coisa sólida da tela. */
+.action.primary-action {
+  background: var(--vp-c-brand-1); color: var(--on-brand); border: 1.5px solid var(--vp-c-text-1);
+  box-shadow: 3px 3px 0 var(--vp-c-text-1); border-radius: 4px; font-weight: 650;
+  transition: translate .15s var(--ease-out), box-shadow .15s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .action.primary-action:hover { translate: -1px -1px; box-shadow: 4px 4px 0 var(--vp-c-text-1); border-color: var(--vp-c-text-1); }
+}
+.action.primary-action:active { translate: 2px 2px; box-shadow: 1px 1px 0 var(--vp-c-text-1); transform: none; }
+.action { border-radius: 4px; border-color: var(--control-border); }
+.check-action { gap: 10px; }
+
+/* ---------- Check desenhado à mão ---------- */
+.hand-check { flex-shrink: 0; overflow: visible; }
+.hand-check path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.hand-check-box { stroke: var(--vp-c-text-3); stroke-width: 1.4; }
+.hand-check-mark { stroke: var(--vp-c-brand-1); stroke-width: 2.6; stroke-dasharray: 22; stroke-dashoffset: 22; transition: stroke-dashoffset .5s var(--ease-out) .05s; }
+.hand-check.is-done .hand-check-mark { stroke-dashoffset: 0; }
+.hand-check.is-done .hand-check-box { stroke: var(--vp-c-brand-1); }
+
+/* ---------- Progresso: um traço de caneta ---------- */
+.progress-track { position: relative; display: block; height: 6px; margin-top: var(--space-3); }
+.progress-track progress { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; }
+.progress-track::before { content: ''; position: absolute; inset: 2px 0; border-radius: 2px; background: var(--vp-c-divider); }
+.progress-ink { position: absolute; left: 0; top: 0; bottom: 0; width: var(--progress); border-radius: 3px 2px 3px 2px; background: var(--vp-c-brand-1); animation: ink-grow 1s var(--ease-out) both .15s; transition: width .6s var(--ease-out); }
+@keyframes ink-grow { from { width: 0; } }
+
+/* ---------- Home ---------- */
+.home-hero { max-width: none; display: grid; grid-template-columns: minmax(0, 760px) 210px; gap: var(--space-12); align-items: start; padding-block: var(--space-6) var(--space-8); }
+.home-hero h1 { font-size: clamp(40px, 5.6vw, 66px); line-height: 1.06; margin-block: 0 var(--space-6); }
+.hero-description { font-size: 19px; line-height: 1.65; }
+.hero-margin { margin-top: 120px; }
+.hero-resume { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-top: var(--space-8); }
+.hero-resume .action { min-height: 50px; padding: 12px 22px; font-size: 16px; }
+.hero-resume-detail { font-size: 14px; color: var(--vp-c-text-2); max-width: 340px; line-height: 1.5; }
+.secondary-actions { margin-top: var(--space-4); }
+.section-heading { align-items: baseline; border-bottom: 1.5px solid var(--vp-c-text-1); padding-bottom: var(--space-3); }
+.section-heading h2 { font-size: 30px; font-weight: 560; margin: 0; }
+
+/* Sumário: o índice de um caderno. */
+.toc { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--space-12); }
+.toc a { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--space-2); padding: 18px 0; border-bottom: 1px dashed var(--vp-c-divider); color: inherit; }
+.toc-number { font: 500 13px/2 var(--vp-font-family-mono); color: var(--correction); }
+.toc-copy strong { font: 560 22px/1.3 var(--heading-font); font-variation-settings: 'SOFT' 60; background: linear-gradient(var(--highlight), var(--highlight)) no-repeat 0 85% / 0 40%; transition: background-size .35s var(--ease-out); }
+.toc-copy > span { display: block; color: var(--vp-c-text-2); font-size: 15px; margin-top: 4px; line-height: 1.5; }
+.toc a:hover .toc-copy strong, .toc a:focus-visible .toc-copy strong { background-size: 100% 40%; }
+
+/* Trilhas como fichas pautadas. */
+.trail-card {
+  position: relative; background-color: var(--vp-c-bg-elv); border: 1px solid var(--vp-c-divider); border-radius: 3px;
+  background-image: linear-gradient(to bottom, transparent 62px, var(--margin-line) 62px 63px, transparent 63px), repeating-linear-gradient(to bottom, transparent 0 31px, var(--rule-line) 31px 32px);
+  box-shadow: 0 1px 0 var(--vp-c-divider), 5px 6px 0 -1px var(--vp-c-bg-soft), 5px 6px 0 0 var(--vp-c-divider);
+  transition: translate .25s var(--ease-out), rotate .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .trail-card:hover { translate: 0 -3px; rotate: -.35deg; box-shadow: 0 1px 0 var(--vp-c-divider), 7px 9px 0 -1px var(--vp-c-bg-soft), 7px 9px 0 0 var(--vp-c-divider); }
+}
+.trail-card h2 { font-size: 25px; font-weight: 560; margin-top: var(--space-6); }
+.trail-card h2 a { color: inherit; }
+.trail-meta { font: 12px/1.6 var(--vp-font-family-mono); color: var(--vp-c-text-3); }
+.trail-description { font-size: 15px; line-height: 1.7; }
+.pen-link { font-size: 15px; }
+
+.home-about { border-top: 1.5px solid var(--vp-c-text-1); }
+.home-about h2 { font-size: 24px; font-weight: 560; }
+.home-about p { font-size: 15px; max-width: 560px; line-height: 1.7; }
+
+/* ---------- Trilha ---------- */
+.page-heading h1 { font-size: clamp(36px, 4.6vw, 52px); }
+.trail-resume { background: var(--vp-c-bg-elv); border: 1px solid var(--vp-c-divider); border-radius: 3px; box-shadow: 4px 5px 0 -1px var(--vp-c-bg-soft), 4px 5px 0 0 var(--vp-c-divider); }
+.trail-sequence li { border-top: 1px dashed var(--vp-c-divider); }
+.trail-sequence a { color: inherit; transition: background-color .2s; }
+.trail-sequence strong { font: 560 19px/1.35 var(--heading-font); }
+.trail-step-number { color: var(--correction); }
+.trail-step-state { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.trail-sequence .is-next .trail-step-state { font: 500 20px/1 var(--hand-font); color: var(--correction); }
+.trail-sequence .is-done strong { text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--vp-c-brand-1) 55%, transparent); text-decoration-thickness: 1.5px; }
+
+/* ---------- Biblioteca ---------- */
+.library-controls input, .library-controls select { border-radius: 3px; background: var(--vp-c-bg-elv); }
+.note-row { color: inherit; border-bottom-style: dashed; }
+.note-content h2 { font-size: 20px; font-weight: 560; }
+.note-content p { font-size: 14px; }
+
+/* ---------- Labs: a folha pautada de exercício ---------- */
+.vp-doc .learning-lab, .vp-doc .join-lab {
+  border: 1px solid var(--vp-c-divider); border-radius: 3px; padding: 26px 28px 28px 60px; background-color: var(--vp-c-bg-elv);
+  background-image: linear-gradient(90deg, transparent 40px, var(--margin-line) 40px 41px, transparent 41px), repeating-linear-gradient(to bottom, transparent 0 29px, var(--rule-line) 29px 30px);
+}
+.vp-doc .learning-lab h2, .vp-doc .join-lab h2 { border: 0; padding-top: 0; margin-top: 10px; font-size: 26px; }
+.vp-doc .learning-lab .lab-code { background: var(--vp-code-block-bg); }
+.lab-prompt { font-weight: 600; }
+.lab-guess { margin: 16px 0 20px; }
+.lab-guess label { display: block; font: 500 21px/1.2 var(--hand-font); color: var(--vp-c-brand-1); margin-bottom: 8px; }
+.lab-guess-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.lab-guess input { width: 110px; min-height: 44px; padding: 8px 12px; font: 600 18px var(--vp-font-family-mono); color: var(--vp-c-text-1); background: var(--vp-c-bg); border: 1.5px solid var(--control-border); border-radius: 3px; }
+.lab-check { min-height: 44px; padding: 8px 16px; border-radius: 3px; font-weight: 650; background: var(--vp-c-brand-1); color: var(--on-brand); border: 1.5px solid var(--vp-c-text-1); box-shadow: 2px 2px 0 var(--vp-c-text-1); }
+.lab-check:disabled { opacity: .45; box-shadow: none; cursor: not-allowed; }
+.lab-check:active:not(:disabled) { translate: 1px 1px; box-shadow: 1px 1px 0 var(--vp-c-text-1); }
+.vp-doc .lab-verdict { display: flex; align-items: center; gap: 10px; margin-top: 12px; font: 500 22px/1.25 var(--hand-font); }
+.lab-verdict.is-right { color: var(--vp-c-brand-1); }
+.lab-verdict.is-wrong { color: var(--correction); animation: nope .4s var(--ease-out); }
+@keyframes nope { 20%, 60% { translate: -5px 0; } 40%, 80% { translate: 5px 0; } }
+.vp-doc .lab-reveal { background: transparent; color: var(--vp-c-brand-1); border: 1.5px solid currentColor; border-radius: 3px; }
+.lab-result-enter-active { transition: opacity .35s var(--ease-out), translate .35s var(--ease-out); }
+.lab-result-enter-from { opacity: 0; translate: 0 -6px; }
+
+/* ---------- Movimento ---------- */
+@keyframes page-in { from { opacity: 0; translate: 0 8px; } }
+.VPContent .notebook, .VPDoc .content-container { animation: page-in .5s var(--ease-out) both; }
+
+.reveal { --reveal-delay: calc(var(--reveal-index, 0) * 70ms); opacity: 0; transform: translateY(16px); transition: opacity .6s var(--ease-out) var(--reveal-delay), transform .6s var(--ease-out) var(--reveal-delay); }
+.reveal.is-revealed { opacity: 1; transform: none; }
+.trail-card.reveal { transition: opacity .6s var(--ease-out) var(--reveal-delay), transform .6s var(--ease-out) var(--reveal-delay), translate .25s var(--ease-out), rotate .25s var(--ease-out), box-shadow .25s var(--ease-out); }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 960px) {
+  .home-hero { grid-template-columns: 1fr; gap: var(--space-6); }
+  .hero-margin { margin-top: 0; max-width: 360px; }
+}
+@media (max-width: 720px) {
+  .toc { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .home-hero h1 { font-size: 40px; }
+  .hero-description { font-size: 17px; }
+  .hero-resume .action { width: 100%; }
+  .section-heading { flex-direction: row; align-items: baseline; justify-content: space-between; }
+  .section-heading h2 { font-size: 25px; }
+  .trail-sequence a { grid-template-columns: 24px minmax(0, 1fr) auto; gap: var(--space-3); padding-block: var(--space-4); }
+  .trail-step-state { grid-column: 3; }
+  .trail-step-state .state-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .trail-sequence .is-next .trail-step-state .state-text { position: static; width: auto; height: auto; clip-path: none; }
+  .vp-doc .learning-lab, .vp-doc .join-lab { padding: 18px 16px; background-image: repeating-linear-gradient(to bottom, transparent 0 29px, var(--rule-line) 29px 30px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .progress-ink { animation: none !important; }
+  .hand-check-mark { transition: none !important; }
+}

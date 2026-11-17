@@ -10,18 +10,18 @@ const started = (path: typeof paths[number]) => path.steps.some(step => complete
 <template>
   <div class="notebook practice-page">
     <header class="page-heading">
-      <p class="eyebrow">Aprender por assunto</p><h1>Guias de estudo.</h1>
-      <p>Escolhe o que tu quer aprender. Cada guia começa pelo conceito e usa um projeto para colocar o conteúdo em prática.</p>
+      <h1>Guias de estudo.</h1>
+      <p>Escolha o que você quer aprender. Cada guia começa pelo conceito e usa um projeto para colocar o conteúdo em prática.</p>
     </header>
-    <p class="quiet-note">Começa pela introdução ou abre uma etapa abaixo. Em Frontend, a sequência é HTML → CSS → JavaScript → Vue.</p>
+    <p class="quiet-note">Comece pela introdução ou abra uma etapa abaixo. Em Frontend, a sequência é HTML → CSS → JavaScript → Vue.</p>
     <p v-if="message" role="status" class="save-message">{{ message }}</p>
     <div class="path-list">
       <section v-for="(path, index) in paths" :key="path.id" class="path-section" :aria-labelledby="`path-${path.id}`">
         <div class="path-number" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</div>
         <div class="path-content">
-          <p class="eyebrow">{{ path.subject }}</p>
+          <p class="trail-meta">{{ path.subject }}</p>
           <h2 :id="`path-${path.id}`">{{ path.title }}</h2><p>{{ path.description }}</p>
-          <div class="guide-actions"><a class="action primary-action" :href="withBase(started(path) ? nextStep(path)?.url || path.url : path.steps[0].url)">{{ started(path) ? nextStep(path) ? 'Continuar estudo' : 'Revisar guia' : 'Começar primeira etapa' }} →</a><a class="text-link" :href="withBase(path.url)">Começar pela introdução →</a></div>
+          <div class="guide-actions"><a class="action primary-action" :href="withBase(started(path) ? nextStep(path)?.url || path.url : path.steps[0].url)">{{ started(path) ? nextStep(path) ? 'Continuar estudo' : 'Revisar guia' : 'Começar primeira etapa' }}</a><a class="text-link" :href="withBase(path.url)">Começar pela introdução</a></div>
           <p class="path-prerequisite">Antes de começar: {{ path.prerequisite }}.</p>
           <ol class="path-steps">
             <li v-for="(step, stepIndex) in path.steps" :key="step.url">

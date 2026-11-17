@@ -36,10 +36,6 @@ button:not(:disabled), summary { cursor: pointer; }
 .home-about { margin-top: var(--space-12); padding-top: var(--space-8); border-top: 1px solid var(--vp-c-divider); }
 .home-about h2 { font-size: 20px; font-weight: 600; }
 .home-about p { color: var(--vp-c-text-2); font-size: 14px; margin-top: var(--space-2); }
-.how-it-works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); list-style: none; padding: 0; }
-.how-it-works > li > span { color: var(--vp-c-text-3); font: 13px var(--vp-font-family-mono); }
-.how-it-works h3 { font-size: 17px; font-weight: 600; margin-block: var(--space-3) var(--space-2); }
-.how-it-works p { color: var(--vp-c-text-2); font-size: 14px; line-height: 1.8; }
 .trail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .trail-card { display: flex; flex-direction: column; padding: var(--space-6); border: 1px solid var(--vp-c-divider); border-radius: var(--radius-surface); background: var(--vp-c-bg-alt); min-width: 0; }
 .trail-card h2 { font-size: 22px; line-height: 1.4; letter-spacing: -.025em; font-weight: 600; margin-block: var(--space-3); }
@@ -195,7 +191,7 @@ button:not(:disabled), summary { cursor: pointer; }
   .site-colophon { margin-inline: 24px; }
 }
 @media (max-width: 560px) {
-  .trail-grid, .how-it-works { grid-template-columns: 1fr; }
+  .trail-grid { grid-template-columns: 1fr; }
   .trail-card { padding: var(--space-4); }
   .home-hero { padding-top: 0; }
   .hero-description { font-size: 16px; }

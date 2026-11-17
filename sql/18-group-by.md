@@ -34,7 +34,7 @@ SELECT genero, AVG(nota) AS media FROM jogos GROUP BY genero;
 */
 ```
 
-## GROUP BY + MIN and MAX
+## GROUP BY + MIN e MAX
 Menor e maior nota por gênero:
 ```sql
 SELECT genero, MIN(nota) AS menor, MAX(nota) AS maior FROM jogos GROUP BY genero;

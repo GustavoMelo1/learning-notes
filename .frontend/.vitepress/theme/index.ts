@@ -13,7 +13,12 @@ import QueryLab from './components/QueryLab.vue'
 import GroupLab from './components/GroupLab.vue'
 import DecisionLab from './components/DecisionLab.vue'
 import ListLab from './components/ListLab.vue'
+import '@fontsource-variable/fraunces/full.css'
+import '@fontsource-variable/source-serif-4/index.css'
+import '@fontsource-variable/jetbrains-mono/index.css'
+import '@fontsource/caveat/500.css'
 import './style.css'
+import './notebook.css'
 
 export default {
   extends: DefaultTheme,
