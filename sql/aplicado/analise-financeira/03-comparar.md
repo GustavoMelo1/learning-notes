@@ -1,8 +1,6 @@
 ---
 title: Comparar sem perder os detalhes
 description: Use uma janela para manter cada despesa e mostrar o total da categoria ao lado.
-path: financas
-step: 3
 prev: false
 next: false
 ---

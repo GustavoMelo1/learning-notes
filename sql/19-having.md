@@ -2,8 +2,8 @@
 
 WHERE filtra LINHAS antes de agrupar. HAVING filtra GRUPOS depois do GROUP BY.
 
-<GroupLab />
-
+::group-lab
+::
 Gêneros com mais de 1 jogo:
 ```sql
 SELECT genero, COUNT(*) AS quantidade FROM jogos GROUP BY genero HAVING COUNT(*) > 1;

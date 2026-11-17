@@ -1,8 +1,6 @@
 ---
 title: Padronizar antes de combinar
 description: Mapeie nomes, converta tipos e diferencie concatenar registros de fazer um JOIN.
-path: arquivos
-step: 2
 prev: false
 next: false
 ---

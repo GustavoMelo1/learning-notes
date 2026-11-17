@@ -2,8 +2,8 @@
 
 Filtra quais LINHAS aparecem. O SELECT escolhe as colunas, o WHERE escolhe as linhas.
 
-<QueryLab />
-
+::query-lab
+::
 ```sql
 SELECT titulo, nota FROM jogos WHERE genero = 'RPG';
 /*

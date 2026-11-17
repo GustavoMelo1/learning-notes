@@ -1,8 +1,6 @@
 ---
 title: Paginar sem esconder falhas
 description: Diferencie fim da paginação de erro de rede ou resposta inválida.
-path: api
-step: 2
 prev: false
 next: false
 ---

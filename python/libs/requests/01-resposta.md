@@ -1,8 +1,6 @@
 ---
 title: Entender a resposta da API
 description: Identifique os campos de uma resposta HTTP antes de transformá-la em tabela.
-path: api
-step: 1
 prev: false
 next: false
 ---

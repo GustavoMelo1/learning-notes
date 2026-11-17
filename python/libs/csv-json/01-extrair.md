@@ -1,8 +1,6 @@
 ---
 title: Ler e entender as duas fontes
 description: Compare dados de duas lojas antes de tentar juntar seus arquivos.
-path: arquivos
-step: 1
 prev: false
 next: false
 ---
@@ -40,7 +38,7 @@ with open("loja_b.csv", encoding="utf-8", newline="") as arquivo:
     loja_b = list(csv.DictReader(arquivo))
 ```
 
-Esses nomes são ilustrativos. Para executar o exercício sem preparar arquivos, usa o <ExerciseDownload file="arquivos/pipeline.py">script didático com dados embutidos</ExerciseDownload>.
+Esses nomes são ilustrativos. Para executar o exercício sem preparar arquivos, usa o :exercise-download[script didático com dados embutidos]{file="arquivos/pipeline.py"}.
 
 ## Tenta antes de seguir
 

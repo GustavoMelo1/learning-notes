@@ -1,8 +1,6 @@
 ---
 title: Entender a tabela e preparar os dados
 description: Defina o que cada transação representa e prepare uma base fictícia para estudar SQL.
-path: financas
-step: 1
 prev: false
 next: false
 ---
@@ -27,8 +25,8 @@ Uma linha de `spending` representa **uma transação**, não um mês ou uma cate
 
 Com o SQLite instalado, cria um banco novo para este exercício. Os arquivos abaixo são uma adaptação didática; não usam os lançamentos pessoais do projeto original.
 
-- <ExerciseDownload file="financas/preparar.sql">Baixar preparação e dados fictícios</ExerciseDownload>
-- <ExerciseDownload file="financas/consultas.sql">Baixar consultas comentadas</ExerciseDownload>
+- :exercise-download[Baixar preparação e dados fictícios]{file="financas/preparar.sql"}
+- :exercise-download[Baixar consultas comentadas]{file="financas/consultas.sql"}
 
 Abre `sqlite3 estudo.db` na pasta onde salvou os arquivos e executa:
 

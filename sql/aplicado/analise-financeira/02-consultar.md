@@ -1,8 +1,6 @@
 ---
 title: Responder perguntas com SQL
 description: Transforme perguntas sobre despesas em filtros, agrupamentos e verificações.
-path: financas
-step: 2
 prev: false
 next: false
 ---

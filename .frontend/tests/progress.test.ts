@@ -1,83 +1,94 @@
 import { defineComponent, nextTick } from 'vue'
 import { render, screen } from '@testing-library/vue'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
-import { useProgress, progressKey } from '../.vitepress/theme/progress'
-import PracticePaths from '../.vitepress/theme/components/PracticePaths.vue'
+import { describe, expect, it, vi } from 'vitest'
+import { legacyProgressKey, progressKey, useProgress } from '~/lib/progress'
 
-vi.mock('vitepress', () => ({ withBase: (url: string) => `/learning-notes${url}` }))
-const key = 'learning-notes:practice:v1'
-const url = '/sql/aplicado/analise-financeira/01-preparar'
-const Lesson = defineComponent({
-  setup() { return { ...useProgress(), url } },
-  template: '<button :aria-pressed="completed.includes(url)" @click="toggle(url)">Marcar etapa</button><p role="status">{{ message }}</p>',
+// A minimal lesson: one button that marks a step, plus the status message.
+const Lesson = (id: string) => defineComponent({
+  setup: () => ({ ...useProgress(), id }),
+  template: '<button :aria-pressed="completed.includes(id)" @click="toggle(id)">Marcar etapa</button><p role="status">{{ message }}</p><code>{{ completed.join(",") }}</code>',
 })
+const saved = () => JSON.parse(localStorage.getItem(progressKey)!)
+const projectStep = '/sql/aplicado/analise-financeira/01-preparar'
 
-describe('Progresso dos percursos', () => {
-  it('preserva etapas marcadas nos endereços antigos por projeto', async () => {
-    localStorage.setItem(key, JSON.stringify(['/pratica/financas/01-preparar', '/pratica/api/01-resposta']))
-    render(PracticePaths)
-    await nextTick()
-    expect(screen.getAllByText('1 de 3 estudadas')).toHaveLength(2)
-    expect(screen.getByRole('link', { name: /Entender a resposta/ })).toHaveTextContent('Estudada')
-    expect(screen.getByRole('link', { name: /Entender a resposta/ })).toHaveAttribute('href', '/learning-notes/python/libs/requests/01-resposta')
-  })
+describe('Progresso salvo no navegador', () => {
   it('marca pelo teclado e restaura a etapa depois de reabrir', async () => {
     const user = userEvent.setup()
-    const { unmount } = render(Lesson)
+    const view = render(Lesson('sql-select'))
     await user.tab()
     await user.keyboard(' ')
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
-    expect(JSON.parse(localStorage.getItem(progressKey)!)).toEqual({ version: 2, completed: [url] })
-    unmount()
-    render(PracticePaths)
-    expect(screen.getByText('1 de 3 estudadas')).toBeVisible()
-    expect(screen.getByRole('link', { name: /Entender a tabela/ })).toHaveTextContent('Estudada')
+    expect(saved()).toEqual({ version: 2, completed: ['sql-select'] })
+    view.unmount()
+    render(Lesson('sql-select'))
+    await nextTick()
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
   })
-
+  it('migra registros dos antigos guias (/pratica/...) sem apagar o original nem entradas desconhecidas', async () => {
+    const original = JSON.stringify(['/pratica/api/01-resposta', '/future-note'])
+    localStorage.setItem(legacyProgressKey, original)
+    render(Lesson('sql-select'))
+    await nextTick()
+    await userEvent.click(screen.getByRole('button'))
+    expect(localStorage.getItem(legacyProgressKey)).toBe(original)
+    expect(saved()).toEqual({ version: 2, completed: ['/future-note', '/python/libs/requests/01-resposta', 'sql-select'] })
+  })
   it('permite desmarcar uma etapa sem afetar as outras', async () => {
-    localStorage.setItem(key, JSON.stringify([url, '/python/libs/requests/01-resposta']))
-    const user = userEvent.setup()
-    render(Lesson)
-    await user.click(screen.getByRole('button'))
-    expect(JSON.parse(localStorage.getItem(progressKey)!)).toEqual({ version: 2, completed: ['/python/libs/requests/01-resposta'] })
-    expect(JSON.parse(localStorage.getItem(key)!)).toEqual([url, '/python/libs/requests/01-resposta'])
+    localStorage.setItem(progressKey, JSON.stringify({ version: 2, completed: [projectStep, 'sql-where'] }))
+    render(Lesson(projectStep))
+    await nextTick()
+    await userEvent.click(screen.getByRole('button'))
+    expect(saved().completed).toEqual(['sql-where'])
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
   })
-
-  it('informa falha ao salvar e não mostra uma conclusão que não foi persistida', async () => {
-    const user = userEvent.setup()
-    render(Lesson)
-    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Quota exceeded') })
-    await user.click(screen.getByRole('button'))
+  it('ignora entradas inválidas e duplicadas', async () => {
+    localStorage.setItem(legacyProgressKey, JSON.stringify([projectStep, projectStep, null, 42]))
+    render(Lesson(projectStep))
+    await nextTick()
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
+    expect(document.querySelector("code")!.textContent).toBe(projectStep)
+  })
+  it('preserva uma cópia dos dados corrompidos antes de recuperar', async () => {
+    localStorage.setItem(progressKey, '{broken')
+    render(Lesson('sql-select'))
+    await nextTick()
+    expect(screen.getByRole('status')).toHaveTextContent('Não foi possível ler')
+    await userEvent.click(screen.getByRole('button'))
+    expect(localStorage.getItem(`${progressKey}:backup`)).toBe('{broken')
+    expect(saved().completed).toEqual(['sql-select'])
+  })
+  it('não sobrescreve progresso salvo por uma versão futura', async () => {
+    const original = JSON.stringify({ version: 99, completed: ['future'] })
+    localStorage.setItem(progressKey, original)
+    render(Lesson('sql-select'))
+    await userEvent.click(screen.getByRole('button'))
+    expect(localStorage.getItem(progressKey)).toBe(original)
+    expect(screen.getByRole('status')).toHaveTextContent('outra versão')
+  })
+  it('mantém o estado honesto quando salvar falha', async () => {
+    render(Lesson('sql-select'))
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('Quota') })
+    await userEvent.click(screen.getByRole('button'))
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
     expect(screen.getByRole('status')).toHaveTextContent('Não foi possível salvar')
-    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false')
   })
-
-  it('continua exibindo os percursos com armazenamento bloqueado', async () => {
-    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('SecurityError') })
-    render(PracticePaths)
+  it('acompanha outras abas e preserva as mudanças delas ao salvar', async () => {
+    render(Lesson('sql-select'))
+    localStorage.setItem(progressKey, JSON.stringify({ version: 2, completed: ['sql-select', 'sql-where', 'unknown'] }))
+    window.dispatchEvent(new StorageEvent('storage', { key: progressKey }))
+    await nextTick()
+    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
+    await userEvent.click(screen.getByRole('button'))
+    expect(saved().completed).toEqual(['unknown', 'sql-where'])
+  })
+  it('continua legível com o armazenamento bloqueado e não tenta gravar', async () => {
+    const set = vi.spyOn(Storage.prototype, 'setItem')
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('Blocked') })
+    render(Lesson('sql-select'))
     await nextTick()
     expect(screen.getByRole('status')).toHaveTextContent('Não foi possível ler')
-    expect(screen.getByRole('link', { name: /Entender a resposta/ })).toBeVisible()
-  })
-
-  it('ignora entradas desconhecidas e duplicadas no progresso salvo', async () => {
-    localStorage.setItem(key, JSON.stringify([url, url, '/inexistente', null, 42]))
-    render(PracticePaths)
-    await nextTick()
-    expect(screen.getByText('1 de 3 estudadas')).toBeVisible()
-    expect(screen.getAllByText('0 de 3 estudadas')).toHaveLength(2)
-  })
-
-  it('aceita recuperar um registro corrompido ao marcar uma etapa', async () => {
-    localStorage.setItem(key, '{invalido')
-    const user = userEvent.setup()
-    render(Lesson)
-    await nextTick()
-    expect(screen.getByRole('status')).toHaveTextContent('Não foi possível ler')
-    await user.click(screen.getByRole('button'))
-    expect(JSON.parse(localStorage.getItem(progressKey)!)).toEqual({ version: 2, completed: [url] })
-    expect(localStorage.getItem(key)).toBe('{invalido')
+    await userEvent.click(screen.getByRole('button'))
+    expect(set).not.toHaveBeenCalled()
   })
 })

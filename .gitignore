@@ -6,6 +6,7 @@ negocios
 
 # site
 .frontend/node_modules
-.frontend/.vitepress/dist
-.frontend/.vitepress/cache
-.frontend/.vitepress/.temp
+.frontend/.nuxt
+.frontend/.output
+.frontend/.data
+.frontend/dist

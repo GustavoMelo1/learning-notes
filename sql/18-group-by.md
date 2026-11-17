@@ -2,8 +2,8 @@
 
 Agrupa linhas pra responder "quantos por grupo" ou "total por grupo". Sempre junto com COUNT, SUM, AVG, MIN ou MAX.
 
-<GroupLab />
-
+::group-lab
+::
 ## GROUP BY + COUNT
 Quantos jogos tem em cada gênero?
 ```sql

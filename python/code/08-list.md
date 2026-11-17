@@ -2,8 +2,8 @@
 
 Listas são sequências ordenadas e **mutáveis** que guardam vários valores, com suporte a indexação e slicing.
 
-<ListLab />
-
+::list-lab
+::
 ## Exemplo
 
 ```python

@@ -1,6 +1,4 @@
 ---
-path: frontend
-step: 1
 prev: false
 next: false
 title: HTML — estrutura e significado

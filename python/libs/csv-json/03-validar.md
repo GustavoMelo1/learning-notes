@@ -1,8 +1,6 @@
 ---
 title: Exportar e conferir o resultado
 description: Execute um pequeno pipeline local e confira esquema, quantidade e tipos.
-path: arquivos
-step: 3
 prev: false
 next: false
 ---
@@ -12,7 +10,7 @@ Um arquivo gerado não prova que o pipeline está correto. Antes de salvar, conf
 
 ## Executar o exemplo
 
-<ExerciseDownload file="arquivos/pipeline.py">Baixa o script didático</ExerciseDownload> e, na pasta onde salvou, executa:
+:exercise-download[Baixa o script didático]{file="arquivos/pipeline.py"} e, na pasta onde salvou, executa:
 
 ```bash
 python pipeline.py

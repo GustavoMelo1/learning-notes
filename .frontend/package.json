@@ -4,12 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt generate && node scripts/static-aliases.mjs",
+    "preview": "node scripts/serve.mjs",
+    "postinstall": "nuxt prepare",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:site": "node scripts/check-site.mjs",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "check:site": "node scripts/check-site.mjs"
   },
   "devDependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
@@ -19,12 +20,18 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/user-event": "^14.6.8",
     "@testing-library/vue": "^8.1.0",
-    "@vitejs/plugin-vue": "^5.2.4",
+    "@vitejs/plugin-vue": "^6.0.11",
     "canvas-confetti": "^1.9.4",
     "jsdom": "^26.1.0",
     "rough-notation": "^0.5.1",
-    "vitepress": "^1.6.4",
-    "vitepress-sidebar": "^1.39.0",
-    "vitest": "^3.2.7"
+    "vitest": "^5.1.0"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.16.2",
+    "minisearch": "^7.2.0",
+    "nuxt": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=22.5"
   }
 }

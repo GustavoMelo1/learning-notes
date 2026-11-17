@@ -1,8 +1,6 @@
 ---
 title: Montar e validar a tabela
 description: Extraia nome e linguagem juntos e teste respostas vazias e falhas sem chamar a API.
-path: api
-step: 3
 prev: false
 next: false
 ---
@@ -37,7 +35,7 @@ tabela.to_csv("linguagens.csv", index=False, mode="x")
 
 ## Praticar sem depender da rede
 
-<ExerciseDownload file="api/repositorios.py">Baixa o exercício completo</ExerciseDownload> e executa:
+:exercise-download[Baixa o exercício completo]{file="api/repositorios.py"} e executa:
 
 ```bash
 python repositorios.py

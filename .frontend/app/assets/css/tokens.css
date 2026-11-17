@@ -1,0 +1,73 @@
+/* Identidade "caderno de estudos". Mude o visual aqui e mantenha os dois temas em sincronia.
+   Papel quente, tinta, caneta azul, marca-texto amarelo e vermelho de correção.
+   Os pares de texto/fundo são verificados (contraste AA) por scripts/check-site.mjs. */
+:root {
+  --paper: #fbf8f1;
+  --paper-alt: #f6f1e6;
+  --paper-soft: #f1ebdd;
+  --paper-raised: #fffdf8;
+  --ink: #1f1d1a;
+  --ink-2: #5b554b;
+  --ink-3: #6b6458;
+  --rule: #e3dac8;
+  --control-border: #8a8271;
+
+  --pen: #2b4acb;
+  --pen-strong: #1f3aa8;
+  --pen-soft: #2b4acb14;
+  --on-pen: #ffffff;
+
+  --marker: #ffe066;
+  --marker-soft: #fff4c2;
+  --red: #b5382a;
+  --line: #2b4acb14;
+  --margin-line: #b5382a40;
+  --shadow-ink: #1f1d1a;
+
+  --code-bg: #f3eee2;
+  --code-inline-bg: #efe8d8;
+
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Source Serif 4 Variable', 'Iowan Old Style', Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', 'Cascadia Code', Consolas, ui-monospace, monospace;
+  --font-hand: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
+
+  --header-height: 64px;
+  --sidebar-width: 256px;
+  --aside-width: 220px;
+  --measure: 700px;
+  --radius: 3px;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+
+  color-scheme: light;
+}
+
+/* Caderno à noite: nada de preto puro, grifo dessaturado. */
+:root.dark {
+  --paper: #1a1816;
+  --paper-alt: #201d1a;
+  --paper-soft: #26231f;
+  --paper-raised: #2a2622;
+  --ink: #ece6da;
+  --ink-2: #b8b0a2;
+  --ink-3: #a59d8f;
+  --rule: #3a352e;
+  --control-border: #8a8271;
+
+  --pen: #9db0ff;
+  --pen-strong: #bccaff;
+  --pen-soft: #9db0ff1f;
+  --on-pen: #15130f;
+
+  --marker: #6b5a22;
+  --marker-soft: #3a331d;
+  --red: #ff8f7a;
+  --line: #9db0ff14;
+  --margin-line: #ff8f7a33;
+  --shadow-ink: #000000;
+
+  --code-bg: #211e1b;
+  --code-inline-bg: #2e2a25;
+
+  color-scheme: dark;
+}
