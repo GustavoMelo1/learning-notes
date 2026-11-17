@@ -62,7 +62,7 @@ Trilhas de fundamentos usam ids como `sql-select`; as etapas que vieram dos anti
 
 ## Visual
 
-A direção "caderno de estudos" está em `.claude/skills/design-direction/SKILL.md` (papel, tinta, caneta, marca-texto, vermelho de correção; Fraunces, Source Serif 4, JetBrains Mono e Caveat). Mude cores em `tokens.css`, mantendo `:root` e `:root.dark` em sincronia — `check:site` reprova contraste de texto abaixo de 4,5:1. O tema escolhido usa a chave `vitepress-theme-appearance` (mantida da versão anterior).
+A direção "caderno de estudos" usa papel, tinta, caneta, marca-texto, vermelho de correção; Fraunces, Source Serif 4, JetBrains Mono e Caveat. Mude cores em `tokens.css`, mantendo `:root` e `:root.dark` em sincronia — `check:site` reprova contraste de texto abaixo de 4,5:1. O tema escolhido usa a chave `vitepress-theme-appearance` (mantida da versão anterior).
 
 ## Desenvolver e verificar
 
@@ -82,4 +82,3 @@ Testes dos exercícios Python, a partir da raiz: `python -B -m unittest discover
 
 O GitHub Actions roda testes, build e `check:site` antes de publicar a `main`; o checkout usa o histórico completo para mostrar a data da última alteração de cada nota.
 
-Para revisar o visual com screenshots reais e uma crítica de design, use o script `.claude/scripts/screenshots.mjs` e o agente `ui-critic` (instruções nos próprios arquivos).

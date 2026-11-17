@@ -10,3 +10,6 @@ negocios
 .frontend/.output
 .frontend/.data
 .frontend/dist
+
+# Local assistant tooling
+.claude/
